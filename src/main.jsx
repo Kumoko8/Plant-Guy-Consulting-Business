@@ -8,6 +8,7 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Design from './pages/Design';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/Contact',
         element: <Contact />,
+      },
+      {
+        path: '/Design',
+        element: <Design />,
       },
     ],
   },
