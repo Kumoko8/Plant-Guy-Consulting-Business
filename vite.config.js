@@ -13,6 +13,7 @@ export default defineConfig({
 
 
 
+
 //convert png to svg for rotating logo
 //connect Enter button to portfolio page
 //insert About sections (component)

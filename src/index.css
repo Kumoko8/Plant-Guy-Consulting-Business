@@ -71,3 +71,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.image-deco {
+  box-sizing: border-box;
+      width: 50%;
+      height: auto;
+      flex: 1 1 200px;
+      border: solid var(--back-color);
+      margin: 10px;
+      image-rendering: auto;
+      border-radius: 50%;
+}
