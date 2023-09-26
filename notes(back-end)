@@ -1,0 +1,6185 @@
+
+//basic node function
+(function () {
+  console.log(this);
+})();
+
+
+// All of the `createGreeting` functions are equivalent
+var createGreeting = function(message, name) {
+    return message + ", " + name + "!";
+  };
+
+// We can safely swap out function expressions with arrow functions most of the time
+var createGreeting = (message, name) => {
+    return message + ", " + name + "!";
+  };
+  // the above is the most readable way to make an arrow function
+  //notice what the arrow is replacing from the first function
+
+  // Depending on the environment `setTimeout` is called in, it may refer to one of two objects
+// In the browser, `setTimeout` is a property of the `window` object
+// In node, it belongs to a special "Timeout" object
+
+var person = {
+    name: "Hodor",
+    saySomething: function() {
+      console.log(this.name + " is thinking...");
+      setTimeout(function() {
+        console.log(this.name + "!");
+        // the second this.name will be undefined because it is not accessing the 
+        //specific object key value pair
+      }, 100);
+    }
+  };
+  
+  person.saySomething(); // prints "Hodor is thinking..."
+  // prints "undefined!" 100ms later
+  
+  // Arrow functions bind the `this` keyword to the object it's created inside of
+  // i.e. whatever `this` is where it's created
+  var person = {
+    name: "Hodor",
+    saySomething: function() {
+      console.log(this.name + " is thinking...");
+      setTimeout(() => console.log(this.name + "!"), 100);
+    }
+  };
+  //nested arrow functions have access to top level, but top level arrows do not
+  //top level arrow function gets a node this, not the same this
+  person.saySomething(); // "Prints Hodor is thinking..."
+  // prints `Hodor!` 100ms later
+  
+  // Avoid using arrow functions for object methods
+var dog = {
+    name: "Lassie",
+    sound: "Woof!",
+    makeSound: () => console.log(this.sound),
+    readTag: () => console.log("The dog's tag reads: " + this.name + ".")
+  };
+  //change the arrows to "function"
+
+  // Prints `undefined`
+dog.makeSound();
+
+// Prints `The dog's tag reads: undefined.`
+dog.readTag();
+
+// In the makeSound and readTag methods, `this` doesn't refer to `dog`
+// If this code run in node, `this` refers to `module.exports` (the object containing all the exports in this file)
+// If this code was run in the browser, `this` would refer to the window
+
+//arrow functions are just a short-hand way of writing functions
+//and do not require a return if done in a single line
+//but can cause context issues
+
+//Variables (var)
+//var: redeclarable, redefinable, readable
+// this means var values are accessible outside
+
+//let: declare once only, redefinable, readable
+//helps you not step on your own toes because the values
+//are not accessible outside the scope
+
+//const: cannot be redefined or redeclared readable only 
+//(w some exceptions)(whole value)
+// 1. When using var, our counter exists after a for-loop is done
+
+for (var i = 0; i < 5; i++) {
+    console.log(i);
+  }
+  
+  console.log(i); // Prints 5
+  
+  // When using let, our counter is not defined outside of the for-loop block
+  
+  let x = 42;
+  
+  for (let j = 0; j < 5; j++) {
+    console.log(j);
+    console.log(x);
+  }
+  
+  console.log(j); // ReferenceError: j is not defined
+  
+  let j = 42;
+  console.log(j); // prints 42
+  
+  // ==========================================================================
+  
+  // 2. When using while loops, any values we create inside exist outside of the while-loop block
+  
+  // var count = 0;
+  
+  // while (count < 5) {
+  //   var tripled = count * 3;
+  //   count++;
+  // }
+  
+  // console.log(tripled); // Prints 12
+  
+  // ==========================================================================
+  
+  // 3. When using let, values defined inside of the while-loop block don't exist outside of it
+  
+  // let c = 0;
+  
+  // while (c < 5) {
+  //   let quadrupled = c * 4;
+  //   c++;
+  // }
+  
+  // console.log(quadrupled); // ReferenceError: quadrupled is not defined
+  
+  // ==========================================================================
+  
+  4. When writing conditionals, values defined inside the conditional block exist outside of it
+  
+  if (true) {
+    var favoriteColor = "red";
+  }
+  
+  console.log(favoriteColor); // Prints `red`
+  
+  When using let, values defined inside of a conditional block don't exist outside
+  
+  let favoriteFood;
+  
+  if (true) {
+    favoriteFood = "pizza";
+  }
+  
+  This works since favoriteColor is not defined inside of a block
+  console.log(favoriteFood);
+  Prints `pizza`
+  
+
+
+// 1. const can be used for values which we will not reassign
+
+const age = 25;
+
+age++; // TypeError: Assignment to constant variable.
+
+// ==========================================================================
+
+// const name = "";
+
+// name = "Cherie"; // TypeError: Assignment to constant variable.
+
+// ==========================================================================
+
+// 2. const doesn't mean `constant value`, instead means `constant reference`
+
+// Unlike primitive data types, objects and arrays are passed by reference, rather than passed by value
+// const beatles = ["John", "Paul", "Ringo"];
+// beatles.push("George");
+
+// This works because by updating an array's contents, we aren't changing the reference 
+//to the underlying array
+// console.log(beatles); // Prints `["John", "Paul", "Ringo", "George"]`
+
+// console.log(beatles);
+
+// const person = { name: "Brianna", age: 11 };
+// person.age++;
+// person.favoriteMovie = "Spider-Man";
+// person.name = "Carla";
+
+// console.log(person); // Prints `{ name: 'Carla', age: 12, favoriteMovie: 'Spider-Man' }`
+
+// ==========================================================================
+
+// 3. While we can MODIFY arrays and objects that are using `const`, we can't reassign them
+
+// const item = {
+//   id: 23,
+//   title: "Underwater Basket-Weaving DVD",
+//   price: "$17.99"
+// };
+
+// item.price = "$1.99";
+
+// console.log(item);
+
+// item = {
+//   id: 11,
+//   title: "Underwater Basket-Weaving Shoes",
+//   price: "$101.43"
+// }; // TypeError: Assignment to constant variable.
+
+// const ninjaTurtles = [];
+
+// The same rules apply to arrays, we can MODIFY them, but not completely reassign them
+
+// ninjaTurtles = [
+//   "Michaelangelo",
+//   "Leonardo",
+//   "Raphael",
+//   "Donatello"
+// ]; // TypeError: Assignment to constant variable.
+
+//Primitives
+//Numbers, strings, undefined, boolean
+
+//you can use const to edit objects and arrays because they are multiple values
+//you can't redefine the whole primitive using const though
+
+//lets should always be primitives, and for and while loops
+
+//const should be objects and arrays
+
+
+const moviePatrons = [
+    { name: "Tom", age: 16 },
+    { name: "Ashley", age: 31 },
+    { name: "Sarah", age: 18 },
+    { name: "Alvin", age: 22 },
+    { name: "Cherie", age: 14 },
+    { name: "Malcolm", age: 15 }
+  ];
+  
+  // 1.
+  
+  // forEach is a functional way of iterating through an array without a for-loop
+  
+  moviePatrons.forEach(patron => console.log(patron.age));
+  //forEach loops through each value in the array
+  
+  // 2.
+  
+  // Filter returns a new array containing only elements whose callback returns a truthy value
+  
+  const canWatchRatedR = moviePatrons.filter(function(patron) {
+    //goes through each value and applies the condition
+    return patron.age > 17;
+  });
+  
+  console.log(canWatchRatedR);
+  
+  // 3.
+  
+  // Map returns a brand new array the same length as the first. Each element is passed into the callback.
+  // Whatever is returned from the callback at each iteration is what goes into that index of the new array
+  
+  const cardedMoviePatrons = moviePatrons.map(patron => {
+    //map can change every single value in an array
+    // Copy the object being iterated over so that we don't affect the existing object (immutability). Note that this is not the ideal way of copying the object in this case and we will be using another approach (spread operator) for copying objects later in the module.
+    const pObj = JSON.parse(JSON.stringify(patron));
+    // Do everything else the same
+    if (pObj.age >= 17) {
+      pObj.canWatchRatedR = true;
+    } else {
+      pObj.canWatchRatedR = false;
+    }
+    // Be sure to return the new obj, not the parameter
+    return pObj;
+  });
+  
+  console.log("Movie Patrons: ")
+  console.log(moviePatrons);
+  
+  console.log("\nCarded Movie Patrons: ");
+  console.log(cardedMoviePatrons);
+  
+  //other methods
+  moviePatrons.reduce
+  moviePatrons.pop
+  moviePatrons.push
+etc
+
+
+const originalArray = [1, 3, 2, 5, 10];
+
+// doubledArray is equal to a new array of numbers multiplied by 2 and returned by map(). map() will use an anonymous function as a condition. 
+const doubledArray = originalArray.map(function(data) {
+  // The anonymous function returns each number multiplied by 2. The returned result is added to a new array.
+  return data * 2;
+});
+
+console.log(doubledArray);
+console.log(originalArray);
+
+
+// TODO: Describe how map is working in the example below. What will the value of tripledArray be?
+const tripledArray = originalArray.map(data => data * 3);
+
+// TODO: Describe how map is working in the example below. What will the value of oddOrEven be?
+const oddOrEven = originalArray.map(num => {
+  if (num % 2 === 0) {
+    return 'even'
+  } else {
+    return 'odd'
+  }
+});
+// the % is a mod, which divides num % denom and returns the remainder, if the remainder is 0
+//that means the number is evenly divided
+
+//Template Literals
+const arya = {
+    first: "Arya",
+    last: "Stark",
+    origin: "Winterfell",
+    allegiance: "House Stark"
+  };
+  
+  const greeting = `My name is ${arya.first}!
+  I am loyal to ${arya.allegiance}.`;
+  //use back tick ` to make template literals which allows concatenation
+  //use $ for all var and wrap in {}
+  console.log(greeting); // prints
+  // My name is Arya!
+  // I am loyal to House Stark.
+
+
+  //How to scrape data from command line
+  // returns an array of command line arguments
+console.log(process.argv);
+
+// arguments passed from the command line are accessed by index
+// console.log(process.argv[2]);
+//the [2] is targeting just the 3rd item
+//returns node first and the file [0] and [1]
+//it can also return whatever comes after as a string (separated by space)
+
+const one = process.argv[2] 
+const two = process.argv[3]
+
+console.log((one === two ? "Yes they match" : "No they don't"))
+ //use this shortened version instead of an if else since === is a boolean  
+//the question mark means if
+// the colon means or
+// console.log(process.argv);
+
+// fs is a Node standard library package for reading and writing files
+const fs = require('fs');
+
+//How to Read Write File Using FS
+//FS methods
+//fs is a built in library called "file system"
+// Return the contents of 'data.csv' as a string in the variable "data"
+// "utf8" encodes the raw buffer data in human-readable format
+fs.readFile('data.csv', 'utf8', (error, data) =>
+  error ? console.error(error) : console.log(data)
+);
+
+Keyboard Shortcuts(VS code)
+
+shift + alt + arrow(up or down) = copy whole line
+shift + alt + arrow(left or right) = highlights words in direction 
+alt + arrow(up or down) = move line
+alt + hold mouse = multiple inline typing
+
+command(mac)or ctrl(windows) + d = highlights an entire word (wherever cursor is)
+(use this command again it will highlight the next occurrence of that word)
+(this also places multiple cursors in that location)
+(click escape to go back to the first word)
+place cursor + command/ctrl + L = select all occurences of word 
+F2 or fn + F2 (mac) = rename a symbol and all occurences
+
+command/ctrl + p = search and open files (dropdown menu)
+command/ctrl + shift + p (or F1) = search and use VS commands (dropdown menu)
+
+shift + arrow = highlight in that direction
+(left and right highlights one character at a time)
+(up and down highlights lines at a time)
+
+shift + command/ctrl + arrow = highlight all in that direction
+(left and right highlights to the beginning/end of the line)
+(up and down highlights to the beginning/end of the doc)
+
+command/ctrl + arrow key = move cursor to the end of that section
+(left and right moves to beginning or end of line)
+(up and down moves to beginning or end of document)
+
+
+highlight text + command/ctrl + / = comment out highlighted text (for any language)
+move cursor on line + command/ctrl = comment out that line
+
+command/ctrl + B = toggle side bar 
+command/ctrl + shift + E = go to explorer in side bar (E for explorer)
+(use up/down arrows to navigate files; left/right to open folders, space to open file)
+command/ctrl + shift + F = go to search/find in side bar (F for find)
+command/ctrl + shift + D = go to debug in side bar (D for debug)
+command/ctrl + shift + G = go to source control in side bar (G for git??)
+command/ctrl + shift + X = go to extensions in side bar (X for extensions)
+
+ctrl(only) + ~ (no shift required)= toggle terminal
+
+place cursor + F12 (or fn + F12) = go to definition of element
+
+highlight element + command/ctrl + . = open options for actions(like extract into variable)
+
+place cursor + ctrl + space = helper dropdown (shows methods etc)
+
+command/ctrl + K then command/ctrl + S = open keyboard shortcuts menu
+
+const writeFile = fs.writeFile;
+// Uncomment this next function to write to the file with anything you pass in as process.argv[2]
+
+writeFile('log.txt', process.argv[2], (err) =>
+  err ? console.error(err) : console.log('Success!')
+);
+
+fs.appendFile('log.txt', `${process.argv}\n`, (err) =>
+  err ? console.error(err) : console.log('Commit logged!')
+);
+
+//appendFile adds whatever data to an existing file and if 
+//the file doesn't exist it will create it and add it
+// the \n tells it to start a new line each timeconst pie = 'apple';
+
+//Modulization
+const predictable = () => 1;
+
+// module.exports is an object we use to store variables or methods
+module.exports = {
+  pie,
+  predictable,
+};
+
+// TODO: Import `maths.js`
+const math = require("./maths.js")
+// TODO: Capture the values passed from the command line into these three variables: `operation`, `numOne` and `numTwo`
+const operation = process.argv[2]
+const numOne = process.argv[3]
+const numTwo = process.argv[4]
+// TODO: Create a `switch` statement that accepts an `operation` parameter
+switch(operations){
+    case "sum":
+        console.log(math.sum(numOne, numTwo))
+        break;
+    case "difference":
+        console.log(math.difference(numOne, numTwo))
+        break;
+    case "product":
+        console.log(math.product(numOne, numTwo))
+        break;
+    case "quotient":
+       console.log(math.quotient(numOne, numTwo))
+       break; 
+}
+
+// and each `case` uses the corresponding `maths` method
+// to perform each math operation on the two numbers, `numOne` and `numTwo`
+
+
+//Using NPM
+// intialize
+npm init -y
+//using -y skips all the prelim questions
+npm i ""
+//installs whatever file
+
+//edit the package.json under scripts for what you want
+"start":"node index.js"
+
+//to start over delet the package-lock and the node modules
+//DO NOT DELETE THE PACKAGE.JSON!
+
+//to run
+npm run ""
+
+//to start (does not need run before it)
+npm start
+
+//Inquirer
+//all imports must be at the top of your file after dependents
+const inquirer = require("inquirer")
+
+const inquirer = require('inquirer');
+
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'What is your user name?',
+      name: 'username',
+    },
+    {
+      type: 'password',
+      message: 'What is your password?',
+      name: 'password',
+    },
+    {
+      type: 'password',
+      message: 'Re-enter password to confirm:',
+      name: 'confirm',
+    },
+  ])
+  .then((response) =>
+    response.confirm === response.password
+      ? console.log('Success!')
+      : console.log('You forgot your password already?!')
+  );
+//Use the name value to access that particular input value
+
+//A quicker way to use for loops JS 6
+const songs = ['Bad Guy', 'The Wheels on the Bus', 'Friday'];
+for (const song of songs) {
+  console.log(song);
+}
+
+/* Output:
+  Bad Guy
+  The Wheels on the Bus
+  Friday
+*/
+const moreSongs = [
+  ['Bad Guy', 1],
+  ['The Wheels on the Bus', 2],
+  ['Friday', 3],
+];
+for (const song of moreSongs) {
+  console.log(song);
+}
+
+/* Output:
+  Bad Guy
+  The Wheels on the Bus
+  Friday
+*/
+
+//Using for of loop to output a list in color
+
+const outputCyanText = (text) => console.log(`\x1b[36m${text}\x1b[0m`);
+
+// Top 10 Spotify songs in an array
+const songs = [
+  '1: MONTERO (Call Me By Your Name)',
+  '2: Peaches (feat. Daniel Caesar & Giveon)',
+  '3: Kiss Me More (feat. SZA)',
+  '4: Astronaut In The Ocean',
+  '5: Save Your Tears (with Ariana Grande) (Remix)',
+  '6. RAPSTAR',
+  '7. Levitating (feat. DaBaby)',
+  '8. Leave The Door Open',
+  '9. Botella Tras Botella',
+  '10. Fiel',
+];
+
+console.log('Spotify top 10:\n');
+
+// TODO: Write a for .. of loop that iterates over each song and uses the `outputCyanText()` method to output each song in a cyan color to the terminal.
+for (const song of songs) {
+ outputCyanText(song)
+}
+
+//Using Rest ...
+// without rest
+function add(x, y) {
+  return x + y;
+}
+console.log(add(1, 2, 3, 4, 5)); // => 3
+
+// 1. rest
+function add(...nums) {
+  let sum = 0;
+  for (let num of nums) sum += num;
+  return sum;
+}
+
+add(1); // => 1
+add(3, 3); // => 6
+add(1, 1, 4, 5); // => 11
+
+// 2. 
+function howManyArgs(...args) {
+  return `You passed ${args.length} arguments.`; // point out the template literal
+}
+
+console.log(howManyArgs(0, 1)); // You have passed 2 arguments.
+console.log(howManyArgs("argument!", null, ["one", 2, "three"], 4)); // You have passed 4 arguments.
+
+// 1. spread (... outside of function parameters)
+const dragons = ["Drogon", "Viserion", "Rhaegal"];
+const weapons = ["dragonglass", ...dragons, "wildfire"]; // notice the spread operator ...dragons
+
+console.log(weapons); // prints ["dragonglass", "Drogon", "Viserion", "Rhaegal", "wildfire"]
+
+
+//The array.reduce method
+
+const addition = (x, y, z) => {
+  const array = [x, y, z];
+  // TODO: What does the reduce() method do?
+  return array.reduce((a, b) => a + b, 0);
+};
+//returns the accumulated result of the function
+//for each index in the array
+// 0 is the starting point
+//a is the aggregrate (current running total)
+//b is the var(index)
+
+//Object destructuring
+
+const arya = {
+  name: 'Arya Stark',
+  parents: ['Eddard Stark', 'Catelyn Stark'],
+};
+
+const jaime = {
+  name: 'Jaime Lannister',
+  parents: ['Tywin Lannister', 'Joanna Lannister'],
+};
+
+// In the past, if we wanted to pull off an object's property we'd have to do something like this:
+
+const aryaName = arya.name;
+const aryaParents = arya.parents;
+
+console.log(aryaName); // logs `"Arya Stark"`
+console.log(aryaParents); // logs `["Eddard Stark", "Catelyn Stark"]`
+
+// Now with ES6 object destructuring syntax, we can do this:
+
+const { name, parents } = jaime;
+
+console.log(name); // logs `"Jaime Lannister"`
+console.log(parents); // logs `["Tywin Lannister", "Joanna Lannister"]`
+
+// We can also rename our destructured properties like so:
+
+const { name: jaimeName } = jaime;
+console.log(jaimeName); // logs `"Jaime Lannister"`
+
+// We can also destructure parameters using the same feature. e.g. previously we might have done something like this:
+
+const logCharacter = (character) =>
+  console.log(
+    `${character.name}'s parents are: ${character.parents[0]} and ${character.parents[1]}.`
+  );
+
+logCharacter(arya);
+
+// We can also use array destructuring to pull off an array's elements
+const locations = ['Winterfell', 'Casterly Rock', 'Kings Landing'];
+const [winterfell, casterlyRock, kingLanding] = locations;
+
+console.log(winterfell); // logs `"Winterfell"`
+console.log(casterlyRock); // logs `"Casterly Rock"`
+console.log(kingLanding); // logs `"Kings Landing"`
+
+// But now we can do this:
+
+const betterLogCharacter = ({ name, parents }) =>
+  console.log(`${name}'s parents are: ${parents[0]} and ${parents[1]}.`);
+
+betterLogCharacter(jaime);
+
+//OOP
+
+// Example dog object made from scratch. Writning 100 of these from scratch would take a long time.
+const dog = {
+  name: 'Rex',
+  age: 2,
+  breed: 'Bulldog'
+  test: function () {
+    this.name = 'Bruno';
+  },
+};
+
+// Constructor function can be used to create objects containing properties "name", "age", "breed", and the "nap()" function
+function Dog(name, age, breed) {
+  this.name = name;
+  this.age = age;
+  this.breed = breed;
+  this.nap = function () {
+    //the this keyword must be used for constructor functions
+    console.log('Zzzzzzzzz');
+  };
+}
+
+// Sets the variable "dog" to a Dog object and initializes with name, age, and breed properties
+const dog = new Dog('Rex', 2, 'Bulldog');
+//the capital D shows that its a class
+
+// Calling dog's nap method
+dog.nap();
+test(dog)
+
+//Example of creating a new constructor function
+
+
+function BlogPost(authorName, title, text, createdOn) {
+  this.authorName = authorName;
+  this.title = title;
+  this.text = text;
+  this.createdOn = createdOn;
+  this.printMetaData = function () {
+      console.log(`Created by ${this.authorName} on ${this.createdOn}`)
+  }
+  //you must use the this.! in case you have multiple instances
+}
+// TODO: Include a method called 'printMetaData()' that prints a message in the console saying 'Created by (authorName) on (createdOn)'
+
+// TODO: Create a new object using the 'BlogPost' constructor
+const blogPost = new BlogPost('Nora', 'Before', 'A romance', 2005)
+// TODO: Call the 'printMetaData()' method on the new object
+console.log(blogPost);
+blogPost.printMetaData();
+
+//Prototypes
+
+// Prototype methods on constructor function
+
+function Dog(name, age, breed) {
+  this.name = name;
+  this.age = age;
+  this.breed = breed;
+}
+
+Dog.prototype.nap = function () {
+  console.log('Zzzzzzzzz');
+};
+//increases performance slightly by placing a method in a separate place and then 
+//add to each new object
+//can decrease readability
+
+const dog = new Dog('Rex', 2, 'Bulldog');
+
+dog.nap();
+
+//Classes
+
+// Constructor class can be used to create objects containing properties "name", "age", "breed", and the "nap()" function
+//this method increases readability by
+//organizing similar objects
+class Cat {
+  constructor(name, age, breed) {
+    this.name = name;
+    this.age = age;
+    this.breed = breed;
+  }
+
+  nap() {
+    console.log('Zzzzzzzzz');
+  }
+}
+//you can still put parameters into the function
+//using temp lits
+
+// Sets the variables "catOne" and "catTwo" to a Cat object and initializes with name, age, and breed properties
+const catOne = new Cat('Tom', 2, 'Shorthair');
+const catTwo = new Cat('Garfield', 3, 'Bengal');
+
+// Calling Cat's nap method
+catOne.nap();
+catTwo.nap();
+
+
+// Inheritance
+// Constructor can be used to create objects containing properties "name", "age", "breed", and the "nap()" function
+function Animal(name, age, breed) {
+  this.name = name;
+  this.age = age;
+  this.breed = breed;
+  this.nap = function () {
+    console.log('Zzzzzzzzz');
+  };
+}
+//classes should should be open to modification but closed to extension
+//dont add more parameters or methods within it
+//make more smaller classes as opposed to large ones
+// Dog constructor can use the Animal constructor's call method to inherit properties "name", "age", "breed", and the "nap()" function
+function Dog(name, age, breed, puppies) {
+  Animal.call(this, name, age, breed);
+  this.puppies = puppies;
+}
+
+Dog.prototype.bark = function () {
+  console.log('Woof!');
+};
+
+// Cat constructor can use the Animal constructor's call method to inherit properties "name", "age", "breed", and the "nap()" function
+function Cat(name, age, breed, kittens) {
+  Animal.call(this, name, age, breed);
+  this.kittens = kittens;
+}
+
+Cat.prototype.meow = function () {
+  console.log('Meow!');
+};
+
+const dog = new Dog('Rex', 2, 'Bulldog', ['Baxter', 'Marley', 'Scooby']);
+const cat = new Cat('Tom', 2, 'Shorthair', ['Garfield', 'Felix', 'Salem']);
+
+dog.bark();
+cat.meow();
+
+//a more common way
+//use class constructor syntax
+
+class Dog extends Animal {
+  constructor(name, age, breed, puppies) {
+    super(name, age, breed);
+
+    this.puppies = puppies;
+  }
+}
+
+//Polymorphism
+//changing forms
+function Animal(name, age, breed) {
+  this.name = name;
+  this.age = age;
+  this.breed = breed;
+  this.nap = function () {
+    console.log('Zzzzzzzzz');
+  };
+  this.getLives = function () {
+    return 1;
+  };
+}
+
+function Dog(name, age, breed, puppies) {
+  Animal.call(this, name, age, breed);
+  this.puppies = puppies;
+}
+
+Dog.prototype.bark = function () {
+  console.log('Woof!');
+};
+
+function Cat(name, age, breed, kittens) {
+  Animal.call(this, name, age, breed);
+  this.kittens = kittens;
+  // 'getLives()' method is overriden to provide Cat with a different functionality
+  this.getLives = function () {
+    return 9;
+  };
+}
+
+Cat.prototype.meow = function () {
+  console.log('Meow!');
+};
+//this is called destructuring
+const dog = new Dog('Rex', 2, 'Bulldog', ['Baxter', 'Marley', 'Scooby']);
+const cat = new Cat('Tom', 2, 'Shorthair', ['Garfield', 'Felix', 'Salem']);
+
+console.log(dog.getLives());
+console.log(cat.getLives());
+
+//Testing
+//very important for making sure your code runs
+//and each section is modular to make testing
+//easier and make code easy to modify
+
+// Constructor Arithmetic is imported.
+const Arithmetic = require('../arithmetic.js');
+
+// A testing suite for Arithmetic is created.
+describe('Arithmetic', () => {
+  //describe shows the suite name and the method name
+  //it tells the functionality and expect shows what should happen
+  //use return to put in the logic that would give you what you expect
+  // A test is created to check that modulus does in fact return the remainder of the quotient of the two numbers.
+  describe('modulus', () => {
+    it('should take two numbers, divide them, and return the remainder', () => {
+      const total = 0;
+      const arithmetic = new Arithmetic();
+      expect(arithmetic.modulus(2, 2)).toEqual(total);
+    });
+    //write your test first to fail and then make it pass so you
+    //can verify one part at a time
+  });// Constructor Arithmetic is given a sum method that returns two numbers added together.
+  Arithmetic.prototype.sum = (a, b) => {
+    return a + b
+  };
+  
+});
+
+//Exception test
+// Create a new Arithmetic class that behaves much like the previous demonstration.
+class Arithmetic {
+  constructor(num1, num2, operator) {
+    
+    // Checks to see that both numbers being passed in are of type number. If not, throw an error.
+    if (typeof num1 !== "number" || typeof num2 !== "number") {
+      throw new Error('Please enter numbers for calculation');
+    };
+    
+    this.num1 = num1;
+    this.num2 = num2;
+    this.operator = operator;
+  }
+};
+
+module.exports = Arithmetic;
+
+
+//Promise Chaining
+
+const inquirer = require('inquirer');
+const fetch = require('node-fetch');
+
+inquirer
+  .prompt({
+    type: 'input',
+    name: 'username',
+    message: 'Enter a Github Username:',
+  })
+  // promises are chained to directly pass inquirer data into fetch request
+  .then((res) => fetch(`https://api.github.com/users/${res.username}`))
+  // promises are chained to parse the request for the json data
+  .then((res) => res.json())
+  // json data is accepted as user and logged to the console
+  .then((user) => console.log(user));
+
+  //promise is a placeholder object
+
+  //Catch: for catching errors but will slow programs based 
+  //on how much is being watched
+
+  const inquirer = require('inquirer');
+const fetch = require('node-fetch');
+
+inquirer
+  .prompt({
+    type: 'input',
+    name: 'username',
+    message: 'Enter a Github Username:',
+  })
+  .then((res) => fetch(`https://api.github.com/users/${res.username}`))
+  .then((res) => res.json())
+  .then((user) => console.log(user))
+  // Promises execution will rout to the '.catch()' callback when an error occurs in any of the promises from before.
+  
+  .catch((err) => {
+    console.log(err)
+    console.log("Unable to read post data")
+  })
+//Using Wait promise
+// function 'wait()' is scaled to return a new promise
+const wait = () =>
+  new Promise((resolve, reject) => {
+    // a timeout of 3 seconds is initialized
+    setTimeout(() => {
+      // after 3 seconds a random number is generated
+      const randNum = Math.floor(Math.random() * 100);
+      // if the random number is even the 'resolve()' sends data through to the '.then()' of the promise
+      if (randNum % 2 === 0) {
+        resolve(`Success! Even number ${randNum} generated`);
+        // if the random number is odd the 'reject()' sends data through to the the '.catch()' of the promise
+      } else {
+        reject(new Error(`Oops! Odd number ${randNum} generated`));
+      }
+    }, 3000);
+  });
+
+// execution of the 'wait()' function promise
+wait()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+  //resolve for success
+  //reject for fail
+
+  //Git Stash Pop
+  //stashPop
+  //puts all changes in storage until they can be 
+  //committed, because you don't wanna commit broken stuff
+  //or if you do a lot of work and then find out it was on
+  //the wrong branch
+
+  //Express JS
+  //a framework for helping us organize servers and give structure
+
+  //middleware
+  //like the middle ground between hard and software
+
+  //routes work like an address of a house (URL)
+  //routes follow CRUD (create, read, update, delete) post, get, put, delete
+
+  //fetch calls use these routes to interact with information
+  //these need responses so that the routes aren't left open indef
+
+  //Express JS setup
+  // Import Express.js
+const express = require('express');
+
+// Import built-in Node.js package 'path' to resolve path of files that are located on the server
+const path = require('path');
+
+// Initialize an instance of Express.js
+const app = express();
+
+// Specify on which port the Express.js server will run
+const PORT = 3001;
+
+// Static middleware pointing to the public folder
+//front-end
+app.use(express.static('public'));
+
+// Create Express.js routes for default '/', '/send' and '/routes' endpoints
+//for each call there must be a req and res object and they are always 1 and 2 respectively
+app.get('/', (req, res) => res.send('Navigate to /send or /routes'));
+
+app.get('/send', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/sendFile.html'))
+);
+//joining the server location to make the whole path
+
+app.get('/routes', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/routes.html'))
+);
+
+// listen() method is responsible for listening for incoming connections on the specified port
+//create local server comes last
+app.listen(PORT, () =>
+  console.log(`Example app listening at http://localhost:${PORT}`)
+);
+
+//Server sending back dynamic HTML 
+const express = require('express');
+
+const PORT = 3001;
+const app = express();
+
+// We can send a body parameter to the client using the res.send() method. This body parameter can be a string, buffer, or even an array.
+//the first quotes is the pathway and each can only have
+//one res
+app.get('/', (req, res) => {
+  res.send(
+    `<p>API - An application programming interface, is a computing interface that defines interactions between multiple software intermediaries</p>`
+  );
+});
+
+// This method sends a JSON response with the correct content type.
+// if this was / instead of /api only the first one would work
+app.get('/api', (req, res) => {
+  res.json({
+    term: 'api',
+    description:
+      'An application programming interface, is a computing interface that defines interactions between multiple software intermediaries',
+  });
+});
+
+app.listen(PORT, () =>
+  console.log(`Example app listening at http://localhost:${PORT}`)
+);
+
+//Query Params
+const express = require('express');
+const termData = require('./terms.json');
+
+const PORT = 3001;
+
+const app = express();
+
+// GET route to get all of the terms
+app.get('/api/terms', (req, res) => res.json(termData));
+
+// GET route that returns any specific term
+app.get('/api/terms/:term', (req, res) => {
+  // Coerce the specific search term to lowercase
+  const requestedTerm = req.params.term.toLowerCase();
+
+  // Iterate through the terms name to check if it matches `req.params.term`
+  for (let i = 0; i < termData.length; i++) {
+    if (requestedTerm === termData[i].term.toLowerCase()) {
+      return res.json(termData[i]);
+    }
+  }
+
+  // Return a message if the term doesn't exist in our DB
+  return res.json('No match found');
+});
+
+// Fallback route for when a user attempts to visit routes that don't exist
+app.get('*', (req, res) =>
+  res.send(
+    `Make a GET request using Insomnia to <a href="http://localhost:${PORT}/api/terms">http://localhost:${PORT}/api/terms</a>`
+  )
+);
+
+// Listen for connections
+app.listen(PORT, () =>
+  console.info(`Example app listening at http://localhost:${PORT} 🚀`)
+);
+
+//FETCH GET
+
+const petEl = document.getElementById('pets');
+const termButton = document.getElementById('term-btn');
+
+const getPets = () =>
+  fetch('/api/pets', {
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+
+const renderPet = (pet) => {
+  const cardEl = document.createElement('div');
+  const cardImageEl = document.createElement('img');
+  const cardBodyEl = document.createElement('div');
+  const cardBodyTitle = document.createElement('div');
+
+  cardImageEl.classList.add('image', 'p-5');
+  cardEl.classList.add('card', 'p-5');
+  cardBodyEl.classList.add('card-body', 'p-5');
+  cardBodyTitle.classList.add('card-header', 'card-title', 'link');
+
+  cardImageEl.setAttribute('src', pet.image_url);
+  cardBodyTitle.innerHTML = pet.name;
+  cardBodyEl.innerText = pet.description;
+  cardEl.appendChild(cardBodyTitle);
+  cardEl.appendChild(cardBodyEl);
+  cardEl.appendChild(cardImageEl);
+  petEl.appendChild(cardEl);
+};
+
+const buttonHandler = () =>
+  getPets().then((response) => response.forEach((item) => renderPet(item)));
+
+termButton.addEventListener('click', buttonHandler);
+
+//Static Assets
+const express = require('express');
+
+const app = express();
+const PORT = 3001;
+
+// Serve images, css files, js files from the public directory
+// Allows us to reference files with their relative path
+// Example: http://localhost:3001/images/cat.jpg
+
+app.use(express.static('public'));
+//this is your middleware
+//this gives the user access to all files in the directory using address bar
+// to have more control specifically use app to create paths that the user has to use
+
+app.listen(PORT, () => {
+  console.log(`Serving static asset routes on port ${PORT}!`)
+});
+
+ //Using INSOMNIA
+
+ // this is used to test your server
+
+ //create new document go to DEBUG
+ //new http request
+ //address bar select GET POST PUT DELETE PATCH
+ //type http://localhost:3001/(whatever path in your method)
+ //you can only have one of each type at one address
+
+ const express = require('express');
+
+const PORT = 3001;
+
+const app = express();
+
+// GET request
+app.get('/api/reviews', (req, res) => {
+  // Let the client know that their request was received
+  res.json(`${req.method} request received`);
+
+  // Show the user agent information in the terminal
+  console.info(req.rawHeaders);
+
+  // Log our request to the terminal
+  console.info(`${req.method} request received`);
+});
+
+// POST request
+app.post('/api/reviews', (req, res) => {
+  // Let the client know that their POST request was received
+  res.json(`${req.method} request received`);
+
+  // Show the user agent information in the terminal
+  console.info(req.rawHeaders);
+
+  // Log our request to the terminal
+  console.info(`${req.method} request received`);
+});
+
+app.listen(PORT, () =>
+  console.log(`Express server listening on port ${PORT}!`)
+);
+
+//the levels of console logging are:
+//debug
+//info
+//warning
+//error
+//fatal
+
+
+const express = require('express');
+
+const PORT = 3001;
+const reviews = require('./db/reviews');
+
+const app = express();
+
+// Middleware for parsing application/json and urlencoded data
+//parses json coming from front to the back end
+app.use(express.json());
+//parses things being passed through the url
+//extended true gives more capabilities, extra libraries(default), like parsing arrays
+app.use(express.urlencoded({ extended: true }));
+
+// GET request for ALL reviews
+app.get('/api/reviews', (req, res) => {
+  // Log our request to the terminal
+  console.info(`${req.method} request received to get reviews`);
+
+  // Sending all reviews to the client
+  return res.json(reviews);
+});
+
+// POST request to add a review
+app.post('/api/reviews', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a review`);
+
+  // Prepare a response object to send back to the client
+  
+  let response;
+
+  // Check if there is anything in the response body
+  //verifying existence of the body and var inside it
+  //check body first since the product cant exist without it
+  if (req.body && req.body.product) {
+    //change body setting in insomnia to json
+    //then add some json 
+    response = {
+      status: 'success',
+      data: req.body,
+    };
+    res.json(`Review for ${response.data.product} has been added!`);
+  } else {
+    res.json('Request body must at least contain a product name');
+    //we have to send something back whether it fails or not
+  }
+
+  // Log the response body to the console
+  console.log(req.body);
+});
+
+app.listen(PORT, () =>
+  console.log(`Express server listening on port ${PORT}!`)
+);
+
+//Post Fetch
+const userNameInput = document.getElementById('username');
+const productInput = document.getElementById('product');
+const reviewInput = document.getElementById('review');
+const reviewForm = document.getElementById('review-form');
+
+// Helper function that accepts a `review` object, sends a POST request and returns the result
+const postReview = (review) =>
+  // Fetch accepts a URL and an options object where you can declare the HTTP method, the request body, and any headers.
+  //these are built into fetch specifically
+  //this is in the index.js (front end) in the public file and is
+  //communicating with the server to fetch info
+  fetch('/api/reviews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(review),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Successful POST request:', data);
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error in POST request:', error);
+    });
+
+// Listen for when the form is submitted
+reviewForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Create a new review object from the input values
+  const newReview = {
+    username: userNameInput.value.trim(),
+    product: productInput.value.trim(),
+    review: reviewInput.value.trim(),
+  };
+
+  // Call our postReview method to make a POST request with our `newReview` object.
+  postReview(newReview)
+    .then((data) => alert(`Review added! Review ID: ${data.body.review_id}`))
+    .catch((err) => console.error(err));
+});
+
+
+//Data Persistence
+//save the data to a database so that it can be
+//retrieved again
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+// Helper method for generating unique ids
+const uuid = require('./helpers/uuid');
+
+const PORT = 3001;
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
+
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+
+// GET request for reviews
+app.get('/api/reviews', (req, res) => {
+  // Send a message to the client
+  res.json(`${req.method} request received to get reviews`);
+
+  // Log our request to the terminal
+  console.info(`${req.method} request received to get reviews`);
+});
+
+// POST request to add a review
+app.post('/api/reviews', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a review`);
+
+  // Destructuring assignment for the items in req.body
+  const { product, review, username } = req.body;
+
+  // If all the required properties are present
+  if (product && review && username) {
+    // Variable for the object we will save
+    const newReview = {
+      product,
+      review,
+      username,
+      upvotes: Math.floor(Math.random() * 100),
+      review_id: uuid(),
+    };
+
+    // Convert the data to a string so we can save it
+    const reviewString = JSON.stringify(newReview);
+
+    // Write the string to a file
+    fs.writeFile(`./db/${newReview.product}.json`, reviewString, (err) =>
+      err
+        ? console.error(err)
+        : console.log(
+            `Review for ${newReview.product} has been written to JSON file`
+          )
+    );
+
+    const response = {
+      status: 'success',
+      body: newReview,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json('Error in posting review');
+  }
+});
+
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT} 🚀`)
+);
+
+//12factor.net read for making good application
+
+//SOLID
+// S is for separation of concerns
+//your code should be organized to try to make it easier to read and modify
+//js files should be roughly the size to fit your screen
+//use middleware app.use to import lower level routes
+//separate imports from your library from the other imports
+//preexisting middleware should be above the routing middleware which goes above the app.listen
+
+//Basic Order of Operations for Express
+//Libraries
+//other imports
+//global
+//middleware
+//routes
+//app.listen
+
+//Creating custom middleware
+const express = require('express');
+
+const app = express();
+const PORT = 3001;
+
+const middleware = (req, res, next) => {
+  // ANSI escape code that instructs the terminal to print in yellow
+  const yellow = '\x1b[33m%s\x1b[0m';
+
+  // Log out the request type and resource
+  console.log(yellow, `${req.method} request to ${req.path}`);
+
+  // Built-in express method to call the next middleware in the stack.
+  //this next(); is important for ending the path, otherwise the page will stay open
+  //trying to load forever
+  //next means move onto the next
+  next();
+};
+
+app.use(middleware);
+
+app.get('/', (req, res) => res.json(`GET route`));
+app.post('/', (req, res) => res.json(`POST route`));
+app.put('/:id', (req, res) => res.json(`PUT route`));
+app.delete('/:id', (req, res) => res.json(`DELETE route`));
+app.patch('/:id', (req, res) => res.json(`PATCH route`));
+
+app.listen(PORT, () =>
+  console.log(`Listening for requests on port ${PORT}! 🏎️`)
+);
+
+//Using GIT log
+//basically a history of changes
+//you don't have to switch branches in order to look at log
+// git log origin/"branch name"
+
+//to prevent commit messages for merges
+//git log --no-merges
+
+//chore: little improvements that you make
+
+//use git log --before to make specific time span
+//ex: git log --before={202-12-31} --after={2016-12-31}
+//ex: git log --since=8am --author=Simon
+
+//Search for terms
+//git log --grep="prompts"
+//--grep is git regular expression or regex(a sequence of characters that specifies
+//a search pattern)
+
+//SQL !
+
+DROP DATABASE IF EXISTS sample_db;
+CREATE DATABASE mountains_db;
+
+//Commands
+show database
+//Select a database:
+USE "name of db"
+//this shows what has been selected
+SELECT DATABASE();
+
+//To read files
+source "name of file"
+
+//Using tables
+DROP DATABASE IF EXISTS inventory_db;
+//Creates the "inventory_db" database --
+CREATE DATABASE inventory_db;
+
+// Makes it so all of the following code will affect inventory_db --
+USE inventory_db;
+
+// Creates the table "produce" within inventory_db --
+//make sure you select a database before making a table
+CREATE TABLE produce (
+  //Creates a numeric column called "id" which will automatically increment its default value as we create new rows --
+  id INT NOT NULL,
+// Makes a string column called "name" which cannot contain null --
+  name VARCHAR(100) NOT NULL
+);
+//varchar allows us to limit the amount of characters in the title of the 
+//column   TEXT does not
+
+//Show table
+DESCRIBE "table name"
+SHOW COLUMNS FROM "table name"
+
+//Select all
+SELECT * FROM "name"
+
+//Update
+UPDATE produce
+SET name = "strawberry"
+WHERE id = 1;
+
+//Delete
+
+DELETE FROM produce
+WHERE id = 2;
+
+//PRIMARY KEY is usually table ID
+//UNIQUE KEY is to keep from repeating things
+
+//ENUM passes an array of available options
+//don't use them in typescript (union types instead)
+
+//Connecting NODE and SQL
+const express = require('express');
+// Import and require mysql2
+const mysql = require('mysql2');
+
+const PORT = process.env.PORT || 3001;
+//setting up a port as an environment for heroku OR use 3001
+const app = express();
+
+// Express middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Connect to database
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    // MySQL username,
+    user: 'root',
+    // MySQL password
+    password: '',
+    database: 'classlist_db'
+  },
+  console.log(`Connected to the classlist_db database.`)
+);
+
+// Query database
+//here it gets all info from students table
+db.query('SELECT * FROM students', function (err, results) {
+  console.log(results);
+});
+
+// Default response for any other request (Not Found)
+app.use((req, res) => {
+  res.status(404).end();
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+//AUTO-INCREMENT
+//auto creates a unique value for the whatever is entered
+//often used as a primary key
+
+DROP DATABASE IF EXISTS classlist_db;
+CREATE DATABASE classlist_db;
+
+USE classlist_db;
+
+CREATE TABLE students (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  enrolled BOOLEAN NOT NULL
+);
+
+
+//TIMESTAMP
+DROP DATABASE IF EXISTS course_db;
+CREATE DATABASE course_db;
+
+USE course_db;
+
+CREATE TABLE courses (
+  id INT NOT NULL,
+  course_title VARCHAR(30) NOT NULL,
+  course_description TEXT NOT NULL,
+  active BOOLEAN NOT NULL,
+  //reports true as 1 and false as 0
+  date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+//SQL pulls the time from your computer
+
+//Creating multiple tables and structure
+//important for teams working locally on their 
+//computer so they can work with the database
+
+DROP DATABASE IF EXISTS registrar_db;
+CREATE DATABASE registrar_db;
+
+USE registrar_db;
+
+CREATE TABLE courses (
+  id INT NOT NULL,
+  course_title VARCHAR(30) NOT NULL,
+  course_description TEXT NOT NULL,
+  active BOOLEAN NOT NULL,
+  date_added DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE students (
+  id INT NOT NULL,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  active BOOLEAN NOT NULL,
+  date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE instructors (
+  id INT NOT NULL,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  active BOOLEAN NOT NULL,
+  date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE classrooms (
+  id INT NOT NULL,
+  building_name VARCHAR(30) NOT NULL,
+  room_number INT NOT NULL,
+  available BOOLEAN NOT NULL,
+  date_updated DATETIME NOT NULL
+);
+
+//SEEDS.SQL
+//literally like the seeds going in the ground of the 
+//schema garden!
+//example seed data
+INSERT INTO courses (id, course_title, course_description, active)
+VALUES (001, "Algebra I", "Linear equations, inequalities, functions, and graphs", true),
+       (002, "Pre-Calculus", "Polynomials, Complex Numbers, Vectors", true),
+       (003, "Calculus I", "Limits, Differentiation, Derivatives", true),
+       (004, "Euclidean Geometry", "Intuitively Appealing Axioms Galore", false);
+       
+
+//Example using auto-increment
+
+//schema
+DROP DATABASE IF EXISTS grocery_db;
+CREATE DATABASE grocery_db;
+
+USE grocery_db;
+
+CREATE TABLE products(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_name VARCHAR(30) NOT NULL,
+  category_name VARCHAR(30) NOT NULL
+);
+//the auto increment removes the needs to input each
+//id into the values object
+//otherwise we would have to add that as a variable
+//and manually put in each id#
+//seeds
+INSERT INTO products (product_name, category_name)
+VALUES ( "spinach", "produce"),
+       ( "peanut butter", "staples"),
+       ( "peas-canned", "canned goods"),
+       ( "ice cream", "frozen"),
+       ( "potato chips", "snacks");
+       
+//PRIMARY KEY
+CREATE TABLE instructors (
+  id INT NOT NULL,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  PRIMARY KEY (id)
+);
+//maybe better to have the primary key in the same line
+//as the id instead of separating it
+CREATE TABLE instructors (
+  id INT NOT NULL PRIMARY KEY,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+   
+);
+
+CREATE TABLE courses (
+  id INT,
+  course_title VARCHAR(30) NOT NULL,
+  instructor_id INT,
+  order_details TEXT,
+  //you can also put this in the same line as instructor_id but its long
+  FOREIGN KEY (instructor_id)
+  REFERENCES instructors(id)
+  //this id will come from the table called instructors and the id from there
+  //so foreign key always brings info from another table which means it will
+  //always have a reference
+  ON DELETE SET NULL
+  //when the instructor gets deleted the id becomes null
+);
+//Primary key must come last in the constraints for each variable
+
+//Inserting Parameters
+
+db.query(`DELETE FROM course_names WHERE id = ?`, 3, (err, result) => {
+  //the question mark is where the id data will go
+  if (err) {
+    console.log(err);
+  }
+  console.log(result);
+});
+//Order
+//query,
+//inject,
+//arrow function
+
+//Instead of the 3 you can use:
+
+req.params.id
+
+//COUNT
+SELECT *
+FROM course_names;
+
+SELECT department, COUNT(id) AS number_courses
+FROM course_names
+GROUP BY department;
+// select and group by should match
+//as is for the name of the new column derived from
+// the select data
+
+SELECT department, SUM(total_enrolled) AS sum_enrolled
+FROM course_names
+GROUP BY department;
+//select and group by must match
+//sum means it will add the numbers from (column)
+//and make it into a new column called sum_enrolled
+//if you put nothing after the SELECT it will search entire table
+
+//JOIN
+
+SELECT *
+FROM course_names
+JOIN department ON course_names.department = department.id;
+//FROM which table to JOIN which table
+//ON which columns you want to connect
+
+SELECT name, salary
+FROM employees
+ORDER BY salary DESC;
+//
+
+//ORM - Object Relational Mapping
+//its like the link between OOP (object oriented programming)
+//and data 
+//SETUP
+const express = require('express');
+
+// Import the connection object
+const sequelize = require('./config/connection');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Connect to the database before starting the Express.js server
+sequelize.sync().then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+
+//Connection file
+const Sequelize = require('sequelize');
+
+// Create a connection object
+const sequelize = new Sequelize(
+  // Database name
+  'library_db',
+  // User
+  'root',
+  // Password
+  'myPassword',
+  {
+    // Database location
+    host: 'localhost',
+    dialect: 'mysql',
+    port: 3306
+  }
+);
+
+module.exports = sequelize;
+
+//Using Env for security
+const Sequelize = require('sequelize');
+require()
+// Create a connection object
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  
+  {
+    // Database location
+    host: 'localhost',
+    dialect: 'mysql',
+    port: 3306
+  }
+);
+
+module.exports = sequelize;
+
+//Sync table
+// Force true to drop/recreate table(s) on every sync
+sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+
+//Creating Models
+
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+// Create a new Sequelize model for books
+class Book extends Model {}
+
+Book.init(
+  // Define fields/columns on model
+  // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
+  {
+    title: {
+      type: DataTypes.STRING
+    },
+    author: {
+      type: DataTypes.STRING
+    },
+    isbn: {
+      type: DataTypes.STRING
+    },
+    pages: {
+      type: DataTypes.INTEGER
+    },
+    edition: {
+      type: DataTypes.INTEGER
+    },
+    // Will become `is_paperback` in table due to `underscored` flag
+    isPaperback: {
+      type: DataTypes.BOOLEAN
+    }
+  },
+  {
+    // Link to database connection
+    sequelize,
+    // Set to false to remove `created_at` and `updated_at` fields
+    timestamps: false,
+    underscored: true,
+    modelName: 'book'
+  }
+);
+
+module.exports = Book;
+
+//Order of Sequelize
+//npm install mysql2, dotenv (for security), sequelize, 
+//create env file
+//create schema to create database
+//create connection js file
+//use process.env credentials
+//run source schema
+//run program
+//create models to create tables, link to database
+
+//Creating routes with sequelize
+
+const router = require('express').Router();
+
+// Import the model
+const Book = require('../../models/Book');
+
+// CREATE a book
+router.post('/', (req, res) => {
+  // Use Sequelize's `create()` method to add a row to the table
+  // Similar to `INSERT INTO` in plain SQL
+  Book.create({
+    title: req.body.title,
+    author: req.body.author,
+    is_paperback: true
+  })
+    .then((newBook) => {
+      // Send the newly created row as a JSON object
+      res.json(newBook);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+// CREATE multiple books
+router.post('/seed', (req, res) => {
+  // Multiple rows can be created with `bulkCreate()` and an array
+  // This could also be moved to a separate Node.js script to ensure it only happens once
+  Book.bulkCreate([
+    {
+      title: 'Make It Stick: The Science of Successful Learning',
+      author: 'Peter Brown',
+      isbn: '978-0674729018',
+      pages: 336,
+      edition: 1,
+      is_paperback: false
+    },
+    {
+      title: 'Essential Scrum: A Practical Guide to the Most Popular Agile Process',
+      author: 'Kenneth Rubin',
+      isbn: '978-0137043293',
+      pages: 500,
+      edition: 1,
+      is_paperback: true
+    },
+    {
+      title: "White Fragility: Why It's So Hard for White People to Talk About Racism",
+      author: 'Robin DiAngelo',
+      isbn: '978-0807047415',
+      pages: 192,
+      edition: 2,
+      is_paperback: true
+    },
+    {
+      title: 'The Pragmatic Programmer: Your Journey To Mastery',
+      author: 'David Thomas',
+      isbn: '978-0135957059',
+      pages: 352,
+      edition: 2,
+      is_paperback: false
+    },
+    {
+      title: 'The Art of Computer Programming, Vol. 1: Fundamental Algorithms',
+      author: 'Donald Knuth',
+      isbn: '978-0201896831',
+      pages: 672,
+      edition: 3,
+      is_paperback: false
+    },
+    {
+      title: 'Algorithms of Oppression: How Search Engines Reinforce Racism',
+      author: 'Safiya Umoja Noble',
+      isbn: '978-1479837243',
+      pages: 256,
+      edition: 1,
+      is_paperback: true
+    }
+  ])
+    .then(() => {
+      res.send('Database seeded!');
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+module.exports = router;
+
+const router = require('express').Router();
+const Book = require('../../models/Book');
+
+// TODO: Add a comment describing the purpose of this route
+//this gets the book data
+router.get('/', (req, res) => {
+  // TODO: Add a comment describing the functionality of this method
+  //finds all book data and gives it to you
+  Book.findAll().then((bookData) => {
+    res.json(bookData);
+  });
+});
+
+//Using routes
+// TODO: Add a comment describing the purpose of this route
+//get all the paperback books
+router.get('/paperbacks', (req, res) => {
+  Book.findAll({
+    // TODO: Add a comment describing the functionality of this property
+    order: ['title'],
+    // TODO: Add a comment describing the functionality of this property
+    where: {
+      is_paperback: true
+    },
+    attributes: {
+      // TODO: Add a comment describing the functionality of this property
+      exclude: ['is_paperback', 'edition']
+      //excludes data you don't need, we don't need is paperback bc we know all the books are 
+      //because thats what we searched for
+    }
+  }).then((bookData) => {
+    res.json(bookData);
+  });
+});
+
+// TODO: Add a comment describing the purpose of this route
+router.get('/:id', (req, res) => {
+  // TODO: Add a comment describing the functionality of this method
+  Book.findByPk(req.params.id).then((bookData) => {
+    res.json(bookData);
+  });
+});
+
+// CREATE a book
+router.post('/', (req, res) => {
+  Book.create(req.body)
+    .then((newBook) => {
+      res.json(newBook);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+// CREATE multiple books
+router.post('/seed', (req, res) => {
+  Book.bulkCreate([
+    {
+      title: 'Make It Stick: The Science of Successful Learning',
+      author: 'Peter Brown',
+      isbn: '978-0674729018',
+      pages: 336,
+      edition: 1,
+      is_paperback: false
+    },
+    {
+      title: 'Essential Scrum: A Practical Guide to the Most Popular Agile Process',
+      author: 'Kenneth Rubin',
+      isbn: '978-0137043293',
+      pages: 500,
+      edition: 1,
+      is_paperback: true
+    },
+    {
+      title: "White Fragility: Why It's So Hard for White People to Talk About Racism",
+      author: 'Robin DiAngelo',
+      isbn: '978-0807047415',
+      pages: 192,
+      edition: 2,
+      is_paperback: true
+    },
+    {
+      title: 'The Pragmatic Programmer: Your Journey To Mastery',
+      author: 'David Thomas',
+      isbn: '978-0135957059',
+      pages: 352,
+      edition: 2,
+      is_paperback: false
+    },
+    {
+      title: 'The Art of Computer Programming, Vol. 1: Fundamental Algorithms',
+      author: 'Donald Knuth',
+      isbn: '978-0201896831',
+      pages: 672,
+      edition: 3,
+      is_paperback: false
+    },
+    {
+      title: 'Algorithms of Oppression: How Search Engines Reinforce Racism',
+      author: 'Safiya Umoja Noble',
+      isbn: '978-1479837243',
+      pages: 256,
+      edition: 1,
+      is_paperback: true
+    }
+  ])
+    .then(() => {
+      res.send('Database seeded!');
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+module.exports = router;
+
+//Format for env file
+
+
+
+
+//Using async await
+
+const router = require('express').Router();
+const Book = require('../../models/Book');
+
+// Change the anonymous callback function to become Asynchronous
+router.get('/', async (req, res) => {
+  // Store the bookData in a variable once the promise is resolved.
+  const bookData = await Book.findAll();
+
+  // Return the bookData promise inside of the JSON response
+  return res.json(bookData);
+});
+
+router.post('/', async (req, res) => {
+  const bookData = await Book.create(req.body);
+
+  return res.json(bookData);
+});
+
+router.get('/paperbacks', async (req, res) => {
+  const bookData = await Book.findAll({
+    order: ['title'],
+    where: {
+      is_paperback: true,
+    },
+    attributes: {
+      exclude: ['is_paperback', 'edition'],
+    },
+  });
+
+  return res.json(bookData);
+});
+
+router.get('/:id', async (req, res) => {
+  const bookData = await Book.findByPk(req.params.id);
+
+  return res.json(bookData);
+});
+
+router.post('/', async (req, res) => {
+  const bookData = await Book.create(req.body);
+
+  return res.json(bookData);
+});
+//the async tells javascript to continue running code even if the
+//promise isn't back yet
+router.put('/:book_id', async (req, res) => {
+  const bookData = await Book.update(
+    //removes the need for the .then
+    {
+      title: req.body.title,
+      author: req.body.author,
+      isbn: req.body.isbn,
+      pages: req.body.pages,
+      edition: req.body.edition,
+      is_paperback: req.body.is_paperback,
+    },
+    {
+      where: {
+        book_id: req.params.book_id,
+      },
+    }
+  );
+
+  return res.json(bookData);
+});
+
+router.delete('/:book_id', async (req, res) => {
+  const bookData = await Book.destroy({
+    where: {
+      book_id: req.params.book_id,
+    },
+  });
+
+  return res.json(bookData);
+});
+
+module.exports = router;
+
+//Don't make your passwords all the same!
+
+//CRUD (create, read, update, delete)
+//get = read
+//post = create
+//put = update
+
+
+const router = require('express').Router();
+const User = require('../../models/User');
+
+// This route uses async/await with '.catch()' for errors
+// and no HTTP status codes
+router.get('/', async (req, res) => {
+  const userData = await User.findAll().catch((err) => {
+    res.json(err);
+  });
+  res.json(userData);
+});
+
+// This route uses async/await with try/catch for errors
+// along with HTTP status codes
+router.post('/', async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+    // 200 status code means the request is successful
+    res.status(200).json(userData);
+  } catch (err) {
+    // 400 status code means the server could not understand the request
+    res.status(400).json(err);
+  }
+});
+
+module.exports = router;
+
+//Sequelize Built-in Validation
+
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class User extends Model {}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+      // prevents duplicate email addresses in DB
+      unique: true,
+      // checks for email format (foo@bar.com)
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user',
+  }
+);
+
+//Passing Tests
+const sequelize = require('../config/connection');
+const User = require('../models/User.js');
+
+test('Checks for null values', async () => {
+  const user1 = {};
+
+  const user2 = {
+    username: 'test',
+    email: 'test@test.com',
+    password: '1111111111111',
+  };
+
+  const newUser1 = User.build(user1);
+  const newUser2 = User.build(user2);
+
+  await expect(newUser1.validate()).rejects.toThrow('notNull');
+  await expect(newUser2.validate()).resolves.not.toThrow();
+});
+
+test('Checks for short passwords', async () => {
+  const user1 = {
+    username: 'test',
+    email: 'test@test.com',
+    password: '123',
+  };
+
+  const user2 = {
+    username: 'test',
+    email: 'test@test.com',
+    password: 'password123',
+  };
+
+  const newUser1 = User.build(user1);
+  const newUser2 = User.build(user2);
+
+  await expect(newUser1.validate()).rejects.toThrow(
+    'Validation len on password failed'
+  );
+  await expect(newUser2.validate()).resolves.not.toThrow();
+});
+
+test('Checks for alphanumeric username', async () => {
+  const user1 = {
+    username: 'test_123',
+    email: 'test@test.com',
+    password: '123',
+  };
+
+  const user2 = {
+    username: 'test',
+    email: 'test@test.com',
+    password: 'password123',
+  };
+
+  const newUser1 = User.build(user1);
+  const newUser2 = User.build(user2);
+
+  await expect(newUser1.validate()).rejects.toThrow(
+    'Validation isAlphanumeric on username failed'
+  );
+  await expect(newUser2.validate()).resolves.not.toThrow();
+});
+
+//matching js file
+
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class User extends Model {}
+
+// TODO: Add validations to the User model
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user',
+  }
+);
+
+module.exports = User;
+
+//Password hashing
+//make sure that passwords stored in db are not visible in plain text
+const router = require('express').Router();
+const bcrypt = require('bcrypt');
+const User = require('../../models/User');
+
+// CREATE a new user
+router.post('/', async (req, res) => {
+  try {
+    const newUser = req.body;
+    // hash the password from 'req.body' and save to newUser
+    newUser.password = await bcrypt.hash(req.body.password, 10);
+    // create the newUser with the hashed password and save to DB
+    const userData = await User.create(newUser);
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+module.exports = router;
+
+//HOOKS
+//before and afer validate
+//before and after create
+//before and afer update
+//before and after destroy
+
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class User extends Model {}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
+      },
+    },
+  },
+  {
+    // When adding hooks via the init() method, they go below
+    hooks: {
+      // Use the beforeCreate hook to work with data before a new instance is created
+      beforeCreate: async (newUserData) => {
+        // In this case, we are taking the user's email address, and making all letters lower case before adding it to the database.
+        newUserData.email = await newUserData.email.toLowerCase();
+        return newUserData;
+      },
+      // Here, we use the beforeUpdate hook to make all of the characters lower case in an updated email address, before updating the database.
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.email = await updatedUserData.email.toLowerCase();
+        return updatedUserData;
+      },
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user',
+  }
+);
+
+module.exports = User;
+
+//routes for hooks
+const router = require('express').Router();
+const User = require('../../models/User');
+
+// GET one user
+router.get('/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id);
+    if (!userData) {
+      res.status(404).json({ message: 'No user with this id!' });
+      return;
+    }
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// POST create a new user
+router.post('/', async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// PUT update a user
+router.put('/:id', async (req, res) => {
+  try {
+    const userData = await User.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      individualHooks: true
+      //this makes sure that the hooks applies to each
+      //if there is more than one at a time
+    });
+    if (!userData[0]) {
+      res.status(404).json({ message: 'No user with this id!' });
+      return;
+    }
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
+
+//use hooks to hash a password before creating it
+
+
+//Instance Methods
+//if you only want certain info back and not everything
+
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection');
+
+class User extends Model {
+  // This instance method uses a conditional statement to check if a user has pets
+  hasPets() {
+    if (this.numberOfPets > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
+      },
+    },
+    numberOfPets: {
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      }, 
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user',
+  }
+);
+
+module.exports = User;
+
+router.get('/:id/hasPets', async (req, res) => {
+  try {
+    // First, we find a user using their primary key (provided by params)
+    const userData = await User.findByPk(req.params.id);
+    // If userData evaluates as false (no user exists with that primary key), then we will send an error message
+    if (!userData) {
+      res.status(404).json({ message: 'No user with this id!' });
+      return;
+    }
+    // If a user does exist at the primary key, we get to use the instance method that we wrote in User.js to see if the user has pets
+    const petData = userData.hasPets();
+    // If petData evaluates as false (user has 0 pets), then the user will receive the message below
+    if (!petData) {
+      res.status(400).json({ message: 'This person has no pets.' });
+      return;
+    }
+    // Otherwise, the user will see that the user that they searched does have pets!
+    res.json({ message: 'This person has pets!' });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+//Example sequelize model for a  driver and their driver's license
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Driver extends Model {}
+
+Driver.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'driver',
+  }
+);
+
+module.exports = Driver;
+
+//Sample license
+
+const { UUIDV4, Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class License extends Model {}
+
+License.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    // Use Sequelize's UUID functionality to generate a unique number for the license instead of making us do it ourselves
+    license_number: {
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
+    },
+    is_donor: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    // This column will store a reference of the `id` of the `Driver` that owns this License
+    driver_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        // This references the `driver` model, which we set in `Driver.js` as its `modelName` property
+        model: 'driver',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'license',
+  }
+);
+
+module.exports = License;
+
+//Example of import of multiple objects
+const { Reader, LibraryCard } = require('../../models');
+
+//One to One
+//a user is allowed only one thing, like a driver is allowed only one license
+
+//One to Many
+//a user is allowed as many cars as they want, even if they only have one
+//example of one to many
+const Driver = require('./Driver');
+const License = require('./License');
+const Car = require('./Car');
+
+Driver.hasOne(License, {
+  foreignKey: 'driver_id',
+  onDelete: 'CASCADE',
+});
+
+License.belongsTo(Driver, {
+  foreignKey: 'driver_id',
+});
+
+// Define a Driver as having many Cars, thus creating a foreign key in the `car` table
+Driver.hasMany(Car, {
+  foreignKey: 'driver_id',
+  onDelete: 'CASCADE',
+});
+
+// The association can also be created from the Car side
+Car.belongsTo(Driver, {
+  foreignKey: 'driver_id',
+});
+
+module.exports = { Driver, License, Car };
+
+//EXAMPLE of literal
+
+const router = require('express').Router();
+const sequelize = require('../../config/connection');
+const { Driver, License, Car } = require('../../models');
+
+// GET all drivers
+router.get('/', async (req, res) => {
+  try {
+    const driverData = await Driver.findAll({
+      include: [{ model: License }, { model: Car }],
+      attributes: {
+        include: [
+          [
+            // Use plain SQL to add up the total mileage
+            sequelize.literal(
+              '(SELECT SUM(mileage) FROM car WHERE car.driver_id = driver.id)'
+            ),
+            'totalMileage',
+          ],
+        ],
+      },
+    });
+    res.status(200).json(driverData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// GET a single driver
+router.get('/:id', async (req, res) => {
+  try {
+    const driverData = await Driver.findByPk(req.params.id, {
+      include: [{ model: License }, { model: Car }],
+      attributes: {
+        include: [
+          [
+            // Use plain SQL to add up the total mileage
+            sequelize.literal(
+              '(SELECT SUM(mileage) FROM car WHERE car.driver_id = driver.id)'
+            ),
+            'totalMileage',
+            //removes the need for storing extra unnecessary information
+            //use calculations from existing data
+            //each sequelize literal is a new array 
+          ],
+        ],
+      },
+    });
+
+    if (!driverData) {
+      res.status(404).json({ message: 'No driver found with that id!' });
+      return;
+    }
+
+    res.status(200).json(driverData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
+
+//ESLint
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "no-duplicate-case": "error",
+    "no-empty": "error",
+    "no-extra-semi": "error",
+    "no-func-assign": "error",
+    "no-irregular-whitespace": "error",
+    "no-unreachable": "error",
+    "curly": "error",
+    "dot-notation": "error",
+    "eqeqeq": "error",
+    "no-empty-function": "error",
+    "no-multi-spaces": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-trailing-spaces": "error",
+    "default-case": "error",
+    "no-fallthrough": "error",
+    "no-unused-vars": "error",
+    "no-use-before-define": "error",
+    "no-redeclare": "error",
+    "brace-style": "error",
+    "indent": ["error", 2],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "radix": "off"
+  }
+}
+//a set of rules that helps you prevent bugs
+//and gives clean codeid
+
+//MVC (model view controller)
+
+//its a router, to connect the view to the model
+//Template Engine
+//allows us to put data into our html templates
+//help to separate html and javascript and reduce repetition
+//increases extensability: allows code to be easily extended
+//saves money on hardware by making code run faster and more efficient
+//improve SEO (search engine optimization)
+
+//Handlebars.js is a template engine, but it is logicless
+//handlebars is not a framework
+//a good intro to React
+//React does not use MVC
+
+//node seeds/seed.js
+
+//controllers are routes 
+//models are tables
+
+
+
+// TODO: Add a comment indicating how this file fits into the MVC framework (is it a Model, a View, or a Controller?) and what it is responsible for handling. -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Potluck Party</title>
+  <link rel="stylesheet" href="/css/jass.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+// you don't have to rewrite this header because its a template!
+<body>
+  <div class="flex-column justify-space-around">
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        &#127881 Potluck Party! &#127881
+      </h1>
+    </header>
+      <main class="container container-fluid mt-5">
+        <!-- TODO: Add a comment describing what the following line of code is doing. -->
+        <!-- What should we expect to see when visiting http://localhost:3001/ in the browser? -->
+        {{{ body }}}
+
+      </main>
+  </div>
+  </body>
+
+</html>
+</meta>
+////</head>
+
+//the body tag will contain all the data 
+//this is a handlebar template
+
+//Creating the Template Engine 
+
+// Dependencies
+const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
+//this line is how to create the template engine
+const hbs = exphbs.create({});
+//
+
+
+// Sets up the Express App
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// TODO: Describe what the following two lines of code are doing.
+//this creates the engine also with the file, you create as many as you want
+//you choose name the handlebars as a view engine to be used
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+//you can only set one engine to be used
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./controllers/dish-routes'));
+
+// Starts the server to begin listening
+app.listen(PORT, () => {
+  console.log('Server listening on: http://localhost:' + PORT);
+});
+
+// TODO: Add a comment indicating how this file fits into the MVC framework (is it a Model, a View, or a Controller?) and what it is responsible for handling.
+
+const router = require('express').Router();
+
+// TODO: Add a comment describing the purpose of the get route
+router.get('/', async (req, res) => {
+//TODO: Add a comment describing the purpose of the render method
+  res.render('all');
+  //res.render must be used for dynamic html pages
+  //it will be rendered to the body
+  //sendFile is used for static pages
+});
+
+module.exports = router;
+
+//Passing single objects using template
+const router = require('express').Router();
+// Here is where we provide hardcoded data to render dynamically
+const dishes = [
+  {
+    dish_name: 'French Bread with Brie Cheese',
+    description: 'French baguette with warm brie',
+  },
+  {
+    dish_name: 'Cheese Plate with Spanish Chorizo',
+    description:
+      'Manchego, Iberico, Cabrales, fig jam, grapes, pecans, and Spanich Chorizo',
+  },
+  {
+    dish_name: 'Fish Tacos',
+    description:
+      'Battered/fried fish, corn tortillas, fresh slaw with jalepenos and cilantro, pickled red onion',
+  },
+  {
+    dish_name: 'Tropical Fruit Salad',
+    description: 'Guava, papaya, pineapple, mango, and star fruit',
+  },
+  {
+    dish_name: 'Pork Gyoza',
+    description:
+      'Homemade japanese dumplings stuffed with a pork and green onion filling',
+  },
+  {
+    dish_name: 'Yebeg Tibs with Injera Bread',
+    description:
+      'Marinated lamb dish with rosemary, garlic, onion, tomato, jalapeño and the East African spice berbere',
+  },
+  {
+    dish_name: 'Cape Malay Curry',
+    description: 'Chicken and vegitable curry dish with basmati rice',
+  },
+];
+
+//get all dishes
+router.get('/', async (req, res) => {
+  res.render('all');
+});
+
+//get one dish
+router.get('/dish/:num', async (req, res) => {
+  // This method renders the 'dish' template, and uses params to select the correct dish to render in the template, based on the id of the dish.
+  return res.render('dish', dishes[req.params.num - 1]);
+  //we need to subtract 1 from here because the user will not be using 0 index but the code does
+});
+
+module.exports = router;
+
+<div class="dish-card">
+  <div class="dish-card-header">
+    <!-- Below we are rendering the name of one dish using a Handlebars.js expression -->
+    {{dish_name}}
+  </div>
+</div>
+//this one dish object will go into the dish name place {{ }}
+
+//you can add more things like {{description}}
+//the {{{}}} smooths out the data and the {{}} treat html objects differently and keeps it raw
+
+//Built in Helpers
+
+<html>
+<head>
+  </head>
+<div class="menu-container">
+  <div class="card-header col-md-10">
+    <h2>
+      &#127869 Current Menu
+    </h2>
+  </div>
+// We implement the built-in helper, #each. This helper will iterate over dishes 
+  {{#each dishes as |dish|}}
+  //For each dish in the array of dish objects, the following <div> will be rendered. 
+    <div class="dish col-md-5">
+      // We use dish.id instead of <od> and <li> elements. 
+      <p>
+        {{dish.id}}.
+        {{dish.dish_name}}
+      </p>
+    </div>
+    <div class="col-md-7">
+      <p>
+       //guest_name will eventually go here 
+      </p>
+    </div>
+   //Below, we close the #each helper. 
+  {{/each}}
+</div>
+</html>
+
+
+//
+const router = require('express').Router();
+//
+// We are using hardcoded data here, where would our data usually come from? Remember - we haven't yet set up a database or Sequelize in our app.
+const dishes = [
+    {
+      id: 1,
+      dish_name: 'French Bread with Brie Cheese',
+      description: 'French baguette with warm brie',
+      has_nuts: false,
+    },
+    {
+      id: 2,
+      dish_name: 'Cheese Plate with Spanish Chorizo',
+      description:
+        'Manchego, Iberico, Cabrales, fig jam, grapes, pecans, and Spanich Chorizo',
+      has_nuts: true,
+    },
+    {
+      id: 3,
+      dish_name: 'Fish Tacos',
+      description:
+        'Battered/fried fish, corn tortillas, fresh slaw with jalepenos and cilantro, pickled red onion',
+      has_nuts: false,
+    },
+    {
+      id: 4,
+      dish_name: 'Tropical Fruit Salad',
+      description: 'Guava, papaya, pineapple, mango, and star fruit',
+      has_nuts: false,
+    },
+    {
+      id: 5,
+      dish_name: 'Pork Gyoza',
+      description:
+        'Homemade japanese dumplings stuffed with a pork and green onion filling, served with peanut dipping sauce',
+      has_nuts: true,
+    },
+    {
+      id: 6,
+      dish_name: 'Yebeg Tibs with Injera Bread',
+      description:
+        'Marinated lamb dish with rosemary, garlic, onion, tomato, jalapeño and the East African spice berbere',
+      has_nuts: false,
+    },
+    {
+      id: 7,
+      dish_name: 'Cape Malay Curry',
+      description: 'Chicken and vegitable curry dish with basmati rice',
+      has_nuts: false,
+    },
+  ];
+
+// get all dishes
+router.get('/', async (req, res) => {
+  res.render('all', {dishes});
+
+});
+
+// get one dish
+router.get('/dish/:num', async (req, res) => {
+  return res.render('dish', dishes[req.params.num - 1]);
+});
+
+module.exports = router;
+
+</head>
+
+
+</html>
+//
+//Serialization
+
+//gets rid of junk Data
+// get one dish without serializing data
+router.get('/dish/:id', async (req, res) => {
+  try {
+    const dishData = await Dish.findByPk(req.params.id);
+    console.log(dishData)
+    res.render('dish', dishData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// get one dish with serialized data
+router.get('/dish/:id', async (req, res) => {
+  try {
+  // Search the database for a dish with an id that matches params
+  const dishData = await Dish.findByPk(req.params.id);
+  console.log(dishData)
+  // We use .get({ plain: true }) on the object to serialize it so that it only includes the data that we need. 
+  //.get is a built in sequelize method
+  const dish = dishData.get({ plain: true });
+  // Then, the 'dish' template is rendered and dish is passed into the template.
+  res.render('dish', dish);
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
+
+//Fetch + Handlebars
+
+
+async function newFormHandler(event) {
+  event.preventDefault();
+  const dish_name = document.querySelector('#dish_name').value;
+  const description = document.querySelector('#description').value;
+  const guest_name = document.querySelector('#guest_name').value;
+  // The following is a ternary operator. It checks to see if has_nuts is checked. If it is, it will return true, otherwise, it will return false.
+  const has_nuts = document.querySelector('#has_nuts:checked') ? true : false;
+  // Send fetch request to add a new dish
+  const response = await fetch(`/api/dish`, {
+    method: 'POST',
+    body: JSON.stringify({
+      dish_name,
+      description,
+      guest_name,
+      has_nuts,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  //if the dish is added, the 'all' template will be rerendered
+  if (response.ok) {
+  location.replace('/');
+  //use location.reload its faster
+  } else {
+    alert('Failed to add dish');
+  }
+}
+
+document.querySelector('.new-dish-form').addEventListener('submit', newFormHandler);
+  
+
+const router = require('express').Router();
+const Dish = require('../../models/Dish');
+const { text } = require('body-parser');
+
+// route to create/add a dish using async/await
+router.post('/', async (req, res) => {
+  try { 
+    const dishData = await Dish.create({
+    dish_name: req.body.dish_name,
+    description: req.body.description,
+    guest_name: req.body.guest_name,
+    has_nuts: req.body.has_nuts,
+  });
+  // if the dish is successfully created, the new response will be returned as json
+  res.status(200).json(dishData)
+} catch (err) {
+  res.status(400).json(err);
+}
+});
+
+
+module.exports = router;
+
+async function editFormHandler(event) {
+  event.preventDefault();
+  const dish_name = document.querySelector('#dish_name').value;
+  const description = document.querySelector('#description').value;
+  const guest_name = document.querySelector('#guest_name').value;
+  
+  // TODO: What will the value of has_nuts be if the box in the form is checked? 
+  //nuts will be true
+  // TODO: What do we call this kind of operator?
+  //this is a ternary operator (colon)
+  const has_nuts = document.querySelector('#has_nuts:checked') ? true : false;
+
+// window.location gives us access to the URL. We then use the .split() method to access the number at the end of the URL and set that equal to id.
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+
+  // TODO: What part of our application will handle this 'put' request?
+  //the mvc!
+  const response = await fetch(`/api/dish/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      dish_name,
+      description,
+      guest_name,
+      has_nuts,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // TODO: What happens if the response is ok?
+  //the current dish data will be replaced with the new data
+  if (response.ok) {
+    document.location.replace(`/dish/${id}`);
+  } else {
+    alert('Failed to edit dish');
+  }
+}
+
+document.querySelector('.edit-dish-form').addEventListener('submit', editFormHandler);
+
+// route to create/add a dish
+router.post('/', async (req, res) => {
+  try { 
+    const dishData = await Dish.create({
+    dish_name: req.body.dish_name,
+    description: req.body.description,
+    guest_name: req.body.guest_name,
+    has_nuts: req.body.has_nuts,
+  });
+  res.status(200).json(dishData)
+} catch (err) {
+  res.status(400).json(err);
+}
+});
+
+// TODO: According to MVC, what is the role of this action method?
+//this put is updating
+router.put('/:id', async (req, res) => {
+  // TODO: Where is this action method sending the data from the body of the fetch request? Why?
+  //this data is being sent to the database to update the info of that dish
+  try {
+    const dish = await Dish.update(
+    {
+      dish_name: req.body.dish_name,
+      description: req.body.description,
+      guest_name: req.body.guest_name,
+      has_nuts: req.body.has_nuts,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    });
+    // TODO: If the database is updated successfully, what happens to the updated data below?
+    res.status(200).json(dish);
+  } catch (err) {
+      res.status(500).json(err);
+    };
+});
+
+module.exports = router;
+
+
+<div class="dish-card">
+  <div class="dish-card-header">
+    {{dish_name}}
+  </div>
+  <div class="card-body">
+    <p>
+      Description:
+      {{description}}
+    </p>
+    <p>
+      Guest:
+      {{guest_name}}
+    </p>
+    {{#if has_nuts}}
+      <p class="has-nuts">
+        Contains Nuts
+      </p>
+    {{/if}}
+  </div>
+</div>
+
+//TODO: This is the form for updating a dish. According to MVC framework, what is this form responsible for? What isn't it responsible for? -->
+//its responsible for the view
+//not the model or controller
+<div class="edit-dish-container">
+  <h2>
+    Update Dish
+  </h2>
+  <form class="edit-dish-form">
+    <label for="dish_name">
+      Dish Name:
+    </label>
+    <br />
+    <textarea id="dish_name" name="dish_name" rows="2" cols="30">
+      {{dish_name}}
+    </textarea>
+    <br />
+    <label for="description">
+      Description:
+    </label>
+    <br />
+    <textarea id="description" name="description" rows="5" cols="30">
+      {{description}}
+    </textarea>
+    <br />
+    <label for="guest_name">
+      Guest Name:
+    </label>
+    <br />
+    <textarea id="guest_name" name="guest_name" rows="2" cols="30">
+      {{guest_name}}
+    </textarea>
+    <br />
+    <br />
+    <input type="checkbox" id="has_nuts" name="has_nuts" value="true" />
+    <label for="has_nuts">
+      Check box if this dish contains nuts
+    </label>
+    <br />
+    <button type="submit" value="Submit">
+      Submit
+    </button>
+  </form>
+</div>
+<script src="/js/edit-dish.js"></script>
+
+
+//Partials
+//they help make files smaller
+//they are small pieces that help us use them in other pages
+//they are generic pieces that can be reused
+//For each gallery, the 'gallery-details' partial is used to render the gallery data -->
+{{#each galleries as |gallery|}}
+{{> gallery-details}}
+//the name of the partial is gallery-details
+//injects code into gallery
+{{/each}}
+
+
+//this is the partial
+<section class="card">
+  // The contents of this card links to the gallery page using the gallery ID
+  <a href="/gallery/{{id}}">
+    //The card contains the gallery name as the card header
+    <header>{{name}}</header>
+    // The card contains the first painting of the gallery
+    <img src="/images/{{paintings.[0].filename}}" alt="{{paintings.[0].description}}">
+  </a>
+</section>
+
+//you can use these as template components that you can reuse over and over again
+
+const router = require('express').Router();
+const { Gallery, Painting } = require('../models');
+
+// GET all galleries for homepage
+router.get('/', async (req, res) => {
+  try {
+    const dbGalleryData = await Gallery.findAll({
+      include: [
+        {
+          model: Painting,
+          attributes: ['filename', 'description'],
+        },
+      ],
+    });
+//above is where we get the Gallery table and painting table
+    const galleries = dbGalleryData.map((gallery) =>
+      gallery.get({ plain: true })
+    );
+
+    res.render('homepage', {
+      galleries,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET one gallery
+router.get('/gallery/:id', async (req, res) => {
+  try {
+    const dbGalleryData = await Gallery.findByPk(req.params.id, {
+      include: [
+        {
+          model: Painting,
+          attributes: [
+            'id',
+            'title',
+            'artist',
+            'exhibition_date',
+            'filename',
+            'description',
+          ],
+        },
+      ],
+    });
+
+    const gallery = dbGalleryData.get({ plain: true });
+    res.render('gallery', { gallery });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET one painting
+router.get('/painting/:id', async (req, res) => {
+  try {
+    const dbPaintingData = await Painting.findByPk(req.params.id);
+
+    const painting = dbPaintingData.get({ plain: true });
+
+    res.render('painting', { painting });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
+
+//Utils
+//used by front and back end
+//helpers are located in Utils
+//A custom helper
+module.exports = {
+  // the helper method 'format_time' will take in a timestamp and return a string with only the time
+  format_time: (date) => {
+    // We use the 'toLocaleTimeString()' method to format the time as H:MM:SS AM/PM
+    return date.toLocaleTimeString();
+  },
+};
+//Using the helper
+<section class="container">
+  <h3 class="gallery-name">{{gallery.name}}</h3>
+  <!-- Without the custom helper, the entire timestamp is printed -->
+  <h4>Opening Hour: {{gallery.starting_date}}</h4>
+  <!-- Using a custom helper 'format_time', the time has been formatted -->
+  <h4>Closing Hour: {{format_time gallery.ending_date}}</h4>
+  <section class="flex-row justify-center">
+    {{#each gallery.paintings as |painting|}}
+    {{> painting-details}}
+    {{/each}}
+  </section>
+</section>
+
+//Importing helper
+const path = require('path');
+const express = require('express');
+const exphbs = require('express-handlebars');
+
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+//
+// Import the custom helper methods
+const helpers = require('./utils/helpers');
+//
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Incorporate the custom helper methods
+const hbs = exphbs.create({ helpers });
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+
+//How to format date in handlebars
+module.exports = {
+  format_time: (date) => {
+    return date.toLocaleTimeString();
+  },
+  format_date: (date) => {
+    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear() +5}`;
+  },// TODO: Create a custom helper 'format_date' that takes in a timestamp,
+  // adds five years to the date, and formats it as M/D/YYYY
+};
+
+//Session storage
+
+//setup
+const path = require('path');
+const express = require('express');
+// Import express-session
+const session = require('express-session');
+//import session
+const exphbs = require('express-handlebars');
+
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Set up sessions
+const sess = {
+  secret: 'Super secret secret',
+  resave: false,
+  saveUninitialized: false,
+};
+
+app.use(session(sess));
+//session is setup as middleware
+
+const hbs = exphbs.create({ helpers });
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+
+//Saving in routes
+req.session.save(() => {
+      // We set up a session variable to count the number of times we visit the homepage
+      if (req.session.countVisit) {
+        // If the 'countVisit' session variable already exists, increment it by 1
+        req.session.countVisit++;
+      } else {
+        // If the 'countVisit' session variable doesn't exist, set it to 1
+        req.session.countVisit = 1;
+      }
+
+      res.render('homepage', {
+        galleries,
+        // We send over the current 'countVisit' session variable to be rendered
+        countVisit: req.session.countVisit,
+      });
+
+      //A cookie can hold 4KB of data
+      //cookies expire by default in 15 mins
+
+      //Setting up a cookie with a limit
+      const sess = {
+        secret: 'Super secret secret',
+        cookie: {
+          // Stored in milliseconds
+          maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+        },
+        resave: false,
+        saveUninitialized: true,
+        store: new SequelizeStore({
+          db: sequelize,
+        }),
+      };
+      //set it into sequelizestore
+      
+      //declare session store
+      const SequelizeStore = require('connect-session-sequelize')(session.Store);
+      //passing session.store into the connect session sequelize (shorthand)
+
+      //Middleware
+
+      const router = require('express').Router();
+const { Gallery, Painting } = require('../models');
+
+// GET all galleries for homepage
+router.get('/', async (req, res) => {
+  try {
+    const dbGalleryData = await Gallery.findAll({
+      include: [
+        {
+          model: Painting,
+          attributes: ['filename', 'description'],
+        },
+      ],
+    });
+
+    const galleries = dbGalleryData.map((gallery) =>
+      gallery.get({ plain: true })
+    );
+
+    res.render('homepage', {
+      galleries,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET one gallery
+router.get('/gallery/:id', async (req, res) => {
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+    //this response.redirect will point them to the login if they aren't
+   // and also closes the http request tunnel
+  } else {
+    // If the user is logged in, allow them to view the gallery
+    try {
+      const dbGalleryData = await Gallery.findByPk(req.params.id, {
+        include: [
+          {
+            model: Painting,
+            attributes: [
+              'id',
+              'title',
+              'artist',
+              'exhibition_date',
+              'filename',
+              'description',
+            ],
+          },
+        ],
+      });
+      const gallery = dbGalleryData.get({ plain: true });
+      res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
+// GET one painting
+router.get('/painting/:id', async (req, res) => {
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    // If the user is logged in, allow them to view the painting
+    try {
+      const dbPaintingData = await Painting.findByPk(req.params.id);
+
+      const painting = dbPaintingData.get({ plain: true });
+
+      res.render('painting', { painting, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+module.exports = router;
+
+//React is not SEO
+//because it is client side rendering
+//Use React with other tools like Next.js for serverside rendering (industry standards)
+
+//Server-side rendering is SEO because it responds back with the entire html
+//whereas REACT responds with dummy html
+
+
+//MVC handlebars
+
+const router = require('express').Router();
+const User = require('../models/User');
+
+router.get('/', async (req, res) => {
+  let usersData;
+
+  try{
+    usersData = await User.findAll({
+      attributes: {exclude: ['password']},
+      order:[['name', 'ASC']],
+    });
+
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+
+  const users = usersData.map((userData) => userData.get());
+    res.render('homepage', {users})
+});
+//this "users" must match your users in the template
+module.exports = router;
+
+
+{{#each users as | user |}}
+<div class="row align-center mb-5">
+  <div class="col-md-6">
+    <h2>{{{get_emoji}}} {{user.name}} </h2>
+    //place the info where you want
+  </div>
+  <div class="col-md-6">
+    <h3><a href="mailto:test@gmail.com">{{user.email}}</a></h3>
+  </div>
+</div>
+{{/each}}
+
+
+//Auth
+const withAuth = (req, res, next) => {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+};
+
+//How to render a logout button if the user is logged in
+//TODO: Add a comment describing the functionality of this helper -->
+// if user is currently logged in, the logout button is present -->
+    {{#if logged_in}}
+    <nav>
+      <button class="btn" id="logout">logout</button>
+    </nav>
+    {{/if}}
+  </header>
+  <main class="container container-fluid mt-5">
+    {{{ body }}}
+  </main>
+  <footer>
+      
+  </footer>
+
+  //TODO: Add a comment describing the functionality of this helper -->
+  //the logout page -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
+
+
+module.exports = withAuth;
+
+//destroy session cookies on logout not the other important cookies
+
+//Global Execution Context
+
+// Follow the thread of execution 
+// 1) greeting is stored in the global execution context
+const greeting = 'Hello';
+
+// 2) sayHello is stored in the global execution context
+function sayHello(name) {
+  // 5) Once the sayHello execution context is created, "Gabby" is assigned to name
+  // 6) salutation is stored in the function execution context of sayHello. It is assigned the string, 'how are you?'
+  const salutation = 'how are you?';
+
+  // 7) The global execution context as well as the local function execution context are accessible
+  console.log(`${greeting} ${name}, ${salutation}`);
+}
+
+// 3) The alert is a Web API, once resolved, is stored in the callback queue then the call stack to be processed
+alert("What's up doc?");
+
+// 4) Calling sayHello, places it on the call stack which creates a new function execution context
+sayHello("Gabby");
+
+
+// 1) Where is carNoise stored?
+// globally
+const carNoise = 'Honk';
+const expression = ''
+// 2) Where is goFast stored?
+// globally
+const goFast = speed => {
+  //we don't need the parentheses here
+  // 4) When is speed assigned a value? Where is this value stored?
+  // when the function is called on line 24
+  
+  // 5) Where is makeNoise stored?
+  //in a function
+  const makeNoise = sound => {
+    console.log(`My speed is at ${speed}, time to ${sound}`);
+  }
+
+  // 6) What happens in the following statement?
+  // carNoise is passed into the makenoise function
+  makeNoise(carNoise);
+}
+
+// 3) What happens in the following statement?
+// 
+if(confirm("Do you want to go fast?")) {
+  goFast(80);
+}
+
+
+// 'use strict'
+// In the browser, the keyword 'this' in the Global Execution Context is the window object
+const globalThis = this;
+function myFuncA() {
+  console.log('globalThis', globalThis);
+  console.log('myFuncAThis', this);
+  // since this was not assigned by the call, it will default to the global object
+  console.log(globalThis === this);
+}
+
+myFuncA();
+
+const objB = {
+  myFuncB: function () {
+    console.log('globalThis', globalThis);
+    console.log('myFuncBThis', this);
+    // In the FEC, a new reference to this is created
+    console.log("myFuncB: ", globalThis === this);
+  }
+};
+
+// keyword this reference depends on how the function is called
+objB.myFuncB();
+
+//Functional Context
+//when variables are used in a function, they are discarded when the function completes, making them unavailable for
+//functions outside their context
+// returns the average value of an array of numbers
+function avg(array) {
+  //passing array here is the same as defining in the functional context
+  //here total was originally defined inside sum() but that made it inaccessible to avg()
+  //so we had to move it so that both have access
+  let total = 0;
+  function sum() {
+   
+    for(let i = 0; i < array.length; i++) {
+      total += array[i];
+    }
+  }
+  sum();
+  return total/array.length;
+}
+
+module.exports = avg;
+
+//Tests
+//should check the null, the many, and the singular cases
+
+//Stacks of data
+//first in last out
+//the top of the stack is the first out because its
+//on the top and the first things to be stored are the
+//the last off the stack
+
+
+//Queues
+//first in first out like a restaurant line
+
+class Queue {
+  constructor(container = []) {
+    this.container = container;
+
+  }
+  addToQueue(newItem) {
+    this.container.push(newItem)
+  }
+
+  removeFromQueue(newItem) {
+    this.container.shift(newItem)
+  }
+}
+
+module.exports = Queue;
+
+
+//Callback
+//functions triggered by an event
+
+//node js runs on an event loop that stocks events in a queue
+// Follow the thread of execution
+function outer() {
+  // timer is set to 10 milliseconds, once resolved the console.log is stored in the callback queue, then call stack
+  // logs last, since it arrived last in the call back queue
+  setTimeout(() => {
+    console.log("Hello world")
+  }, 10);
+
+  function inner() {
+    // Although the timer is zero, this log occurs after the statement below due to the event loop
+    // 3) logs third, since it needed to wait in the call back queue
+    setTimeout(() => {
+      console.log("Are you listening?")
+    }, 0);
+    // 1) logs first since it heads straight to the call stack 
+    console.log("Yes, I'm listening");
+  }
+
+  inner();
+  // 2) goes to the call stack then resolves
+  console.log("I like turtles")
+}
+
+outer();
+
+// console
+// Yes, I'm listening
+// I like turtles
+// Are you listening?
+// Hello world
+
+//the setTimeout disrupts the queue since the function isn't added
+//until the timeout is 0
+
+//Example of higher order function
+//a function with a function in it
+
+const arrayIndex = [1, 52, 35, 6, 72, 7, 3, 19, 32, 54, 78, 95, 97];
+
+// Create a function which accepts two arguments, number and index.
+// The index of the array is provided to us because we will pass this function through .map array method.
+function evenIndexMultiplier(number, index) {
+  // Checking to see if we are on an even index inside of the array we are mapping through.
+  if (index % 2 === 0) {
+    // Multiply the number on the even index by 10.
+    return number * 10;
+  }
+
+  // Return the number if it is on an odd index.
+  return number;
+}
+
+// Create a new variable to store our newly mapped array with our `evenIndexMultiplier` function passed through it.
+const evenIndexes = arrayIndex.map(evenIndexMultiplier);
+
+console.log(evenIndexes);
+
+//More readable
+const evenIndexes = arrayIndex.map((number, index) => {
+  return evenIndexMultiplier(number, index)
+})
+
+//Closure
+
+// Create a function which will hold another function.
+function bankAccount() {
+  // Create two variables inside of the outer function.
+  // We will be accessing the two variables inside of our inner function.
+  const checking = 400;
+  const savings = 1000;
+
+  // Return a newly created inner function.
+  return {
+    displayFunds: function () {
+      // We have access to our outer functions variable which we console.log.
+      // This is a closure. The inner function has access to the outer functions scope.
+      console.log(
+        `You have $${checking} in your checking account and $${savings} in your savings account`
+      );
+    },
+  };
+}
+
+// Create a new variable which holds the `bankAccount` function.
+const myBank = bankAccount();
+
+// With our newly created variable call the `displayFunds` method attached to it.
+myBank.displayFunds();
+
+// Check the console and expand the given object -> displayFunds -> Scope and then you should be able to visually see your closures.
+console.dir(myBank);
+
+// By console logging the outer function's variable we can see that the variables are not able to be accessed.
+console.log(checking);
+console.log(savings);
+
+
+//A facotory function works like a conveyor belt in which new objects are created
+//by passing in different values
+//Used very often in Java and C++
+// Create a function which accepts three arguments name, age, and city.
+// We will be creating an object with a function instead of a class.
+function createUser(name, age, city) {
+  // Create an user object and map the function arguments to a key in the object.
+  const user = {
+      name: name,
+      age: age,
+      city: city
+  }
+
+  // Return two inner functions.
+  return {
+      introduceSelf: function() {
+
+          // Instead of using the `this` keyword, we use the object we created in the outer function's scope.
+          return console.log(`Hi my name is ${user.name} and I am currently ${user.age} years old!`)
+      },
+
+      location: function() {
+          return console.log(`${user.name} is located in ${user.city}`)
+      }
+  }
+}
+
+// Create a user without using the `new` keyword different from how we do it with classes.
+const userOne = createUser('Beverly', 58, 'Phoenix')
+
+// Call the two methods attached to our `createUser` function to see if the user object is logging the correct values.
+userOne.introduceSelf()
+userOne.location()
+
+//in typescript types are preferred over interfaces
+
+
+
+//Factory functions
+//this is open to extensability closed to modification
+//it is better to create smaller specific functions other than making classes 
+//that may or may not need all the properties given
+// Instead of using inheritance with classes, we will be taking a composition based approach.
+// When designing a composition based approach we focus on what objects do instead of what they are.
+// Below we define the actions we want our factory functions to use.
+const phoneCall = (state) => ({
+  call: () => console.log(`${state.name}'s Phone: ${state.ringTone}`),
+});
+
+const makeNoise = (state) => ({
+  noise: () => console.log(state.noise),
+});
+
+const drying = (state) => ({
+  dry: () =>
+    console.log(`Finish drying in ${state.timer} minutes. ${state.noise}`),
+});
+
+// Create the `Phone` factory function which accepts two arguments `name` and `ringTone`.
+const Phone = (name, ringTone) => {
+  // Store the arguments in an object so that we can pass them to the correct functions we return.
+  const state = {
+    name,
+    ringTone,
+  };
+
+  // Return the action functions we want our `Phone` to use.
+  return { ...phoneCall(state) };
+};
+
+// No need to add the `new` keyword because we are using a factory function.
+const nokia = Phone('Nokia', 'ring');
+
+// Test if our action functions work correctly with our newly created phone.
+nokia.call();
+
+const Dryer = (noise, timer) => {
+  const state = {
+    noise,
+    timer,
+  };
+
+  return { ...makeNoise(state), ...drying(state) };
+};
+
+const decker = Dryer('brshhuhsh', 35);
+decker.noise();
+decker.dry();
+
+// Now that we have taken a composition based approach we can now create a `Washer` function which utilizes making a phone call.
+const Washer = (name, noise, ringTone) => {
+  const state = {
+    name,
+    noise,
+    ringTone,
+  };
+
+  // We now have access to the `phoneCall` method because it is no longer tightly coupled to the `Device` class.
+  // If we were to use inheritance we would have to rewrite the `call` function inside the `Appliance` class tree.
+  // Good coding practice is DRY. Don't Repeat Yourself.
+  return { ...makeNoise(state), ...phoneCall(state) };
+};
+
+const wPool = Washer('Whirlpool', 'brshhh', 'ring ring from the washer');
+wPool.call();
+wPool.noise();
+
+
+//Linear Search
+
+//they can be fastest sometimes because they don't need to be sorted
+//search from start to finish to find a match
+
+//Big O complexity chart
+//shows how slow something will make your site based on how complex it is
+//dropped in the resources channel
+
+//Space Complexity
+//how much space/memory it uses
+
+//Time Complexity
+//how long the space/memory is used
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 7];
+
+// TODO: Complete the linearSearch function below.
+const linearSearch = (array, element) => {
+  return array.indexOf(element)
+}
+
+module.exports = {linearSearch};
+
+//recursion
+//a function that calls itself
+
+const countdown = (value) => {
+  // for all values more than 0, logs the value then calls the function with a smaller argument
+  if (value <= 0) {
+    return value;
+  //should have the exit criteria first so that it weeds out more scenarios
+  } else {
+    // base condition stops the recursive call
+    console.log(value);
+    // recursive call creates the loop
+    return countdown(value - 1);
+  }
+};
+
+countdown(10);
+
+//Binary Search
+//uses midpoints between two points to narrow down to element
+//downside is that it assumes that the array is sorted in ascending order
+//you have to sort it first in order to use it
+
+//MongoDB
+//a document database, a document is a data entry and stores as objects using BSON (works well w JS)
+//groups of documents are called collections
+//does not force a schema and is very adaptable
+//a non relational database
+//related data is nested and stored as embedded doc, like how we did our DnD characters
+//however SQL is still more common and standard
+
+
+//Connect to MongoDB
+
+const express = require('express');
+// Run npm install mongodb and require mongodb and MongoClient class
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const port = 3001;
+
+// Connection string to local instance of MongoDB
+const connectionStringURI = `mongodb://127.0.0.1:27017`;
+
+// Initialize a new instance of MongoClient
+const client = new MongoClient(connectionStringURI);
+
+// Declare a variable to hold the connection
+let db;
+
+// Create variable to hold our database name
+const dbName = 'shelterDB';
+
+// Use connect method to connect to the mongo server
+client.connect()
+  .then(() => {
+    console.log('Connected successfully to MongoDB');
+    // Use client.db() constructor to add new db instance
+    db = client.db(dbName);
+
+    // start up express server
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Mongo connection error: ', err.message);
+  });
+
+// Built in Express function that parses incoming requests to JSON
+app.use(express.json());
+
+app.post('/create', (req, res) => {
+  // Use db connection to add a document
+  db.collection('petCollection').insertOne(
+    { name: req.body.name, breed: req.body.breed }
+  )
+    .then(results => res.json(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
+app.get('/read', (req, res) => {
+  // Use db connection to find all documents in collection
+  db.collection('petCollection')
+    .find()
+    .toArray()
+    .then(results => res.json(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
+//MongoDB delete route
+// TODO: Add Delete route that uses a filter to delete a single document by id
+app.delete('/delete', (req, res) => {
+  db.collection('bookCollection').deleteOne(
+    {_id: new ObjectId(req.body._id)}
+    .then(results => res.json(results))
+    .catch(err => {
+      if (err) throw err;
+    })
+
+  )
+
+
+} )
+
+//Some examples of embedded documents
+//access using dot notation
+// Data for document
+const data = [
+  // Using a reference to establish a relationship between two documents
+  // This is similar to primary/foreign keys in MySQL
+  {
+    department: 'floral',
+    promotion_id: 'flowers', // refers to the promotion object below
+  },
+  {
+    promotion_id: 'flowers',
+    sale: 'discount on red flowers',
+    percentage_discount: 50,
+  },
+
+  // Using a single embedded document to create relationship
+  // This is a one-to-one relationship
+  {
+    department: 'frozen',
+    promotion: {
+      promotion_id: 'popsicle',
+      sale: 'discount frozen treats',
+      percentage_discount: 20,
+    },
+  },
+  {
+    department: 'snacks',
+    promotion: {
+      promotion_id: 'chips',
+      sale: 'free granola bar',
+      percentage_discount: 50,
+    },
+  },
+  // Using multiple embedded document to create a relationship to a single document
+  // This is a one-to-many relationship
+  {
+    department: 'produce',
+    promotion: [
+      {
+        promotion_id: 'Monday',
+        sale: 'discount on bananas',
+        percentage_discount: 25,
+      },
+      {
+        promotion_id: 'Tuesday',
+        sale: 'half-price apples',
+        percentage_discount: 50,
+      },
+      {
+        promotion_id: 'Wednesday',
+        sale: 'discount on cherries',
+        percentage_discount: 10,
+      },
+      {
+        promotion_id: 'Thursday',
+        sale: 'free grapes',
+        percentage_discount: 100,
+      },
+      {
+        promotion_id: 'Friday',
+        sale: '5% off berries',
+        percentage_discount: 5,
+      },
+      {
+        promotion_id: 'Saturday',
+        sale: 'discount on all fruit',
+        percentage_discount: 30,
+      },
+      {
+        promotion_id: 'Sunday',
+        sale: 'discount on all fruit',
+        percentage_discount: 12,
+      },
+    ],
+  },
+];
+
+module.exports = data
+
+
+//Finding using dot notation
+const express = require('express');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const port = 3001;
+
+const connectionStringURI = `mongodb://127.0.0.1:27017`;
+
+const client = new MongoClient(connectionStringURI);
+
+let db;
+
+const dbName = 'authorListDB';
+
+client.connect()
+  .then(() => {
+    console.log('Connected successfully to MongoDB');
+    db = client.db(dbName);
+    // Drops any documents, if they exist
+    db.collection('authorList').deleteMany({});
+    // Adds data to database
+    db.collection('authorList').insertMany(data)
+      .then(res => console.log(res))
+      .catch(err => {
+        if (err) return console.log(err);
+      });
+
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Mongo connection error: ', err.message);
+  });
+
+// Data for document
+const data = [
+  {
+    title: 'Good Omens',
+    authors: [
+      { name: 'Neil Gaiman', featured: true },
+      { name: 'Terry Pratchett', featured: true },
+    ],
+    information: { ISBN: 9780425132159, price: 10, total_in_stock: 10 },
+  },
+  {
+    title: 'Heads You Lose',
+    authors: [
+      { name: 'Lisa Lutz', featured: false },
+      { name: 'David Hayward', featured: false },
+    ],
+    information: { ISBN: 9780399157400, price: 20, total_in_stock: 8 },
+  },
+  {
+    title: 'Between the Lines',
+    authors: [
+      { name: 'Jodi Picoult', featured: true },
+      { name: 'Samantha Van Leer', featured: false },
+    ],
+    information: { ISBN: 9781451635751, price: 5, total_in_stock: 5 },
+  },
+];
+
+app.use(express.json());
+
+app.get('/price-less-than-10', (req, res) => {
+  db.collection('authorList')
+    .find({ 'information.price': { $lt: 10 } })
+    .toArray()
+    .then(results => res.send(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
+app.get('/featured-authors', (req, res) => {
+  db.collection('authorList')
+    .find({ 'authors.featured': true })
+    .toArray()
+    .then(results => res.send(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
+const express = require('express');
+const { MongoClient } = require('mongodb');
+
+
+const app = express();
+const port = 3001;
+
+const connectionStringURI = `mongodb://127.0.0.1:27017`;
+
+const client = new MongoClient(connectionStringURI);
+
+let db;
+
+const dbName = 'alphabetDB';
+
+const data = [
+  { letter: 'a' },
+  { letter: 'c' },
+  { letter: 'e' },
+  { letter: 'f' },
+  { letter: 'h' },
+  { letter: 'i' },
+  { letter: 'j' },
+  { letter: 'l' },
+  { letter: 'b' },
+  { letter: 'd' },
+  { letter: 'g' },
+  { letter: 'k' },
+];
+
+client.connect()
+  .then(() => {
+    console.log('Connected successfully to MongoDB');
+    db = client.db(dbName);
+    db.collection('letterList').deleteMany({});
+    db.collection('letterList').insertMany(data)
+      .then(res => console.log('Data inserted'))
+      .catch(err => {
+        if (err) return console.log(err);
+      });
+
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Mongo connection error: ', err.message);
+  });
+
+app.use(express.json());
+
+// GET request to read all the documents in a collection
+app.get('/read', (req, res) => {
+  db.collection('letterList')
+    // find() returns all documents. Equivalent to `Select *` in SQL.
+    .find()
+    // sort() sorts in ascending or descending order(-1)
+    .sort({ letter: 1 }) 
+    // skips first returned document
+    .skip(1)
+    // limits returns to 10
+    .limit(10)
+    .toArray()
+    .then(results => res.send(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
+
+// Connect to Mongoose
+
+const mongoose = require('mongoose');
+
+// Wrap Mongoose around local connection to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/mygroceryDB');
+
+// Export connection 
+module.exports = mongoose.connection;
+
+
+//Mongoose connect to app
+const express = require('express');
+const db = require('./config/connection');
+// Require model
+const { Item } = require('./models');
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get('/all-items', async (req, res) => {
+  try {
+    // Using model in route to find all documents that are instances of that model
+    const result = await Item.find({});
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).send({ message: 'Internal Server Error' })
+  }
+});
+// open the service one time
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+
+
+//Making models with Mongoose
+//separate js files by schema
+// Define Mongoose
+const mongoose = require('mongoose');
+
+// Create a new instance of the Mongoose schema to define shape of each document
+const grocerySchema = new mongoose.Schema({
+  // Add individual properties and their types
+  // Setting required to true will disallow null values
+  item: { type: String, required: true },
+  stockCount: Number,
+  price: Number,
+  inStock: Boolean,
+  // Use built in date method to get current date
+  lastAccessed: { type: Date, default: Date.now },
+});
+
+// Using mongoose.model() to compile a model based on the schema
+// 'Item' is the name of the model
+// grocerySchema is the name of the schema we are using to create a new instance of the model
+const Item = mongoose.model('Item', grocerySchema);
+
+// Error handler function to be called when an error occurs when trying to save a document
+const handleError = (err) => console.error(err);
+
+// We use the model to create individual documents that have the properties as defined in our schema
+Item
+  .create({
+    item: 'banana',
+    stockCount: 10,
+    price: 1,
+    inStock: true,
+  })
+  .then(result => console.log('Created new document', result))
+  .catch(err => handleError(err));
+
+module.exports = Item;
+
+
+//How to Display a Model with Mongoose
+//model = collection
+const express = require('express');
+const db = require('./config/connection');
+// TODO: Add a comment describing the functionality of the code below
+const { Book } = require('./models');
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get('/all-books', async (req, res) => {
+  try {
+    // TODO: Add a comment describing the functionality of the code below
+    const result = await Book.find({});
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+});
+
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+
+
+//insert many collections
+const mongoose = require('mongoose');
+
+const departmentSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  lastAccessed: { type: Date, default: Date.now },
+});
+
+const Department = mongoose.model('Department', departmentSchema);
+
+const handleError = (err) => console.error(err);
+
+// Will add data only if collection is empty to prevent duplicates
+// Note that two documents can have the same name value
+Department.find({})
+  .exec()
+  .then(async collection => {
+    if (collection.length === 0) {
+      const results = await Department.insertMany(
+        [
+          { name: 'Produce' },
+          { name: 'Dairy' },
+          { name: 'Meat' },
+          { name: 'Wine' },
+          { name: 'Wine' },
+          { name: 'Wine' },
+          { name: 'Flowers' },
+        ]
+      );
+      return console.log('Departments inserted', results);
+    }
+    return console.log('Already populated');
+  })
+  .catch(err => handleError(err));
+
+module.exports = Department;
+
+//Finding and deleting Mongoose
+const express = require('express');
+const db = require('./config/connection');
+// Require model
+const { Department } = require('./models');
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Creates a new department
+app.post('/new-department/:department', (req, res) => {
+  const newDepartment = new Department({ name: req.params.department });
+  newDepartment.save();
+  if (newDepartment) {
+    res.status(201).json(newDepartment);
+  } else {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+// Finds all departments
+app.get('/all-departments', async (req, res) => {
+  try {
+    // Using model in route to find all documents that are instances of that model
+    const result = await Department.find({});
+    res.status(200).json(result);
+  } catch (err) {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+// Finds the first matching document
+app.get('/find-wine-department', async (req, res) => {
+  try {
+    // Using model in route to find all documents that are instances of that model
+    const result = await Department.findOne({ name: 'Wine' });
+    res.status(200).json(result);
+  } catch (err) {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+// Finds first document matching parameter and deletes
+// For demo, use 'Wine' as URL param
+app.delete('/find-one-delete/:departmentName', async (req, res) => {
+  try {
+    const result = await Department.findOneAndDelete({ name: req.params.departmentName });
+    res.status(200).json(result);
+    console.log(`Deleted: ${result}`);
+  } catch (err) {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+
+
+//Custom methods with Mongoose
+
+const mongoose = require('mongoose');
+
+// Schemas define the shape of the documents within the collection.
+const departmentSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  totalStock: Number,
+  lastAccessed: { type: Date, default: Date.now },
+});
+
+// Schemas can also define methods that act on an instance of the model or document
+// This custom method extends the methods object
+departmentSchema.methods.getDocumentInfo = function () {
+  // The 'this' keyword is used to specify the properties belonging to the particular instance
+  console.log(
+    `This department has the name ${this.name} and a total stock of ${this.totalStock}`
+  );
+};
+
+// Models are constructors compiled from a schema and pass down the properties and methods to each instance
+const Department = mongoose.model('Department', departmentSchema);
+
+// Instances created from a model have access to the methods and properties
+const produce = new Department({ name: 'Produce', totalStock: 100 });
+
+// Documents have access to a range of built-in instance methods like get()
+const responseGetInstance = produce.get('totalStock', String);
+console.log(
+  `The value of the totalStock for this document in string form is ${responseGetInstance}`
+);
+
+// Instance methods are called on the document
+produce.getDocumentInfo();
+
+module.exports = Department;
+
+//Creating subdocuments
+//if there is a square bracket there can be more than one instance of that schema
+const mongoose = require('mongoose');
+
+// Child documents or subdocuments can be embedded into a parent document
+// the managerSchema defines the shape for manager subdocument
+const managerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  salary: Number,
+});
+
+// The employeeScheme defines the shape for the employee subdocument
+const employeeSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  salary: Number,
+});
+
+// departmentSchema provides the shape of the parent document
+const departmentSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  // This will add a single subdocument to include the manager's information
+  manager: managerSchema,
+  // This will include an array that holds all the employees' information
+  employees: [employeeSchema],
+  lastAccessed: { type: Date, default: Date.now },
+});
+
+// Uses mongoose.model() to create model
+const Department = mongoose.model('Department', departmentSchema);
+
+// Uses model to create new instance including subdocument
+const managerData = { name: 'Taylor', salary: 80000 };
+const employeeData = [
+  { name: 'Ann', salary: 40000 },
+  { name: 'Liu', salary: 50000 },
+];
+
+Department
+  .create({ name: 'Shoes', manager: managerData, employees: employeeData })
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+module.exports = Department;
+
+//NoSQL
+//Activity 19-20 Aggregates
+
+const express = require('express');
+const db = require('./config/connection');
+// Require model
+const { Item } = require('./models');
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get('/sum-price', async (req, res) => {
+  try {
+    // Call aggregate() on model
+    const result = await Item
+      .aggregate([
+        // Where prices are less or equal to 5
+        { $match: { price: { $lte: 5 } } },
+        //match is going to get only the values that you want!
+        {
+          $group: {
+            // Group by null (no additional grouping by id)
+            _id: null,
+            // Sum of all prices
+            //the sum, avg, max, min are built into the MongoDB aggregate method
+            sum_price: { $sum: '$price' },
+            // Average of all prices
+            avg_price: { $avg: '$price' },
+            // Maximum price
+            max_price: { $max: '$price' },
+            // Minimum price
+            min_price: { $min: '$price' },
+          },
+        },
+      ])
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+
+//Virtuals allow us to derive answers from code that already exists in our DB
+//they are default false
+//enable them
+
+const { Schema, model } = require('mongoose');
+
+// Schema to create Post model
+const postSchema = new Schema(
+  {
+    text: String,
+    username: String,
+    comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
+
+// Create a virtual property `commentCount` that gets the amount of comments per post
+postSchema.virtual('commentCount').get(function () {
+  return this.comments.length;
+  //this will run every single time no matter what
+});
+
+// Initialize our Post model
+const Post = model('post', postSchema);
+
+module.exports = Post;
+
+const { Post } = require('../models');
+
+module.exports = {
+  async getPosts(req, res) {
+    try {
+      const posts = await Post.find();
+      res.json(posts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  async getSinglePost(req, res) {
+    try {
+      const post = await Post.findOne({ _id: req.params.postId });
+//access the virtual using post.commentCount
+      if (!post) {
+        return res.status(404).json({ message: 'No post with that ID' });
+      }
+
+      res.json(post);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  // create a new post
+  async createPost(req, res) {
+    try {
+      const dbPostData = await Post.create(req.body);
+      res.json(dbPostData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+};
+
+//Separate express routes by having controllers contain the route logic
+//and the routes call the functions for readability
+
+//Virtuals .get can only add one column or attribute name but setters are not limited to one
+//Activity 23 NoSQL
+const User = require('../models/User');
+
+module.exports = {
+  async getUsers(req, res) {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  async getSingleUser(req, res) {
+    try {
+      const user = await User.findOne({ _id: req.params.userId })
+        .select('-__v')
+        //removes the versions junk data
+        .populate('posts');
+        //populating embedded post data
+
+      if (!user) {
+        return res.status(404).json({ message: 'No user with that ID' });
+      }
+
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  // create a new user
+  async createUser(req, res) {
+    try {
+      const dbUserData = await User.create(req.body);
+      res.json(dbUserData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+};
+
+//Mongoose CRUD
+//activity 26 NoSQL
+
+//19 - PWA
+
+//Optimized Web App
+//installable directly on devices therefore they work offline after installed
+//make apps faster by bundling assets
+//uses a set of instructions called manifest.json for the service worker
+//a single PWA works for all devices
+//Starbucks and Uber are good examples of PWA
+//comes with an install button at the top
+//local storage is 50% of all free storage on computer (thats what PWA uses)
+
+import { buttonClick } from './button';
+// Import CSS file into entry point to add as dependency
+import '../css/style.css';
+//this is how we import css to our whole app
+document.getElementById('btn').addEventListener('click', buttonClick);
+
+
+const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  entry: './src/js/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+
+module: {
+  rules: [
+    {
+      test: /\.css$/i,
+      //look for all files that end with .css and ignore case
+      use: ['style-loader', 'css-loader'],
+      //use these things to bundle css
+    },
+  ],
+},
+};
+//using a loader 
+//loaders translate from one language to another
+const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  entry: './src/js/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+
+module: {
+  rules: [
+    {
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    },
+  ],
+ },
+};
+
+//Html webpack plugin
+
+//have to install in package
+
+
+//plugin in config
+plugins: [
+  new HtmlWebpackPlugin({
+    template: './index.html',
+    title: 'Webpack Plugin'
+  })
+],
+
+// 19-PWA Act 11 //HMR (hot module reload)
+
+//installed by web pack dev server
+"webpack-dev-server": "^4.1.1"
+
+devServer: {
+  // The `hot` option is to use the webpack-dev-server in combination with the hot module replacement API.
+  hot: 'only',
+  //only reboots if there is a successful change, not for errors "true" reloads even with errors and is therefore not necessary
+},
+//INdex.js
+if (module.hot) {
+  module.hot.accept((err) => {
+    if (err) {
+      console.error('Cannot apply HMR update.', err);
+    }
+  });
+}
+
+//package.json
+"scripts": {
+  "dev": "webpack-dev-server --open"
+  //runs the library and opens the browser
+
+  //you assign modules with innerHTML, then if you change it it will change that part in the browser, but just that part, it doesnt reload the whole page
+
+  //Concurrently
+  //syncs two services hosted on the same environment (client and serverside)
+  //we use it to test in development mode to make sure our client and server interact together
+// it will run both client and server at the same time
+
+//Service Worker
+//installed using library called workbox
+//install, activate, claim
+
+//index.js
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('./sw.js')
+    .then((register) => console.log(register));
+}
+
+//Caching images
+// use runtimeCaching parameter to make caching images more efficient
+//service workers run on a cache first (check the cache first then if its not there check the server)
+
+//Inject Manifest
+
+//in webpack.config
+//import
+const {InjectManifest} = require('workbox-webpack-plugin');
+//class instance
+new InjectManifest({
+  swSrc: './src/sw.js',
+  swDest: 'service-worker.js',
+}), 
+
+//IndexedDB
+// a library that provides more efficient way of storing data
+//runs functions async
+//stores in local storage
+//uses key values and indexes for easy retrieval
+//you can create versions on your own that idb will update for you when you change it
+
+//database.js
+// Import the 'idb' package to use with IndexedDB.
+import { openDB } from 'idb';
+
+// Create a function that can be used to start up the database.
+const initdb = async () =>
+// Create a database named todos and we will use version 1.
+  openDB('demo-db', 1, {
+    // Sets the database schema if it isn't already defined.
+    upgrade(db) {
+      if (db.objectStoreNames.contains('demo-db')) {
+        console.log('demo-db database already exists');
+        return;
+      }
+
+      // Create an object store for our data inside of the 'demo-db'.
+      // We create a key named 'id' which will automatically be incremented for us.
+      db.createObjectStore('demo-db', { keyPath: 'id', autoIncrement: true });
+      console.log('demo-db database created');
+    },
+  });
+
+  // Call our database function.
+initdb();
+
+//webpack.config
+plugins: [
+  new HtmlWebpackPlugin({
+    template: './index.html',
+    title: 'IndexedDB Demo'
+  }),
+
+  //index.js
+  import './database.js';
+
+
+
+  //CRUD with IndexedDB
+  //create, update, and delete need readwrite 
+  //read needs read only
+  // Export a function we will use to GET all from the database.
+// Export a function we will use to POST to the database.
+export const postDb = async (content) => {
+  console.log('Post to the ase');
+
+  // Create a connection to the database database and version we want to use.
+  const todosDb = await openDB('todos', 1);
+
+  // Create a new transaction and specify the database and data privileges.
+  //we need the write privileges to edit the data
+
+  const tx = todosDb.transaction('todos', 'readwrite');
+
+  // Open up the desired object store.
+  const store = tx.objectStore('todos');
+
+  // Use the .add() method on the store and pass in the content.
+  const request = store.add({ todo: content });
+
+  // Get confirmation of the request.
+  const result = await request;
+  console.log('🚀 - data saved to the database', result);
+};
+export const getAllDb = async () => {
+  console.log('GET all from the database');
+
+  // Create a connection to the database database and version we want to use.
+  const todosDb = await openDB('todos', 1);
+
+  // Create a new transaction and specify the database and data privileges.
+  
+  const tx = todosDb.transaction('todos', 'readonly');
+
+  // Open up the desired object store.
+  const store = tx.objectStore('todos');
+
+  // Use the .getAll() method to get all data in the database.
+  const request = store.getAll();
+
+   // Get confirmation of the request.
+  const result = await request;
+  console.log('result.value', result);
+  return result;
+  //we dont use try catch here bc we arent reaching to an external source
+  //database
+};
+
+// Export a function we will use to GET from the database.
+//the id is a key, bc it stores in key value pairs
+export const getOneDb = async (id) => {
+  console.log('GET from the database');
+
+  // Create a connection to the database database and version we want to use.
+  const todosDb = await openDB('todos', 1);
+
+   // Create a new transaction and specify the database and data privileges.
+  const tx = todosDb.transaction('todos', 'readonly');
+
+  // Open up the desired object store.
+  const store = tx.objectStore('todos');
+
+   // Use the .get() method to get a piece of data from the database based on the id.
+  const request = store.get(id);
+
+  // Get confirmation of the request.
+  const result = await request;
+  console.log('result.value', result);
+  return result;
+};
+
+initdb();
+
+//Manifest
+
+{
+  "short_name": "Manifest",
+  "name": "TODOs Manifest Example",
+  "icons": [
+    //each icon must have each of the keys below
+    //the srcs must exist
+    {
+      "src": "./assets/images/icon_96x96.png",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/images/icon_128x128.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/images/icon_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/images/icon_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  //portrait for phone screens
+  "display": "standalone",
+  //handle things on your own
+  "start_url": "./",
+  //path
+  "description": "Keep track of important tasks!",
+  "background_color": "#7eb4e2",
+  "theme_color": "#7eb4e2"
+  //you choose
+}
+
+//React
+//view library
+//the most popular framework 2023
+//separates UI components
+//make components general to be reused
+//uses VDOM virtual dom to only update what needs to be
+//reconciles with the DOM on changes
+//not opinionated giving freedom
+//props(properties) are parameters passed down from parent to child
+//keeps the application state and UI together
+//React is not a one stop shop, it is more modular and you need to import other things like HTTP requests
+//"reacts" to state changes
+//used for SPAs (single page applications)
+
+//Vite is a fast build tool with rapid HMR
+//gives faster build environment 
+//in place of npm
+//fast dev server
+//on demand compilation
+
+
+//rednering the dom in the html element
+20-React activity 3
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+// Here we import bootstrap for access to some additional styling
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+
+//using variables
+const name = 'Mac';
+const num1 = 1;
+const num2 = 2;
+
+function JSXVariables() {
+  return (
+    <div className="main-container">
+      <div className="container">
+        <div className="p-5 mb-4 bg-light">
+          {/* JavaScript expressions can be escaped inside of curly braces */}
+
+          <h2>My cat's name is {name}. But you can call me...</h2>
+          <h1>The JSX Boss!</h1>
+          <hr />
+          <h2>I can do math: {num1 + num2}.</h2>
+          <h2>
+            I can generate random numbers:
+            {Math.floor(Math.random() * 10) + 1},
+            {Math.floor(Math.random() * 10) + 1},
+            {Math.floor(Math.random() * 10) + 1}.
+          </h2>
+          <h2>I can even reverse my name: {name.split('').reverse()}</h2>
+        </div>
+      </div>
+    </div>
+  );
+}
+//can only have one parent element!
+export default JSXVariables;
+
+// TODO: Create a `name` variable
+const name = 'Taylor'
+// TODO: Create a `thoughts` variable
+const thoughts = "It's pretty reactive"
+// This should be a string regarding what you think of React
+
+function JSXVariables() {
+  return (
+    <div className="main-container">
+      <div className="container">
+        <div className="p-5 mb-4 bg-light">
+          {/* TODO: Add your name variable */}
+          <h1>Hi! My name is {name}</h1>
+          {/* TODO: Add your number of letters variable */}
+          <h2>My name has {name.length} letters</h2>
+          {/* TODO: Add your thoughts variable */}
+          <h2>I think React {thoughts}</h2>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default JSXVariables;
+//Styling
+//inline using object
+// We declare an object called styles that will contain a few objects for card and heading styles
+// Notice that each key lists CSS styles in camel case not dashes
+//not standard use but could be used in special cases since it overrides other css
+const styles = {
+  card: {
+    margin: 20,
+    background: '#e8eaf6',
+  },
+  heading: {
+    background: '#3f51b5',
+    minHeight: 50,
+    lineHeight: 3.5,
+    fontSize: '1.2rem',
+    color: 'white',
+    padding: '0 20px',
+  },
+  content: {
+    padding: 20,
+  },
+};
+
+// In `Card`, we can assign a style from an object by using curly braces
+// We are assigning the card, heading, and content all from our `style` object
+function Card() {
+  return (
+    <div style={styles.card}>
+      <div style={styles.heading}>Lorem ipsum dolor</div>
+      <div style={styles.content}>
+        `Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+        voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+        quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
+        eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
+        corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
+        quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+        voluptas nulla pariatur?`
+      </div>
+    </div>
+  );
+}
+
+export default Card;
+
+//or
+//use className attributes with separate css file 
+
+//Props
+
+function Alert ({type, message}) {
+  return (
+    <div className={'alert alert'}
+  )
+}
+
+// This List component accepts props from App.js
+// We pluck off the "users" property of the props object using destructuring assignment
+// This prevents us from having to type `props.users` each time we want to refer to the users object
+export default function List({ users }) {
+  return (
+    <div className="container">
+      <h1>Random Users:</h1>
+      <ul className="list-group">
+        {/* Here we use the map method to iterate through each user and return a new array of list items for each user */}
+        {users.map((user) => (
+          <li className="list-group-item" key={user.login.uuid}>
+            {`${user.name.first} ${user.name.last} (${user.login.username})`}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+//map allows us to copy multiple things that have small differences like dates
+//you must use a key
+
+//conditional react rendering
+
+// use && if you want to render only if true 
+
+// or ? 
+
+// The props variable is an object containing the welcomeClass helper method on the clickHandler property
+function Greeting(clickHandler) {
+  //you can deconstruct props here and then you don't need it in front of the other clickHandler
+  const welcomeStudent = () => {
+    alert(`Welcome, John!`)
+  }
+
+  return (
+    <div className="container text-center">
+      <div className="list-group">
+        {/* In React, we can directly attach event listeners to the to the relevant markup */}
+        <button 
+          onClick={clickHandler} 
+          className="list-group-item list-group-item-action list-group-item-info" 
+          aria-current="true"
+        >
+          Greet the Students!
+        </button>
+        <button 
+        //onClick and onChange are built in
+          onClick={welcomeStudent} 
+          //if you pass in a variable here you need an arrow function
+          className="list-group-item list-group-item-action"
+        >
+          John
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Greeting;
+
+//Hooks
+//have to exist inside a component
+
+//first is const, second is setter and then initial value
+// First we import `useState` with React so that we can take advantage of the hook
+import { useState } from 'react';
+
+export default function Counter() {
+  // To set a state variable using `useState`, we give our variable a name of `count`.
+  // We also set the name of the function that will update `count`. We called it `setCount`.
+  // useState accepts only one argument - the initial value of the state variable.
+  const[count, setCount] = useState(0);
+//setCount is the setter which is how React knows there is a change
+  // This is a handler that we will reference in our `onClick` attribute later
+  const handleClick = () => {
+    setCount((count + 1));
+    console.log(`New value of count: ${count}`);
+  };
+
+  return (
+    <div className="card text-center">
+      <div className="card-header bg-primary text-white">Click Counter!</div>
+      <div className="card-body">
+        <p className="card-text">Click Count: {count}</p>
+        {/* In our button element, we add a onClick event that invokes our handleClick method */}
+        <button className="btn btn-primary" type="button" onClick={handleClick}>
+          Increment
+        </button>
+      </div>
+    </div>
+  );
+}
+//use state can be used for navbar menus
+const[showDialog, setShowDialog] = useState(true)
+
+//Handling input changes in form
+
+import { useState } from 'react';
+import './style.css';
+
+function Form() {
+  // Here we set two state variables for firstName and lastName using `useState`
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const handleInputChange = (e) => {
+    // Getting the value and name of the input which triggered the change
+    const { name, value } = e.target;
+
+    // Ternary statement that will call either setFirstName or setLastName based on what field the user is typing in
+    return name === 'firstName' ? setFirstName(value) : setLastName(value);
+  };
+
+  const handleFormSubmit = (e) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    e.preventDefault();
+
+    // Alert the user their first and last name, clear the inputs
+    alert(`Hello ${firstName} ${lastName}`);
+    setFirstName('');
+    setLastName('');
+  };
+
+  return (
+    <div className="container text-center">
+      <h1>
+        Hello {firstName} {lastName}
+      </h1>
+      <form className="form" onSubmit={handleFormSubmit}>
+        <input
+          value={firstName}
+          name="firstName"
+          onChange={handleInputChange}
+          type="text"
+          placeholder="First Name"
+        />
+        <input
+          value={lastName}
+          name="lastName"
+          onChange={handleInputChange}
+          type="text"
+          placeholder="Last Name"
+        />
+        <button type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default Form;
+//useEffect hook
+//must be wrapped in a function
+
+//fires every time there is a change
+
+import { useState, useEffect } from 'react';
+
+export default function Display() {
+  const [count, setCount] = useState(0);
+
+  // When the component mounts to the VDOM, run this callback
+  useEffect(() => {
+    const storedCount = localStorage.getItem('myCount');
+//using local storage with react state is faster than using react global state
+    // If the value is found in storage, convert the string to a number and update state
+    if (storedCount) {
+      setCount(
+        parseInt(storedCount)
+      )
+    }
+  }, [])
+  //if it is empty brackets its listening for initialization and deinitialization of component
+
+  // When the state changes run this callback
+  useEffect(() => {
+    // Update the localStorage count variable using the setItem method
+   
+  }, [count]);
+//this make the useEffect listen to the count for changes
+//if the count and brackets were gone it would listen for any change
+  const handleIncrease = () => {
+    setCount(count + 1);
+    localStorage.setItem('myCount', count);
+  };
+
+  const clearStorage = () => {
+    localStorage.clear();
+    setCount(0);
+  }
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <code>check localStorage in developer console</code>
+      <hr />
+      <button type="button" onClick={handleIncrease}>
+        Click Me
+      </button>
+      <button type="button" onClick={clearStorage}>
+        Reset Count
+      </button>
+    </div>
+  );
+}
+
+import { useState, useEffect } from 'react';
+import ResultList from './ResultList';
+
+// Import our search method
+import search from '../utils/API';
+
+const SearchResultContainer = () => {
+  // Declare a new state variable, "results"
+  const [results, setResults] = useState([]);
+
+  // Method to get search results and set state
+  const searchGiphy = async (query) => {
+    const { data } = await search(query);
+    setResults(data.data);
+  };
+
+  // We want to run this method when the component first loads so that we have images of kittens to display
+  // The second argument is the dependency array. This means that this method will only run when the component first loads
+  useEffect(() => {
+    searchGiphy('kittens');
+  }, []);
+//you cant use async inside useEffect
+//so you have to separate it
+  return (
+    <div>
+      {/* Pass our results to the ResultsList component to map over */}
+      <ResultList results={results} />
+    </div>
+  );
+};
+
+//main.jsx from Activ 23 from 20-React
+export default SearchResultContainer;
+//dont use useEffect as an eventHandler
+
+import ReactDOM from 'react-dom/client'
+// Bringing in the required imports from 'react-router-dom' to set up application routing behavior
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import App from './App';
+import Error from './pages/Error';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import Blog from './pages/Blog';
+
+// Define the accessible routes, and which components respond to which URL
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        // gets primary home path /
+        element: <Home />,
+      },
+      {
+        path: '/About',
+        element: <About />,
+      },
+      {
+        path: '/Blog',
+        element: <Blog />,
+      },
+      {
+        path: '/Contact',
+        element: <Contact />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+  //provides the router to app
+  //first router exists built in to RouterProvider
+);
+
+//Outlet in App.jsx which serves as starting point
+//is any page you are on
+// Bringing in the required import from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
+import Nav from './components/NavTabs';
+
+function App() {
+  // The Outlet component will conditionally swap between the different pages according to the URL
+  return (
+    <>
+      <Nav />
+      <main className="mx-3">
+        <Outlet />
+        {/* outlet tells router provider where to put the page */}
+      </main>
+    </>
+    //jsx fragments
+  );
+}
+
+export default App;
+
+import { Link, useLocation, useParams } from 'react-router-dom';
+
+
+//NavTabs.jsx
+// Here we are using object destructuring assignment to pluck off our variables from the props object
+// We assign them to their own variable names
+function NavTabs() {
+  const currentPage = useLocation().pathname;
+const userId = useParams()
+  return (
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <Link
+        //link is only used for relative paths within the website
+          to="/"
+          // This is a conditional (ternary) operator that checks to see if the current page is "Home"
+          // If it is, we set the current page to 'nav-link-active', otherwise we set it to 'nav-link'
+          className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
+        >
+          {/* wrapping the home tab in the link button */}
+          Home
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/About"
+          // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
+          className={currentPage === '/About' ? 'nav-link active' : 'nav-link'}
+        >
+          About
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/Blog"
+          // Check to see if the currentPage is `Blog`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
+          className={currentPage === '/Blog' ? 'nav-link active' : 'nav-link'}
+        >
+          Blog
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/Contact"
+          // Check to see if the currentPage is `Contact`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
+          className={currentPage === '/Contact' ? 'nav-link active' : 'nav-link'}
+        >
+          Contact
+        </Link>
+      </li>
+    </ul>
+  );
+}
+
+export default NavTabs;
+
+//Testing in Vite requires installing react testing library
+//in vite.config
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true
+  },
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: './src/tests/setup.js',
+  },
+});
+
+//package.json
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "happy-dom": "^9.10.7",
+    "vite": "^4.3.2",
+    "vitest": "^0.30.1"
+  }
+}
+//setup.js
+import { afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+
+// runs a cleanup after each test case (e.g. clearing jsdom)
+afterEach(() => {
+    cleanup();
+});
+
+//welcome.test.jsx
+// render will be used from our testing library instead of react-dom while testing
+import { render } from '@testing-library/react';
+import Welcome from '../components/Welcome';
+//add a describe and name it so that each it flows into a statement
+describe("Welcome", () => {})
+// It blocks describe the area of the application that we are testing
+          newFunction(render, Welcome);
+          function newFunction(render, Welcome) {
+            it('renders without a name and topic', () => {
+              render(<Welcome />);
+
+              const welcome = document.querySelector('h1');
+
+              // expect statements allow us to assert the expected behavior
+              expect(welcome.textContent).toBe('Hey there!');
+            });
+
+            // Here we are testing a Welcome component with a name and topic prop passed
+            it('renders with a name and topic', () => {
+              // Arrange
+              render(<Welcome name="Xander" topic="React" />);
+
+              // Act
+              const welcome = document.querySelector('h1');
+
+              // Assert
+              expect(welcome.textContent).toBe(
+                'Welcome, Xander! We hope you learn a lot about React.'
+              );
+            });
+
+            it('renders with any name and topic', async () => {
+              // Redundant test for a name and topic
+              render(<Welcome name="Tammer" topic="Mocks" />);
+
+              const welcome = document.querySelector('h1');
+
+              expect(welcome.textContent).toBe(
+                'Welcome, Tammer! We hope you learn a lot about Mocks.'
+              );
+            });
+
+            it('renders with a name and no topic', () => {
+              // Tests the Welcome component where only a name prop is passed.
+              // This will ensure that our fallback value was used
+              render(<Welcome name="Grace" />);
+
+              const welcome = document.querySelector('h1');
+
+              expect(welcome.textContent).toBe(
+                'Welcome, Grace! We hope you learn a lot about Web Development.'
+              );
+            });
+
+            it('renders with a topic and no name', () => {
+              // Tests the Welcome component where only a topic prop is passed.
+              // This will ensure that our infoPassed boolean renders the default component
+              render(<Welcome topic="Node" />);
+
+              const welcome = document.querySelector('h1');
+
+              expect(welcome.textContent).toBe('Hey there!');
+            });
+          }
+
+const express = require('express');
+
+// import the ApolloServer
+const { ApolloServer } = require('apollo-server-express');
+
+
+// import the schemas for graphQL and connect the DB
+const { typeDefs, resolvers } = require('./schemas');
+const db = require('./config/connection');
+
+const PORT = process.env.PORT || 3001;
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
+
+const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
+// this is creating a new instance of the Apollo server
+const startApolloServer = async () => {
+await server.start();
+server.applyMiddleware({ app });
+
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  })
+})
+};
+
+// initializing the Apollo server
+startApolloServer();
+
+
+//GraphQL
+//Setting up
+npm i
+npm run seed
+npm start
+//Schema
+//TypeDefs
+defines the types to be accessed by graphQL
+//Resolvers
+defines the functions of the data that we want to return in graphQL
+
+//Query Arguments
+query classVariable($id: ID!) {
+  class(id: $id) {
+    name
+  }
+}
+then type the variable you want to pass in at the bottom of graphQL
+
+// TODO: Add a new resolver for a single Class object
+class: async (_, args) => {
+  return await Class.findById(args.id).populate('professor');
+},
+// parameters are (parent, args, context, info)
+
+
+//Mutations
+
+//TypeDefs
+// # Define which mutations the client is allowed to make
+type Mutation {
+  # Set the required fields for new schools
+  addSchool(name: String!, location: String!, studentCount: Int!): School
+}
+
+
+//Resolvers
+
+const { School, Class, Professor } = require('../models');
+
+const resolvers = {
+  Query: {
+    schools: async () => {
+      return await School.find({}).populate('classes').populate({
+        path: 'classes',
+        populate: 'professor',
+      });
+    },
+    classes: async () => {
+      return await Class.find({}).populate('professor');
+    },
+    class: async (parent, args) => {
+      return await Class.findById(args.id).populate('professor');
+    },
+    professors: async () => {
+      return await Professor.find({}).populate('classes');
+    },
+  },
+  // Define the functions that will fulfill the mutations
+  Mutation: {
+    addSchool: async (parent, { name, location, studentCount }) => {
+      // Create and return the new School object
+      return await School.create({ name, location, studentCount });
+    },
+  },
+};
+
+module.exports = resolvers;
+//Using findOneAndUpdate
+Mutation: {
+  addSchool: async (parent, { name, location, studentCount }) => {
+    return await School.create({ name, location, studentCount });
+  },
+  updateClass: async (parent, { id, building }) => {
+    return await Class.findOneAndUpdate({ _id: id }, { building },{new: true});
+    //must pass in new:true to get the new value
+  }
+}
+};
+
+//Proxy
+
+proxy: {
+'/graphql'
+
+}
+//React build and development
+development: making changes and use concurrently to run front and back end simultaneously and sync them
+
+production: use build files to make dist and middleware connects 
+
+//GraphQL
+//queries
+start with the back end then let it write the front end for you
+
+//uri is a relative path (without domain)
+//in App.jsx it has to match the server.js
+
+//App.jsx
+import './App.css';
+// Important for API Consumption: To enable interaction with our GraphQL API on the front end, we utilize these tools to develop the client-side behavior
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { Outlet } from 'react-router-dom';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+// Important for API Consumption: Create an instance of the ApolloClient class and specify the endpoint of your GraphQL API (e.g., 'http://localhost:3001')—the proxy set up in the previous activity facilitates this. 
+// We also instantiate a new InMemoryCache class that automatically caches queried data, enhancing performance.
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+//the Apollo client intercepts requests and checks the cache first before reachin out to the server
+
+function App() {
+  return (
+    // Important for API Consumption: Wrap your component tree with the ApolloProvider component to enable access to the ApolloClient from anywhere within the application
+    <ApolloProvider client={client}>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Header />
+          <div className="container">
+            <Outlet />
+          </div>
+          <Footer />
+        </div>
+    </ApolloProvider>
+  );
+}
+//the provider wraps the whole app
+export default App;
+
+//activity 13 Home.jsx 
+
+// Important for useQuery: We import the useQuery hook from @apollo/client
+import { useQuery } from '@apollo/client';
+
+import ProfileList from '../components/ProfileList';
+import ProfileForm from '../components/ProfileForm';
+
+// Important for useQuery: We import the specific query we'd like to perform from our queries.js utility
+import { QUERY_PROFILES } from '../utils/queries';
+
+const Home = () => {
+  // Important for useQuery: We pass the query we'd like to execute on component load to the useQuery hook
+  // The useQuery hook will always give back an object, and for the purposes of this app we're using the loading boolean and the data object
+  // If you ran this query within the GraphQL playground, the data object would match the result
+  const { loading, data } = useQuery(QUERY_PROFILES);
+  
+  // Important for useQuery: We use the optional chaining operator to get the resulting profile from our query, or fallback to an empty array if the query isn't resolved yet
+  const profiles = data?.profiles || [];
+//if allowNull:false then don't use optional chaining
+  return (
+    <main>
+      <div className="flex-row justify-center">
+        <div
+          className="col-12 col-md-10 mb-3 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
+        >
+          <ProfileForm />
+        </div>
+
+        <div className="col-12 col-md-10 my-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ProfileList
+              profiles={profiles}
+              title="Here's the current roster of friends..."
+            />
+          )}
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Home;
+
+// activity 18 MERN Component index.jsx
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+
+import { ADD_THOUGHT } from '../../utils/mutations';
+import { QUERY_PROFILES } from '../../utils/queries';
+
+const ThoughtForm = () => {
+  const [formState, setFormState] = useState({
+    thoughtText: '',
+    thoughtAuthor: '',
+  });
+  const [characterCount, setCharacterCount] = useState(0);
+
+  // Set up our mutation with an option to handle errors
+ 
+  //This refetch will redo the query so you can see the new thought you added
+  const [addThought, { error }] = useMutation
+  (ADD_THOUGHT, {
+    //bypasses the cache to force the refreshing to add the new information
+    refetchQueries: [
+      QUERY_PROFILES,
+      'allProfiles'
+    ]
+  });
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // On form submit, perform mutation and pass in form data object as arguments
+    // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
+    try {
+      const { data } = addThought({
+        variables: { ...formState },
+      });
+
+      // TODO: Add a comment describing why we no longer need to reload the page
+      //React will only change the thoughtText and thoughtAuthor components it will change the form fields back to empty
+      setCharacterCount(0);
+      setFormState({
+        thoughtText: '',
+        thoughtAuthor: ''
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'thoughtText' && value.length <= 280) {
+      setFormState({ ...formState, [name]: value });
+      setCharacterCount(value.length);
+    } else if (name !== 'thoughtText') {
+      setFormState({ ...formState, [name]: value });
+    }
+  };
+
+  return (
+    <div>
+      <h3>What's on your techy mind?</h3>
+
+      <p
+        className={`m-0 ${
+          characterCount === 280 || error ? 'text-danger' : ''
+        }`}
+      >
+        Character Count: {characterCount}/280
+        {error && <span className="ml-2">Something went wrong...</span>}
+      </p>
+      <form
+        className="flex-row justify-center justify-space-between-md align-center"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="col-12">
+          <textarea
+            name="thoughtText"
+            placeholder="Here's a new thought..."
+            value={formState.thoughtText}
+            className="form-input w-100"
+            onChange={handleChange}
+          ></textarea>
+        </div>
+        <div className="col-12 col-lg-9">
+          <input
+            name="thoughtAuthor"
+            placeholder="Add your name to get credit for the thought..."
+            value={formState.thoughtAuthor}
+            className="form-input w-100"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="col-12 col-lg-3">
+          <button className="btn btn-primary btn-block py-3" type="submit">
+            Add Thought
+          </button>
+        </div>
+        {error && (
+          <div className="col-12 my-3 bg-danger text-white p-3">
+            Something went wrong...
+          </div>
+        )}
+      </form>
+    </div>
+  );
+};
+
+export default ThoughtForm;
+
+//package.json
+  concurrently
+
+//proxy 
+just for dev
+
+//graphql 
+libraries
+
+//createBrowserRouter and RouterProvider
+default path and top level App with children pages and index:true primary page 
+passed to ApolloProvider
+
+// app.jsx
+create ApolloClient (top layer) and InMemoryCache
+wrap the whole app with client
+
+// Link
+use {Link} to direct to another page within App
+otherwise use <a>
+
+
+// ProfileForm.jsx
+useParams hook to get profileId and pass it to useQuery to get loading and data
