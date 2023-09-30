@@ -12,11 +12,11 @@ export default function Contact() {
             <div>
                 <h1> Contact</h1>
             </div>
-            <SocialIcon url="www.instagram.com" />
-            <SocialIcon url="www.linkedin.com" />
-            <SocialIcon url="www.github.com" />
-            <SocialIcon url="www.discord.com" />
-            <SocialIcon url="www.facebook.com" />
+           <SocialIcon href="https://www.instagram.com/taylor.golden.33"
+url="www.instagram.com" target="_blank" />
+            <SocialIcon href="https://www.linkedin.com/in/taylor-golden-212b19257"url="www.linkedin.com"target="_blank" />
+            <SocialIcon href="https://www.github.com/kumoko8"url="www.github.com"target="_blank" />
+            <SocialIcon href="https://www.facebook.com/taylor.golden.33"url="www.facebook.com"target="_blank" />
             <div>
                 <Link to="/Projects">
                     <button >
