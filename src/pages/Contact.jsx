@@ -17,14 +17,7 @@ url="www.instagram.com" target="_blank" />
             <SocialIcon href="https://www.linkedin.com/in/taylor-golden-212b19257"url="www.linkedin.com"target="_blank" />
             <SocialIcon href="https://www.github.com/kumoko8"url="www.github.com"target="_blank" />
             <SocialIcon href="https://www.facebook.com/taylor.golden.33"url="www.facebook.com"target="_blank" />
-            <div>
-                <Link to="/Projects">
-                    <button >
-                        Projects
-                    </button>
-                </Link>
-
-            </div>
+        
         </div>
     )
 };

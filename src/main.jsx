@@ -5,10 +5,10 @@ import './index.css'
 
 import App from './App.jsx'
 import Error from './pages/Error';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
+import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Design from './pages/Design';
+import AboutMe from './pages/AboutMe';
 
 
 const router = createBrowserRouter([
@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <AboutMe />,
       },
       {
-        path: '/Projects',
-        element: <Projects />,
+        path: '/Portfolio',
+        element: <Portfolio />,
       },
       {
         path: '/Contact',
@@ -32,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/Design',
         element: <Design />,
+      },
+      {
+        path: '/AboutMe',
+        element: <AboutMe />,
       },
     ],
   },

@@ -8,9 +8,16 @@ import Nav from './components/Nav';
       // The Outlet component will conditionally swap between the different pages according to the URL
       return (
         <>
+        <header>
+          <p>Taylor Golden </p>
+          <Nav/>
+        </header>
           <main className="mx-3">
             <Outlet />
           </main>
+          <footer>
+
+          </footer>
         </>
         //jsx fragments
       );
