@@ -7,7 +7,7 @@ import App from './App.jsx'
 import Error from './pages/Error';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
-import Design from './pages/Design';
+import Artwork from './pages/Artwork';
 import AboutMe from './pages/AboutMe';
 
 
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: '/Design',
-        element: <Design />,
+        path: '/Artwork',
+        element: <Artwork />,
       },
       {
         path: '/AboutMe',
