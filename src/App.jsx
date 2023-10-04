@@ -9,7 +9,7 @@ import Nav from './components/Nav';
       return (
         <>
         <header>
-          <p>Taylor Golden </p>
+          <h1> Taylor Golden </h1>
           <Nav/>
         </header>
           <main className="mx-3">
