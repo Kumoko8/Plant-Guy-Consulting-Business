@@ -41,7 +41,7 @@ export default function Portfolio() {
             </section>
             <section>
             <a href="https://kumoko8.github.io/Web-APIs-Quiz-Homework-4/"target="_blank">
-                    <img className="image-deco" src='../../noteTaker.png'></img>
+                    <img className="image-deco" src='../../quiz.png'></img>
                 </a>
             </section>
             <section>

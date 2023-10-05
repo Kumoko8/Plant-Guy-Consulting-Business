@@ -2,7 +2,6 @@
 export default function AboutMe() {
     return (
         <div>
-            <h1>Taylor Golden</h1>
             <h2 className="read-the-docs">
                 Software Developer, Educator, Illustrator, Dad
             </h2>

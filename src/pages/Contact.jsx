@@ -12,6 +12,7 @@ export default function Contact() {
             <div>
                 <h1> Contact</h1>
             </div>
+
            <SocialIcon href="https://www.instagram.com/taylor.golden.33"
 url="www.instagram.com" target="_blank" />
             <SocialIcon href="https://www.linkedin.com/in/taylor-golden-212b19257"url="www.linkedin.com"target="_blank" />
