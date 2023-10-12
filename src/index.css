@@ -73,11 +73,19 @@ button:focus-visible {
 }
 
 .image-deco {
-  box-sizing: border-box;
-      width: 50%;
       flex: 1 1 200px;
-      border: solid var(--back-color);
-      margin: 10px;
+      margin: 1px;
       image-rendering: auto;
       border-radius: 50%;
+      max-width:30rem;
+}
+
+#resume {
+  color:#1a1a1a;
+  font-size: 2rem;
+}
+
+li {
+  display:inline;
+  padding: 7px;
 }

@@ -9,6 +9,7 @@ import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Artwork from './pages/Artwork';
 import AboutMe from './pages/AboutMe';
+import Resume from './pages/Resume'
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/AboutMe',
         element: <AboutMe />,
+      },
+      {
+        path: '/Resume',
+        element: <Resume />,
       },
     ],
   },
