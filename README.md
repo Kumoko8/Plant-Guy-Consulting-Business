@@ -10,10 +10,7 @@
    ## Table of Contents
 
  
-   [Installation](#installation) 
-
- 
-   [Usage](#usage)
+   [Link to Live Page](#link) 
 
  
    [Contributing](#contributing)
@@ -28,14 +25,9 @@
    [Questions](#questions)
 
 
-  ## Installation <a name="installation"></a> 
+  ## Link to Live Page <a name="link"></a> 
 
  <p> Visit site at https://tgolden-portfolio.netlify.app/ </p>
-
-
-  ## Usage <a name="usage"></a>
-
- <p> See installation</p>
 
 
   ## Contributing <a name="contributing"></a>
