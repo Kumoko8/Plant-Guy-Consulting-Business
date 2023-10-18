@@ -1,41 +1,7 @@
-// class ContactForm extends React.Component {
-//     constructor(props) {
-//       super(props);
-//       this.state = {
-//         name: "Type your name here",
-//         email: "Type your email here",
-//         message: 'Tell me a bit about yourself!',
-
-//       };
-
-//       this.handleChange = this.handleChange.bind(this);
-//       this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-
-//     handleChange(event) {
-//       this.setState({message: event.target.message});
-//     }
-
-//     handleSubmit(event) {
-//       alert('An essay was submitted: ' + this.state.message);
-//       event.preventDefault();
-//     }
-
-//     render() {
-//       return (
-//         <h2> Contact</h2>
-//         <form onSubmit={this.handleSubmit}>
-//           <label>
-//             Essay:
-//             <textarea message={this.state.message} onChange={this.handleChange} />
-//           </label>
-//           <input type="submit" message="Submit" />
-//         </form>
-//       );
-//     }
-//   }
 
 import React, { Component } from 'react';
+import TextField from '@mui/material/TextField';
+
 
 class Contact extends Component {
   state = {
@@ -90,12 +56,10 @@ class Contact extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>Name:</label>
-            <input type="text" name="name" placeholder="Type your name here" value={name} onChange={this.handleChange} required />
+            <TextField type="text" name="name" placeholder="Type your name here" value={name} onChange={this.handleChange} required />
           </div>
           <div>
-            <label>Email:</label>
-            <input
+            <TextField
               type="email"
               name="email"
               placeholder='Type your email here'
@@ -107,8 +71,7 @@ class Contact extends Component {
             {emailError && <span className="error">{emailError}</span>}
           </div>
           <div>
-            <label>Message:</label>
-            <textarea name="message" placeholder='Tell me a bit about yourself!' value={message} onChange={this.handleChange} required />
+            <TextField name="message" placeholder='Tell me a bit about yourself!' value={message} onChange={this.handleChange} required />
           </div>
           <button type="submit">Submit</button>
         </form>
