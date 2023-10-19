@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 
 
 class Contact extends Component {
@@ -53,11 +55,26 @@ class Contact extends Component {
     const { name, email, message, emailError } = this.state;
 
     return (
+<Grid container justifyContent={'center'}>
+
       <div>
+        <Grid item>
+
         <form onSubmit={this.handleSubmit}>
+          <Grid item>
+
           <div>
-            <TextField type="text" name="name" placeholder="Type your name here" value={name} onChange={this.handleChange} required />
+            <TextField 
+            type="text"
+             name="name" 
+             placeholder="Type your name here"
+              value={name} 
+              onChange={this.handleChange} 
+              required />
           </div>
+          </Grid>
+          <Grid item>
+            
           <div>
             <TextField
               type="email"
@@ -70,12 +87,26 @@ class Contact extends Component {
             />
             {emailError && <span className="error">{emailError}</span>}
           </div>
+          </Grid>
+          <Grid item>
+
           <div>
-            <TextField name="message" placeholder='Tell me a bit about yourself!' value={message} onChange={this.handleChange} required />
+            <TextField 
+            name="message" 
+            placeholder='Tell me a bit about yourself!' 
+            value={message} 
+            onChange={this.handleChange} 
+            required />
           </div>
-          <button type="submit">Submit</button>
+          </Grid>
+          <Grid item>
+
+          <Button type="submit">Submit</Button>
+          </Grid>
         </form>
+        </Grid>
       </div>
+</Grid>
     );
   }
 }
