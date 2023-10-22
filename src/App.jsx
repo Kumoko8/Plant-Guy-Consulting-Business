@@ -18,7 +18,7 @@ import theme from './theme';
         <ThemeProvider theme={theme}>
           <header>
             <h1> Taylor Golden </h1>
-            <Nav/>
+            <Nav />
           </header>
             <main className="mx-3">
               <Outlet />

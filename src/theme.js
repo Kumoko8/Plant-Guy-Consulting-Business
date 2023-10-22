@@ -30,7 +30,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
 
-                    backgroundColor: 'rgb(82, 223, 201)',
+                    backgroundColor: '#489c51',
                     color: 'black',
                     borderRadius: '8px',
                     margin: "1rem",
@@ -39,7 +39,23 @@ const theme = createTheme({
                 }
             }
 
-        }
+        },
+        MuiContainer: {
+          styleOverrides: {
+              root: {
+
+                  backgroundColor: '#489c51',
+                  color: 'black',
+                  borderRadius: '8px',
+                  margin: "1rem",
+                  fontFamily: "Roboto",
+                  justifyContent: "center",
+                  width: "50rem"
+                  
+              }
+          }
+
+      }
     },
   palette: {
     primary: {
