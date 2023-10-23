@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import '../index.css'
+
 
 
 class Contact extends Component {
@@ -67,6 +69,7 @@ class Contact extends Component {
             <TextField 
             type="text"
              name="name" 
+             className="roboto-font"
              placeholder="Type your name here"
               value={name} 
               onChange={this.handleChange} 
@@ -79,6 +82,7 @@ class Contact extends Component {
             <TextField
               type="email"
               name="email"
+              className="roboto-font"
               placeholder='Type your email here'
               value={email}
               onChange={this.handleChange}
@@ -93,6 +97,7 @@ class Contact extends Component {
           <div>
             <TextField 
             name="message" 
+            className="roboto-font"
             placeholder='Tell me a bit about yourself!' 
             value={message} 
             onChange={this.handleChange} 
@@ -101,7 +106,7 @@ class Contact extends Component {
           </Grid>
           <Grid item>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="roboto-font">Submit</Button>
           </Grid>
         </form>
         </Grid>

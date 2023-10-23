@@ -1,9 +1,24 @@
-export default function Resume() {
+import Grid from '@mui/material/Grid';
+
+function Resume() {
     return (
-<div>
-    <a id="resume" href="../../GoldenResume.pdf" target="blank">
-        Resume
-    </a>
-</div>
+      <Grid container spacing={2} justifyContent="center" >
+        <Grid item xs={12} margin="5em" >
+          <div>
+            <a id="resume" href="../../Golden_Resume_FullStack.pdf" target="_blank" >
+              Resume
+            </a>
+          </div>
+        </Grid>
+      </Grid>
     );
-}
+  }
+  
+  export default Resume;
+    
+    
+    
+    
+    
+    
+    

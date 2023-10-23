@@ -13,11 +13,11 @@ const theme = createTheme({
                 width: "fit-content",
                 justifyContent: "center",
                 alignContent: "center",
-                
-            }
-        }
-    }
-  ,
+               
+            },
+        },
+    },
+  
         MuiLink: {
             styleOverrides:{
                 root:{
@@ -66,7 +66,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Lexend',
+    fontFamily: 'Roboto',
     fontSize: 16,
   },
 });
