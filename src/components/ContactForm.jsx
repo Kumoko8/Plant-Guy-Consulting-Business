@@ -62,7 +62,7 @@ class Contact extends Component {
       <div>
         <Grid item>
 
-        <form onSubmit={this.handleSubmit}>
+        <form action="/api/contact"onSubmit={this.handleSubmit}>
           <Grid item>
 
           <div>
