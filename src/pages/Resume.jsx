@@ -5,7 +5,7 @@ function Resume() {
       <Grid container spacing={2} justifyContent="center" >
         <Grid item xs={12} margin="5em" >
           <div>
-            <a id="resume" href="../../Golden_Resume_FullStack.pdf" target="_blank" >
+            <a id="resume" href="../../ResumeGeneral.pdf" target="_blank" >
               Resume
             </a>
           </div>
