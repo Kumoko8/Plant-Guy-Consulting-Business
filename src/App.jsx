@@ -29,7 +29,7 @@ function App() {
       <main className="mx-3">
         <Outlet />
       </main>
-      <footer>
+      <footer class="footer-card">
         <SocialIcon href="https://www.instagram.com/taylor.golden.33"
           url="www.instagram.com" target="_blank" />
         <SocialIcon href="https://www.linkedin.com/in/taylor-golden-212b19257" url="www.linkedin.com" target="_blank" />
