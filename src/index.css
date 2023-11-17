@@ -75,10 +75,19 @@ button:focus-visible {
 
 .image-deco {
       flex: 1 1 200px;
-      margin: 1px;
+      margin: 10px;
       image-rendering: auto;
       border-radius: 50%;
-      max-width:30rem;
+      max-width:50rem;
+      max-height: 20rem;
+}
+
+#kiiro-light-img {
+  border-radius: 100%;
+  width: 20rem;
+  height: 20rem;
+  margin: 1rem;
+  object-fit: cover;
 }
 #logo-image {
   max-width: 10rem;
