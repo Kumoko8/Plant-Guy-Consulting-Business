@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 
 
 import theme from './theme';
+import AppAppBar from './modules/views/AppAppBar';
 // import Projects from './components/Projects'
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
       <Grid container>
         <Grid item xs={12}>
           <header>
+            <AppAppBar/>
             <h1> Taylor Golden </h1>
-            <Nav />
           </header>
         </Grid>
       </Grid>
