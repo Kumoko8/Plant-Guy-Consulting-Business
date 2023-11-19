@@ -4,7 +4,13 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import TextField from '../components/TextField';
+import { SocialIcon } from 'react-social-icons';
+import 'react-social-icons/instagram'
+import 'react-social-icons/linkedin'
+import 'react-social-icons/github'
+import 'react-social-icons/discord'
+import 'react-social-icons/facebook'
+
 
 function Copyright() {
   return (
@@ -18,29 +24,8 @@ function Copyright() {
   );
 }
 
-const iconStyle = {
-  width: 48,
-  height: 48,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: 'warning.main',
-  mr: 1,
-  '&:hover': {
-    bgcolor: 'warning.dark',
-  },
-};
 
-const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
-];
+
 
 export default function AppFooter() {
   return (
@@ -49,8 +34,8 @@ export default function AppFooter() {
       sx={{ display: 'flex', bgcolor: 'secondary.light' }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
-        <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
             <Grid
               container
               direction="column"
@@ -58,26 +43,17 @@ export default function AppFooter() {
               spacing={2}
               sx={{ height: 120 }}
             >
-              <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://mui.com/" sx={iconStyle}>
-                  <img
-                    src="/static/themes/onepirate/appFooterFacebook.png"
-                    alt="Facebook"
-                  />
-                </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
-                  <img
-                    src="/static/themes/onepirate/appFooterTwitter.png"
-                    alt="Twitter"
-                  />
-                </Box>
+              <Grid item>
+              <SocialIcon href="https://www.instagram.com/taylor.golden.33"
+          url="www.instagram.com" target="_blank" />
+        <SocialIcon href="https://www.linkedin.com/in/taylor-golden-212b19257" url="www.linkedin.com" target="_blank" />
+        <SocialIcon href="https://www.github.com/kumoko8" url="www.github.com" target="_blank" />
+        <SocialIcon href="https://www.facebook.com/taylor.golden.33" url="www.facebook.com" target="_blank" />
               </Grid>
               <Grid item>
                 <Copyright />
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={6} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
@@ -90,33 +66,15 @@ export default function AppFooter() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={8} md={4}>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Language
-            </Typography>
-            <TextField
-              select
-              size="medium"
-              variant="standard"
-              SelectProps={{
-                native: true,
-              }}
-              sx={{ mt: 1, width: 150 }}
-            >
-              {LANGUAGES.map((language) => (
-                <option value={language.code} key={language.code}>
-                  {language.name}
-                </option>
-              ))}
-            </TextField>
+          <Grid item xs={6} sm={4} md={2}>
+        
           </Grid>
           <Grid item>
             <Typography variant="caption">
               {'Checkout my  '}
               <Link href="https://invizproductivity4.wordpress.com/" rel="sponsored" title="WordPress"
-              target="_blank">
+                target="_blank">
                 WordPress
-        
               </Link>
               {' site'}
             </Typography>
