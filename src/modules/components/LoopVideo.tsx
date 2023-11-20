@@ -50,7 +50,7 @@ const LoopVideo: React.FC = () => {
         muted
         style={{ width: '100%', objectFit: 'cover' }}
       >
-        <source src="your-video-file.mp4" type="video/mp4" />
+        <source src="wolf-walk.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div

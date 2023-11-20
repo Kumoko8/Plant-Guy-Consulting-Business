@@ -58,7 +58,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '../public/kiroLogo.png',
+    url: '../public/Kiiro.png',
     title: 'Characters',
     width: '40%',
   },
@@ -73,18 +73,18 @@ const images = [
     width: '40%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400',
-    title: 'Designs',
+    url: '../public/god.jpg',
+    title: 'Digital',
     width: '38%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1523309996740-d5315f9cc28b?auto=format&fit=crop&w=400',
-    title: 'Pencil',
-    width: '38%',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=400',
+    url: '../public/bike.png',
     title: 'Pen',
+    width: '38%',
+  },
+  {
+    url: '../public/dog.png',
+    title: 'Pencil',
     width: '24%',
   },
  
