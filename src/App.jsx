@@ -1,18 +1,12 @@
 
 import { Outlet } from 'react-router-dom';
-import Nav from './components/Nav';
-import { SocialIcon } from 'react-social-icons';
-import 'react-social-icons/instagram'
-import 'react-social-icons/linkedin'
-import 'react-social-icons/github'
-import 'react-social-icons/discord'
-import 'react-social-icons/facebook'
 import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 
 
 import theme from './theme';
 import AppAppBar from './modules/views/AppAppBar';
+import LoopVideo from './modules/components/LoopVideo';
 // import Projects from './components/Projects'
 
 function App() {

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import LoopVideo from '../components/LoopVideo';
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -14,6 +15,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   background: '#000',
   opacity: 0.5,
   transition: theme.transitions.create('opacity'),
+  zIndex: 0
 }));
 
 const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
@@ -27,7 +29,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     height: 100,
   },
   '&:hover': {
-    zIndex: 1,
+    zIndex: 0,
   },
   '&:hover .imageBackdrop': {
     opacity: 0.15,
@@ -41,6 +43,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   '& .imageTitle': {
     position: 'relative',
     padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
+    zIndex: -1
   },
   '& .imageMarked': {
     height: 3,
@@ -60,12 +63,12 @@ const images = [
     width: '40%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1531299204812-e6d44d9a185c?auto=format&fit=crop&w=400',
+    url: '../public/NVZlogo.png',
     title: 'Logos',
     width: '20%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=400',
+    component: <LoopVideo/>,
     title: 'Animation',
     width: '40%',
   },
@@ -102,42 +105,50 @@ export default function ProductCategories() {
             }}
            
           >
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
-              }}
-            />
-            <ImageBackdrop className="imageBackdrop" />
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'common.white',
-              }}
-            >
-              <Typography
-                component="h3"
-                variant="h6"
-                color="inherit"
-                className="imageTitle"
-              >
-                {image.title}
-                <div className="imageMarked" />
-              </Typography>
-            </Box>
+            {image.component || (
+              <>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center 40%',
+                    backgroundImage: `url(${image.url})`,
+                  }}
+                />
+                <ImageBackdrop className="imageBackdrop" />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'common.white',
+                    zIndex: 12
+                  }}
+                >
+                  <Typography
+                    component="h3"
+                    variant="h6"
+                    color="inherit"
+                    className="imageTitle"
+                    sx={{
+                      zIndex: 2, 
+                    }}
+                  >
+                    {image.title}
+                    <div className="imageMarked" />
+                  </Typography>
+                </Box>
+              </>
+            )}
           </ImageIconButton>
         ))}
       </Box>
