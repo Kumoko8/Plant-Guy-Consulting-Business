@@ -18,6 +18,7 @@ function App() {
           <header>
             <AppAppBar/>
             <h1> Taylor Golden </h1>
+            <h2>Developer | Dad | Illustrator | Educator </h2>
           </header>
         </Grid>
       </Grid>

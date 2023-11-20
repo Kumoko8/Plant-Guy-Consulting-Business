@@ -12,6 +12,7 @@ export default function AppForm(props: React.HTMLAttributes<HTMLDivElement>) {
         display: 'flex',
         backgroundImage: 'url(./public/kiroLogo.png)',
         backgroundRepeat: 'no-repeat',
+        alignItems: 'flex-start'
       }}
     >
       <Container maxWidth="sm">

@@ -32,7 +32,7 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/portfolio/"
+              href="/portfolio"
               sx={{ ...rightLink, color: 'secondary.main' }}
             >
               {'Projects'}
