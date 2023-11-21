@@ -8,19 +8,9 @@ import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
 function ProductCTA() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
-    <Container component="section" sx={{ mt: 10, display: 'flex' }}>
+    <Container component="section" sx={{ mt: -6, display: 'flex' }}>
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
@@ -35,10 +25,12 @@ function ProductCTA() {
               borderRadius: 8,
             }}
           >
-            <Grid container>
-
-            </Grid>
             <Box sx={{ maxWidth: 400 }} >
+              <Box sx={{maxWidth: 400, maxHeight: 300}}
+              component="img"
+              src="/linkedin.png"
+              />
+              
               <Typography variant="h2" component="h2" gutterBottom>
                 My Vision
               </Typography>
@@ -51,23 +43,9 @@ function ProductCTA() {
               <Typography variant="h5">
                 React, JavaScript, WordPress, Figma, HTML, CSS, Databases
               </Typography>
-              
+            
             </Box>
-            <Box sx={{ maxWidth: 400 }}>
-              <Typography variant="h2" component="h2" gutterBottom>
-                My Vision
-              </Typography>
-              <Typography variant="h5" sx={{marginBottom: 2}} >
-                I seek to create dynamic experiences that illuminate the mind and heart
-              </Typography>
-              <Typography variant="h5" sx={{fontWeight: 'bold'}}>
-                Skills: 
-              </Typography>
-              <Typography variant="h5">
-                React, JavaScript, WordPress, Figma, HTML, CSS, Databases
-              </Typography>
-              
-            </Box>
+      
           </Box>
          
         </Grid>
@@ -75,7 +53,7 @@ function ProductCTA() {
           <Box
             component="img"
             src="../public/kiiro-lite.PNG"
-            alt="call to action"
+            alt="encountering the light"
             sx={{
               display: 'flex',
               justifyContent: 'center',
