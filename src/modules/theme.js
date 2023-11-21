@@ -9,7 +9,7 @@ const rawTheme = createTheme({
       dark: '#1e1e1f',
     },
     secondary: {
-      light: '#fff5f8',
+      light: 'rgb(236 253 245)',
       main: 'rgb(253 224 71)',
       dark: '#e62958',
     },

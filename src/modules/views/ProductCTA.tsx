@@ -27,14 +27,18 @@ function ProductCTA() {
             sx={{
               display: 'flex',
               justifyContent: 'center',
+              alignContent: 'center',
               bgcolor: 'warning.main',
               py: 8,
               px: 3,
-              my: -4,
+              my: 0,
               borderRadius: 8,
             }}
           >
-            <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
+            <Grid container>
+
+            </Grid>
+            <Box sx={{ maxWidth: 400 }} >
               <Typography variant="h2" component="h2" gutterBottom>
                 My Vision
               </Typography>
@@ -47,16 +51,27 @@ function ProductCTA() {
               <Typography variant="h5">
                 React, JavaScript, WordPress, Figma, HTML, CSS, Databases
               </Typography>
+              
+            </Box>
+            <Box sx={{ maxWidth: 400 }}>
+              <Typography variant="h2" component="h2" gutterBottom>
+                My Vision
+              </Typography>
+              <Typography variant="h5" sx={{marginBottom: 2}} >
+                I seek to create dynamic experiences that illuminate the mind and heart
+              </Typography>
+              <Typography variant="h5" sx={{fontWeight: 'bold'}}>
+                Skills: 
+              </Typography>
+              <Typography variant="h5">
+                React, JavaScript, WordPress, Figma, HTML, CSS, Databases
+              </Typography>
+              
             </Box>
           </Box>
+         
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{ display: { md: 'block', xs: 'inline-flex' }, position: 'relative' }}
-        >
-       
+        <Grid item xs={12} md={6}>
           <Box
             component="img"
             src="../public/kiiro-lite.PNG"
@@ -65,18 +80,18 @@ function ProductCTA() {
               display: 'flex',
               justifyContent: 'center',
               alignContent: 'center',
-              position: 'absolute',
-              top: -120,
-              left: -28,
+              top: 0,
               right: 0,
+              left: 0,
               bottom: 0,
-              width: '100%',
-              maxWidth: 400,
-              height: 500,
-              borderRadius: 8
+              objectFit: 'contain',
+              width: 500,
+              borderRadius: 8,
+              marginBottom: 3
+
             }}
           />
-        </Grid>
+          </Grid>
       </Grid>
       
     </Container>

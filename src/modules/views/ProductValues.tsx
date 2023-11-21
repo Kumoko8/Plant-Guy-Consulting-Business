@@ -17,33 +17,34 @@ function ProductValues() {
   return (
     <Box
       component="section"
+      
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}
     >
       <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
         <Box
           component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src="Contact_back.png"
           alt="curvy lines"
-          sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
+          sx={{ pointerEvents: 'none', position: 'absolute', top: -180 , zIndex: -1}}
         />
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues1.svg"
+                src="DnD.png"
                 alt="suitcase"
-                sx={{ height: 55 }}
+                sx={{ height: 205 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+                D&D Character Generator
               </Typography>
               <Typography variant="h5">
                 {
-                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
+                  'Dive into a new world with your own role play character. '
                 }
                 {
-                  ', go for a mini-vacation just a few subway stops away from your home.'
+                  'Get ready to roll the dice.'
                 }
               </Typography>
             </Box>
@@ -52,18 +53,18 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues2.svg"
+                src="Kumo_Writes.png"
                 alt="graph"
-                sx={{ height: 55 }}
+                sx={{ height: 205 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+                INVIZ Productivity
               </Typography>
               <Typography variant="h5">
                 {
-                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
+                  'Transform the every day things you have to do into a wonderful journey '
                 }
-                {'your Sundays will not be alike.'}
+                {'you want to be a part of.'}
               </Typography>
             </Box>
           </Grid>
@@ -71,16 +72,16 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues3.svg"
+                src="Collectibles.png"
                 alt="clock"
-                sx={{ height: 55 }}
+                sx={{ height: 205 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+                Collectibles 
               </Typography>
               <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
-                {'that you will not find anywhere else.'}
+                {'Keep all the antiques and novelties you treasure in one place '}
+                {'and share them with others.'}
               </Typography>
             </Box>
           </Grid>

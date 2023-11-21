@@ -54,7 +54,7 @@ function ProductHowItWorks() {
           }}
         />
         <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
-          How it works
+          Learn Something New
         </Typography>
         <div>
           <Grid container spacing={5}>
