@@ -17,7 +17,7 @@ function ProductValues() {
   return (
     <div>
       <div>
-      <Grid cols-1 rows-1 container>
+      <Grid container>
         <Grid item xs={12}>
           <Typography variant="h4" marked="center" component="h2" sx={{ mb:1 , mt: 10}}>
             Current Dev Projects

@@ -13,19 +13,20 @@ const rightLink = {
 function AppAppBar() {
   return (
     <div>
-      <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Box sx={{ flex: 1 }} />
-           <img
-           style={{height:'4.5rem'}} 
-           src="/public/kiroLogo.png"/>
-          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+      <AppBar  position="fixed">
+        <Toolbar sx={{ marginLeft: -3}}>
+        <Link href="/">
+          <Box sx={{}}>
+            <img style={{ height: '4.7rem', }} src="kiroLogo.PNG" alt="Logo" />
+          </Box>
+          </Link>
+          <Box sx={{ flexGrow: 5, justifyContent: 'center'}} />
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Link
               color="inherit"
               variant="h6"
               underline="none"
               href="#"
-              sx={rightLink}
             >
               {'Contact Me'}
             </Link>
@@ -33,7 +34,7 @@ function AppAppBar() {
               variant="h6"
               underline="none"
               href="/portfolio"
-              sx={{ ...rightLink, color: 'secondary.main' }}
+              sx={{ color: 'secondary.main', ml: 2 }}
             >
               {'Projects'}
             </Link>
