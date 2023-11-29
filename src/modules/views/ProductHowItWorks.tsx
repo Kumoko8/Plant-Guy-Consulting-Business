@@ -17,7 +17,7 @@ const item: SxProps<Theme> = {
 const number = {
   fontSize: 24,
   fontFamily: 'default',
-  color: 'secondary.main',
+  color: 'black',
   fontWeight: 'medium',
 };
 
@@ -60,45 +60,43 @@ function ProductHowItWorks() {
           <Grid container spacing={5}>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
-                <Box sx={number}>1.</Box>
+                <Box sx={number}>JavaScript</Box>
                 <Box
                   component="img"
                   src="/static/themes/onepirate/productHowItWorks1.svg"
-                  alt="suitcase"
+                  alt="JavaScript video"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  Appointment every Wednesday 9am.
+                  Learn the basics of JavaScript, starting with functions
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
-                <Box sx={number}>2.</Box>
+                <Box sx={number}>Japanese</Box>
                 <Box
                   component="img"
                   src="/static/themes/onepirate/productHowItWorks2.svg"
-                  alt="graph"
+                  alt="Hiragana video"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so
-                  be quick.
+                  Learn the 46 characters of the Japanese script
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
-                <Box sx={number}>3.</Box>
+                <Box sx={number}>Digital Art</Box>
                 <Box
                   component="img"
                   src="/static/themes/onepirate/productHowItWorks3.svg"
-                  alt="clock"
+                  alt="digital art video"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  {'New offers every week. New experiences, new surprises. '}
-                  {'Your Sundays will no longer be alike.'}
+                Learn how to make more dynamic characters
                 </Typography>
               </Box>
             </Grid>
