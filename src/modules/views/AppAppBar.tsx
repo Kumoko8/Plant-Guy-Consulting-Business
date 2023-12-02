@@ -17,7 +17,7 @@ function AppAppBar() {
         <Toolbar sx={{ marginLeft: -3}}>
         <Link href="/">
           <Box sx={{}}>
-            <img style={{ height: '4.7rem', }} src="kiroLogo.PNG" alt="Logo" />
+            <img style={{ height: '4.7rem', }} src="kiroLogo.png" alt="Logo" />
           </Box>
           </Link>
           <Box sx={{ flexGrow: 5, justifyContent: 'center'}} />

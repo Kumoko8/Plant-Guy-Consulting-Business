@@ -7,7 +7,7 @@ import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
-function ProductCTA() {
+function VisionHero() {
 
   return (
     <Container component="section" sx={{ mt: -6, display: 'flex' }}>
@@ -52,7 +52,7 @@ function ProductCTA() {
         <Grid item xs={12} md={6}>
           <Box
             component="img"
-            src="../public/kiiro-lite.PNG"
+            src="/kiiro-lite.png"
             alt="encountering the light"
             sx={{
               display: 'flex',
@@ -76,4 +76,4 @@ function ProductCTA() {
   );
 }
 
-export default ProductCTA;
+export default VisionHero;

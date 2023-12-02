@@ -4,7 +4,7 @@ import ProductSmokingHero from '../modules/views/ProductSmokingHero';
 import AppFooter from '../modules/views/AppFooter';
 import ProductValues from '../modules/views/ProductValues';
 import ProductHowItWorks from '../modules/views/ProductHowItWorks';
-import ProductCTA from '../modules/views/ProductCTA';
+import VisionHero from '../modules/views/VisionHero';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ function Index() {
   return (
     <React.Fragment>
       <AppAppBar />
-      <ProductCTA />
+      <VisionHero />
         
       <Box sx={{height: 4}}/>
       <ProductValues />

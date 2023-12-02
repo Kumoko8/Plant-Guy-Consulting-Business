@@ -58,12 +58,12 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '../public/Kiiro.png',
+    url: '/Kiiro.png',
     title: 'Characters',
     width: '40%',
   },
   {
-    url: '../public/NVZlogo.png',
+    url: '/NVZlogo.png',
     title: 'Logos',
     width: '20%',
   },
@@ -73,17 +73,17 @@ const images = [
     width: '40%',
   },
   {
-    url: '../public/god.jpg',
+    url: '/god.jpg',
     title: 'Digital',
     width: '38%',
   },
   {
-    url: '../public/bike.png',
+    url: '/bike.png',
     title: 'Pen',
     width: '38%',
   },
   {
-    url: '../public/dog.png',
+    url: '/dog.png',
     title: 'Pencil',
     width: '24%',
   },
