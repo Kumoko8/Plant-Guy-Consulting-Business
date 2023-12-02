@@ -106,8 +106,6 @@ export default function ArtworkGallery() {
               width: image.width,
               paddingBottom: 300
             }}
-  
-           
           >
             {image.component || (
               <>

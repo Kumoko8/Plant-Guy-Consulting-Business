@@ -2,31 +2,30 @@
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import AppFooter from './modules/views/AppFooter';
 
 
 import theme from './theme';
 import AppAppBar from './modules/views/AppAppBar';
-// import Projects from './components/Projects'
+
 
 function App() {
   // The Outlet component will conditionally swap between the different pages according to the URL
   return (
-    <ThemeProvider theme={theme}>
+    <div>
+
       <Grid container>
         <Grid item xs={12}>
-          <header>
-            <AppAppBar/>
-            <h1> Taylor Golden </h1>
-            <h2>Developer | Dad | Illustrator | Educator </h2>
-          </header>
+          <AppAppBar/>
         </Grid>
       </Grid>
       <main className="mx-3">
         <Outlet />
       </main>
+      <AppFooter />
+    </div>
   
 
-    </ThemeProvider>
     //jsx fragments
   );
 }

@@ -59,10 +59,10 @@ const theme = createTheme({
     },
   palette: {
     primary: {
-      main: "#FF5722",
+      main: "#ffffff",
     },
     secondary: {
-      main: '#FF5722', // Change to your secondary color
+      main: '#000000', // Change to your secondary color
     },
   },
   typography: {
