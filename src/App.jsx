@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 
 import theme from './theme';
 import AppAppBar from './modules/views/AppAppBar';
-import LoopVideo from './modules/components/LoopVideo';
 // import Projects from './components/Projects'
 
 function App() {

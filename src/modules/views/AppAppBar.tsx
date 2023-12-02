@@ -35,14 +35,15 @@ function AppAppBar() {
               color="inherit"
               variant="h6"
               underline="none"
-              href="/Contact"
+              href="/contact"
             >
               {'Contact Me'}
             </Link>
             <Link
+              color="inherit"
               variant="h6"
               underline="none"
-              href="/Projects"
+              href="/projects"
               sx={{ color: 'secondary.main', ml: 2 }}
             >
               {'Projects'}
