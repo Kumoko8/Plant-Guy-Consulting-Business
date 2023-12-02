@@ -22,18 +22,27 @@ function AppAppBar() {
           </Link>
           <Box sx={{ flexGrow: 5, justifyContent: 'center'}} />
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Link
+              color="inherit"
+              variant="h6"
+              underline="none"
+              href="/"
+              sx={{ marginRight: 3}}
+            >
+              {'Home'}
+            </Link>
             <Link
               color="inherit"
               variant="h6"
               underline="none"
-              href="#"
+              href="/Contact"
             >
               {'Contact Me'}
             </Link>
             <Link
               variant="h6"
               underline="none"
-              href="/portfolio"
+              href="/Projects"
               sx={{ color: 'secondary.main', ml: 2 }}
             >
               {'Projects'}

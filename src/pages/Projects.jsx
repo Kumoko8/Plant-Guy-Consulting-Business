@@ -1,10 +1,10 @@
 
 
-export default function Portfolio() {
+export default function Projects() {
     return (
         <div>
             <div>
-                <h1> Portfolio</h1>
+                <h1> Projects</h1>
             </div>
             <section>
                 <img className="image-deco" src='../../DnD.png'></img>

@@ -5,7 +5,7 @@ import './index.css'
 
 import App from './App.jsx'
 import Error from './pages/Error';
-import Portfolio from './pages/Portfolio';
+import Projects from './pages/Projects.jsx';
 import Contact from './pages/Contact';
 import Artwork from './pages/Artwork';
 import Home from './pages/Home';
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/Portfolio',
-        element: <Portfolio />,
+        path: '/Projects',
+        element: <Projects />,
       },
       {
         path: '/Contact',

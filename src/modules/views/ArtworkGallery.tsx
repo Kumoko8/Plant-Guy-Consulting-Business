@@ -54,6 +54,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
+  
 }));
 
 const images = [
@@ -98,11 +99,14 @@ export default function ArtworkGallery() {
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
+          
           <ImageIconButton
             key={image.title}
             style={{
               width: image.width,
+              paddingBottom: 300
             }}
+  
            
           >
             {image.component || (
