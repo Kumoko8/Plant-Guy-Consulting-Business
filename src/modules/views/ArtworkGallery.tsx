@@ -90,7 +90,7 @@ const images = [
  
 ];
 
-export default function ProductCategories() {
+export default function ArtworkGallery() {
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">

@@ -26,7 +26,7 @@ const image = {
   my: 4,
 };
 
-function ProductHowItWorks() {
+function LearnSomethingNew() {
   return (
     <Box
       component="section"
@@ -117,4 +117,4 @@ function ProductHowItWorks() {
   );
 }
 
-export default ProductHowItWorks;
+export default LearnSomethingNew;

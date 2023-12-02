@@ -13,7 +13,7 @@ const item: SxProps<Theme> = {
   px: 5,
 };
 
-function ProductValues() {
+function DevProjects() {
   return (
     <div>
       <div>
@@ -96,4 +96,4 @@ function ProductValues() {
   );
 }
 
-export default ProductValues;
+export default DevProjects;

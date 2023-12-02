@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 
-function ProductSmokingHero() {
+function ContactRequestIntake() {
   return (
     <Container
       component="section"
@@ -20,20 +20,14 @@ function ProductSmokingHero() {
         }}
       >
         <Typography variant="h4" component="span">
-          Got any questions? Need help?
+          Design Requests? Click here.
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>
-        We are here to help. Get in touch!
+        Your imagination is your only limit.
       </Typography>
-      <Box
-        component="img"
-        src="/static/themes/onepirate/productBuoy.svg"
-        alt="buoy"
-        sx={{ width: 60 }}
-      />
     </Container>
   );
 }
 
-export default ProductSmokingHero;
+export default ContactRequestIntake;
