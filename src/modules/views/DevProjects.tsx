@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import PropTypes from 'prop-types';
+import Button from '../components/Button';
 
 const item: SxProps<Theme> = {
   display: 'flex',
@@ -14,7 +15,14 @@ const item: SxProps<Theme> = {
   px: 5,
 };
 
-function DevProjects({ projects, sectionTitle, additionalProps }) {
+const imageContainer: SxProps<Theme> = {
+  position: 'relative',
+  '&:hover img': {
+    transform: 'scale(1.2)', // Increase the size on hover
+  },
+};
+
+function DevProjects({ projects, sectionTitle, additionalProps, button }) {
   const mergedProjects = projects.map((project, index) => ({
     ...project,
     ...(additionalProps?.[index] || {}), // Check if additionalProps is defined
@@ -32,27 +40,43 @@ function DevProjects({ projects, sectionTitle, additionalProps }) {
         </Grid>
       </div>
       <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}>
-        <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
-          <Grid container spacing={5}>
-            {mergedProjects.map((project, index) => (
-              <Grid key={index} item xs={12} md={4}>
-                <Box sx={item}>
-                  <Box
-                    component="img"
-                    src={project.imageSrc}
-                    alt={`project-${index}`}
-                    sx={{ height: 205 }}
-                  />
-                  <Typography variant="h6" sx={{ my: 5 }}>
-                    {project.title}
-                  </Typography>
-                  <Typography variant="h5">{project.description}</Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <div>
+          <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
+            <Grid container spacing={5}>
+              {mergedProjects.map((project, index) => (
+                <Grid key={index} item xs={12} md={4}>
+                  <Box sx={{ ...item, ...imageContainer } as SxProps<Theme>}>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                      <Box
+                        component="img"
+                        src={project.imageSrc}
+                        alt={`project-${index}`}
+                        sx={{ height: 205, transition: 'transform 0.3s ease-in-out' }}
+                      />
+                    </a>
+                    <Typography variant="h6" sx={{ my: 5 }}>
+                      {project.title}
+                    </Typography>
+                    <Typography variant="h5">{project.description}</Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+        </div>
       </Box>
+      {button && (
+        <Button
+          color="secondary"
+          size="large"
+          variant="contained"
+          component="a"
+          href={button.url}
+          sx={{ mt: -40 }}
+        >
+          {button.label}
+        </Button>
+      )}
     </div>
   );
 }
@@ -63,11 +87,15 @@ DevProjects.propTypes = {
       imageSrc: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
     })
   ).isRequired,
   sectionTitle: PropTypes.string.isRequired,
-  additionalProps: PropTypes.arrayOf(PropTypes.object), // Ensure additionalProps is an array of objects
+  additionalProps: PropTypes.arrayOf(PropTypes.object),
+  button: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
 };
 
 export default DevProjects;
-

@@ -107,7 +107,7 @@ function LearnSomethingNew() {
           size="large"
           variant="contained"
           component="a"
-          href="/premium-themes/onepirate/sign-up/"
+          href="/LearningContent"
           sx={{ mt: 8 }}
         >
           Get started

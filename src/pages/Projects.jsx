@@ -33,15 +33,21 @@ const mainProjects = [
     {
         imageSrc: 'running.png',
         title: 'Fitness Tracker Design',
-        description: 'Track your exercise progress from first step to finish '
+        description: 'Track your exercise progress from first step to finish ',
+        url: '/Fitness-Tracker.pdf'
     }
   ]
+const projectButton = 
+  {
+    label: 'Back',
+    url: '/'
+  }
 
 function Projects() {
 
   return (
     <React.Fragment>
-      <DevProjects projects={mainProjects.concat(extraProjects)} sectionTitle='All Dev Projects'/>
+      <DevProjects projects={mainProjects.concat(extraProjects)} sectionTitle='All Dev Projects' button={projectButton}/>
       <AppAppBar />
       
       

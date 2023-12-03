@@ -22,7 +22,8 @@ function VisionHero() {
               py: 8,
               px: 3,
               my: 0,
-              borderRadius: 8,
+              height: 647,
+              
             }}
           >
             <Box sx={{ maxWidth: 400 }} >
@@ -64,8 +65,8 @@ function VisionHero() {
               bottom: 0,
               objectFit: 'contain',
               width: 500,
-              borderRadius: 8,
-              marginBottom: 3
+              marginBottom: 3,
+
 
             }}
           />
