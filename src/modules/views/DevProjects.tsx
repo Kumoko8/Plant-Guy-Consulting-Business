@@ -86,7 +86,7 @@ DevProjects.propTypes = {
     PropTypes.shape({
       imageSrc: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      description: PropTypes.string,
       url: PropTypes.string.isRequired,
     })
   ).isRequired,

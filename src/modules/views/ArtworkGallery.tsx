@@ -75,7 +75,7 @@ const images = [
     url: '/Tristan.png',
     title: 'Illustrations',
     width: '40%',
-    href: '/projects'
+    href: '/artwork'
   },
   {
     component: <LoopVideo videoSource='web-preview.mp4' title='Web Design/Development'/>,
@@ -87,26 +87,26 @@ const images = [
     url: '/SeaweedLogo.png',
     title: 'Logos',
     width: '20%',
-    href: '/projects'
+    href: '/logos'
   },
   
   {
     component: <LoopVideo videoSource='wolf-walk.mp4' title='Animation'/>,
     title: 'Animation',
     width: '30%',
-    href: '/projects'
+    href: '/animations'
   },
   {
     url: '/HeartEP.png',
     title: 'Custom Artwork',
     width: '35%',
-    href: '/projects'
+    href: '/custom'
   },
   {
     component: <LoopVideo videoSource='teachContent.mp4' title='Tutoring/Learning Content'/>,
     title: 'Tutoring/Learning Content',
     width: '35%',
-    href: '/projects'
+    href: '/learning'
   },
   
   
