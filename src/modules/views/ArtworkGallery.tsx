@@ -5,6 +5,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import LoopVideo from '../components/LoopVideo';
+import { Link } from 'react-router-dom';
+
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -18,7 +20,17 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   zIndex: 0
 }));
 
-const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
+const ImageIconButton = styled(({ component, to, ...props }:{ component?: React.ReactNode, to?: string, [x: string]: any }) => {
+  if (to) {
+    return <Link to={to} {...props} />;
+  }
+  if (component) {
+    return React.cloneElement(component as React.ReactElement<any>, props);
+  }
+  return <div {...props} />;
+
+
+})(({ theme }) => ({
   position: 'relative',
   display: 'block',
   padding: 0,
@@ -63,33 +75,38 @@ const images = [
     url: '/Tristan.png',
     title: 'Illustrations',
     width: '40%',
+    href: '/projects'
   },
   {
     component: <LoopVideo videoSource='web-preview.mp4' title='Web Design/Development'/>,
     title: 'Web Design/Development',
     width: '40%',
+    href: '/projects'
   },
   {
     url: '/SeaweedLogo.png',
     title: 'Logos',
     width: '20%',
+    href: '/projects'
   },
-  
   
   {
     component: <LoopVideo videoSource='wolf-walk.mp4' title='Animation'/>,
     title: 'Animation',
     width: '30%',
+    href: '/projects'
   },
   {
     url: '/HeartEP.png',
     title: 'Custom Artwork',
     width: '35%',
+    href: '/projects'
   },
   {
     component: <LoopVideo videoSource='teachContent.mp4' title='Tutoring/Learning Content'/>,
     title: 'Tutoring/Learning Content',
     width: '35%',
+    href: '/projects'
   },
   
   
@@ -112,6 +129,8 @@ export default function ArtworkGallery() {
               width: image.width,
               paddingBottom: 300,
             }}
+            to={image.href}
+            as={image.href ? Link : 'div'}
           >
             <>
               {image.url && (

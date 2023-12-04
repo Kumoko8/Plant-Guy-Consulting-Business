@@ -7,7 +7,7 @@ import App from './App.jsx'
 import Error from './pages/Error';
 import Projects from './pages/Projects.jsx';
 import Contact from './pages/Contact';
-import Artwork from './pages/Artwork';
+import Services from './pages/Services';
 import Home from './pages/Home';
 import Resume from './pages/Resume'
 
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: '/Artwork',
-        element: <Artwork />,
+        path: '/Services',
+        element: <Services/>,
       },
       {
         path: '/Resume',
