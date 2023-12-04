@@ -35,6 +35,14 @@ const mainProjects = [
         title: 'Fitness Tracker Design',
         description: 'Track your exercise progress from first step to finish ',
         url: '/Fitness-Tracker.pdf'
+    },
+    {
+      imageSrc: 'WeatherApp.png',
+      title: 'Coming Soon'
+    },
+    {
+      imageSrc: 'Kumo_Writes.png',
+      title: 'Coming Soon'
     }
   ]
 const projectButton = 
