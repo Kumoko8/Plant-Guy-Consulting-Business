@@ -33,18 +33,11 @@ function VisionHero() {
               />
               
               <Typography variant="h2" component="h2" gutterBottom>
-                My Vision
+                Vision
               </Typography>
               <Typography variant="h5" sx={{marginBottom: 2}} >
-                I seek to create dynamic experiences that illuminate the mind and heart
+                I seek to create dynamic experiences that illuminate the mind and heart. I am seriously motivated by growth even at the smallest levels and the unlimited potential planted in every person. My clients would describe me as calm, creative, and easy going.
               </Typography>
-              <Typography variant="h5" sx={{fontWeight: 'bold'}}>
-                Skills: 
-              </Typography>
-              <Typography variant="h5">
-                React, JavaScript, WordPress, Figma, HTML, CSS, Databases
-              </Typography>
-            
             </Box>
       
           </Box>

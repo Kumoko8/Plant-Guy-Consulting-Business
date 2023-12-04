@@ -1,8 +1,12 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import Typography from '../components/Typography';
 
-const LoopVideo: React.FC = () => {
+interface LoopVideoProps {
+  videoSource: string;
+  title?: string; // Add a prop for the title
+}
+
+const LoopVideo: React.FC<LoopVideoProps> = ({ videoSource, title }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,7 +30,7 @@ const LoopVideo: React.FC = () => {
 
     if (videoElement) {
       videoElement.addEventListener('loadedmetadata', () => {
-        videoElement.loop = false;
+        videoElement.loop = false; // Set loop to false initially
       });
 
       videoElement.addEventListener('mouseenter', handleMouseEnter);
@@ -43,42 +47,55 @@ const LoopVideo: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div
+      style={{ position: 'relative' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <video
         ref={videoRef}
         autoPlay={isHovered}
         muted
         style={{ width: '100%', objectFit: 'cover' }}
+        loop
       >
-        <source src="wolf-walk.mp4" type="video/mp4" />
+        <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 50,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'common.white',
-          zIndex: 2, // Adjust the z-index value as needed
-          opacity: isHovered ? 0 : 1,
-          pointerEvents: 'none', // Allow interaction with the video even when the title is present
-        }}
-      >
-        <Typography
-          component="h3"
-          variant="h6"
-          color="inherit"
+
+      {title && !isHovered && (
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'common.white',
+            zIndex: 12,
+          }}
         >
-          Animation
-        </Typography>
-      </div>
+
+          <Typography
+            component="h3"
+            variant="h6"
+            color="white"
+            style={{ zIndex: 2, position: 'relative', marginBottom: '0px', textAlign: 'center'}}
+          >
+            {title}
+            <div style={{borderBottom: '4px solid white', paddingBottom: '14px', backgroundColor: 'transparent', width: '7%', margin: '0 auto', display: 'block'}}/>
+            
+            
+          </Typography>
+        </div>
+      )}
     </div>
   );
 };
 
 export default LoopVideo;
+
+

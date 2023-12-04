@@ -27,27 +27,29 @@ function AppAppBar() {
               variant="h6"
               underline="none"
               href="/"
-              sx={{ marginRight: 3}}
+              sx={{ marginRight: 4}}
             >
-              {'Home'}
-            </Link>
-            <Link
-              color="inherit"
-              variant="h6"
-              underline="none"
-              href="/contact"
-            >
-              {'Contact Me'}
+              {'About'}
             </Link>
             <Link
               color="inherit"
               variant="h6"
               underline="none"
               href="/projects"
-              sx={{ color: 'secondary.main', ml: 2 }}
+              sx={{  mr: 4 }}
             >
               {'Projects'}
             </Link>
+            <Link
+              color="inherit"
+              variant="h6"
+              underline="none"
+              href="/contact"
+              sx={{color: 'secondary.main'}}
+            >
+              {'Contact'}
+            </Link>
+           
           </Box>
         </Toolbar>
       </AppBar>

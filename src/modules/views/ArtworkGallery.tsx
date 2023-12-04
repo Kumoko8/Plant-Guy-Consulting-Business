@@ -43,7 +43,8 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   '& .imageTitle': {
     position: 'relative',
     padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
-    zIndex: -1
+    zIndex: -1,
+    
   },
   '& .imageMarked': {
     height: 3,
@@ -59,35 +60,41 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '/Kiiro.png',
-    title: 'Characters',
+    url: '/Tristan.png',
+    title: 'Illustrations',
     width: '40%',
   },
   {
-    url: '/NVZlogo.png',
+    component: <LoopVideo videoSource='web-preview.mp4' title='Web Design/Development'/>,
+    title: 'Web Design/Development',
+    width: '40%',
+  },
+  {
+    url: '/SeaweedLogo.png',
     title: 'Logos',
     width: '20%',
   },
+  
+  
   {
-    component: <LoopVideo/>,
+    component: <LoopVideo videoSource='wolf-walk.mp4' title='Animation'/>,
     title: 'Animation',
-    width: '40%',
+    width: '30%',
   },
   {
-    url: '/god.jpg',
-    title: 'Digital',
-    width: '38%',
+    url: '/HeartEP.png',
+    title: 'Custom Artwork',
+    width: '35%',
   },
   {
-    url: '/bike.png',
-    title: 'Pen',
-    width: '38%',
+    component: <LoopVideo videoSource='teachContent.mp4' title='Tutoring/Learning Content'/>,
+    title: 'Tutoring/Learning Content',
+    width: '35%',
   },
-  {
-    url: '/dog.png',
-    title: 'Pencil',
-    width: '24%',
-  },
+  
+  
+  
+  
  
 ];
 
@@ -95,33 +102,37 @@ export default function ArtworkGallery() {
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">
-        Artwork
+        Services
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
-          
           <ImageIconButton
             key={image.title}
             style={{
               width: image.width,
-              paddingBottom: 300
+              paddingBottom: 300,
             }}
           >
-            {image.component || (
-              <>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center 40%',
-                    backgroundImage: `url(${image.url})`,
-                  }}
-                />
-                <ImageBackdrop className="imageBackdrop" />
+            <>
+              {image.url && (
+                <>
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center 40%',
+                      backgroundImage: `url(${image.url})`,
+                    }}
+                  />
+                  <ImageBackdrop className="imageBackdrop" />
+                </>
+              )}
+              {image.component && image.component}
+              {image.url && (
                 <Box
                   sx={{
                     position: 'absolute',
@@ -133,24 +144,24 @@ export default function ArtworkGallery() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'common.white',
-                    zIndex: 12
+                    zIndex: 12,
                   }}
                 >
                   <Typography
                     component="h3"
                     variant="h6"
                     color="inherit"
-                    className="imageTitle"
+                    className={`imageTitle`}
                     sx={{
-                      zIndex: 2, 
+                      zIndex: 2,
                     }}
                   >
                     {image.title}
                     <div className="imageMarked" />
                   </Typography>
                 </Box>
-              </>
-            )}
+              )}
+            </>
           </ImageIconButton>
         ))}
       </Box>

@@ -44,8 +44,8 @@ function Index() {
       </div>
       <AppAppBar />
       <VisionHero />
-      <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton}/>
       <ArtworkGallery />
+      <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton}/>
       <LearnSomethingNew />
       <ContactRequestIntake />
       
