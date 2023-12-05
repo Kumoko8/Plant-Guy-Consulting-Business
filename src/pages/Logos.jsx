@@ -20,33 +20,31 @@ const logos = [
     {
       imageSrc: '/Jubi_.png',
       title: 'Prestige Trading',
-      url: '/'
       
     },
     {
-      imageSrc: '/Nolan.png',
-      title: 'Commissions',
-      url: '/'
+      imageSrc: '/NVZlogo.png',
+      title: 'INVIZ Productivity Logo',
+  
+    },
+    {
+      imageSrc: '/kiroLogo.png',
+      title: 'Personal Coding Logo',
+  
+    },
+    {
+      imageSrc: '/kamakiri.png',
+      title: 'Personal Art Logo',
+  
+    },
+    {
+      imageSrc: '/Teach_Logo.png',
+      title: 'Learning Content Logo',
+  
     },
   ];
  
 
-  const extraProjects = [
-    {
-        imageSrc: 'running.png',
-        title: 'Fitness Tracker Design',
-        description: 'Track your exercise progress from first step to finish ',
-        url: '/Fitness-Tracker.pdf'
-    },
-    {
-      imageSrc: 'WeatherApp.png',
-      title: 'Coming Soon'
-    },
-    {
-      imageSrc: 'Kumo_Writes.png',
-      title: 'Coming Soon'
-    }
-  ]
 const projectButton = 
   {
     label: 'Back',
@@ -58,7 +56,7 @@ function Projects() {
   return (
     <React.Fragment>
       <AppAppBar />
-      <DevProjects id="illustrations" projects={logos} sectionTitle='Logos' button={projectButton}/>
+      <DevProjects projects={logos} sectionTitle='Logos' button={projectButton}/>
     
       
       

@@ -12,42 +12,17 @@ import Paper from '../modules/components/Paper';
 import ProductHero from '../modules/views/ProductHero';
 import Typography from '../modules/components/Typography';
 
-const illustrations = [
+const animations = [
+    
     {
-      imageSrc: '/Tristan.png',
-      title: 'Role Play Universe',
-      url: '/'
-    },
-    {
-      imageSrc: '/Aly.png',
-      title: 'Birthday Gifts',
+      imageSrc: '',
+      title: 'Content Coming Soon',
       url: '/'
       
     },
-    {
-      imageSrc: '/Nolan.png',
-      title: 'Commissions',
-      url: '/'
-    },
+ 
   ];
  
-
-  const extraProjects = [
-    {
-        imageSrc: 'running.png',
-        title: 'Fitness Tracker Design',
-        description: 'Track your exercise progress from first step to finish ',
-        url: '/Fitness-Tracker.pdf'
-    },
-    {
-      imageSrc: 'WeatherApp.png',
-      title: 'Coming Soon'
-    },
-    {
-      imageSrc: 'Kumo_Writes.png',
-      title: 'Coming Soon'
-    }
-  ]
 const projectButton = 
   {
     label: 'Back',
@@ -59,7 +34,7 @@ function Projects() {
   return (
     <React.Fragment>
       <AppAppBar />
-      <DevProjects id="illustrations" projects={illustrations} sectionTitle='Illustrations' button={projectButton}/>
+      <DevProjects projects={animations} sectionTitle='Animations' button={projectButton}/>
     
       
       

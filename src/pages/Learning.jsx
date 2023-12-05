@@ -11,23 +11,23 @@ import Paper from '../modules/components/Paper';
 import ProductHero from '../modules/views/ProductHero';
 import Typography from '../modules/components/Typography';
 
-const illustrations = [
+const learning = [
     {
-      imageSrc: '/Tristan.png',
-      title: 'Role Play Universe',
+      imageSrc: '',
+      title: 'Content Coming Soon',
       url: '/'
     },
-    {
-      imageSrc: '/Aly.png',
-      title: 'Birthday Gifts',
-      url: '/'
+    // {
+    //   imageSrc: '/Aly.png',
+    //   title: 'Birthday Gifts',
+    //   url: '/'
       
-    },
-    {
-      imageSrc: '/Nolan.png',
-      title: 'Commissions',
-      url: '/'
-    },
+    // },
+    // {
+    //   imageSrc: '/Nolan.png',
+    //   title: 'Commissions',
+    //   url: '/'
+    // },
   ];
  
 
@@ -58,7 +58,7 @@ function Projects() {
   return (
     <React.Fragment>
       <AppAppBar />
-      <DevProjects id="illustrations" projects={illustrations} sectionTitle='Illustrations' button={projectButton}/>
+      <DevProjects projects={learning} sectionTitle='Educational Content' button={projectButton}/>
     
       
       
