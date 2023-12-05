@@ -36,7 +36,7 @@ function VisionHero() {
                 Vision
               </Typography>
               <Typography variant="h5" sx={{marginBottom: 2}} >
-                I seek to create dynamic experiences that illuminate the mind and heart. I am seriously motivated by growth even at the smallest levels and the unlimited potential planted in every person. My clients would describe me as calm, creative, and easy going.
+                I seek to create dynamic experiences that illuminate the mind and heart. I am seriously motivated by growth even at the smallest levels and the unlimited potential planted in every person. My clients would describe me as calm, creative, and understanding.
               </Typography>
             </Box>
       
