@@ -8,18 +8,14 @@ const illustrations = [
     {
       imageSrc: '/Tristan.png',
       title: 'Role Play Universe',
-      url: '/'
     },
     {
       imageSrc: '/Aly.png',
       title: 'Birthday Gifts',
-      url: '/'
-      
     },
     {
       imageSrc: '/Nolan.png',
       title: 'Commissions',
-      url: '/'
     },
   ];
  
