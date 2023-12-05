@@ -21,13 +21,14 @@ function Copyright() {
     
 
     <React.Fragment >
-      <span style={copyrightStyle}>{'© '}
+      <span style={copyrightStyle}> {'© '}
         TaylorGolden 
       {new Date().getFullYear()}
+
       </span>
+     
     </React.Fragment>
   
-
   );
 }
 
@@ -35,6 +36,9 @@ function Copyright() {
 
 
 export default function AppFooter() {
+  const resumeStyle = {
+    color: "white"
+  }
   return (
     <Typography
       component="footer"
@@ -60,8 +64,11 @@ export default function AppFooter() {
               <Grid item>
                 <Copyright />
               </Grid>
+              
             </Grid>
-        
+            <a id="resume" href="../../ResumeGeneral2.pdf" target="_blank" >
+   <h6 style={resumeStyle}>View My Resume</h6>
+ </a>
           </Grid>
         
         </Grid>
