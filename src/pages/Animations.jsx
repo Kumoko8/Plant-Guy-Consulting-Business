@@ -15,9 +15,19 @@ import Typography from '../modules/components/Typography';
 const animations = [
     
     {
-      imageSrc: '',
+      imageSrc: '/wolf_.png',
       title: 'Content Coming Soon',
-      url: '/'
+   
+      
+    },
+    {
+      imageSrc: '/Invis_Frame_Pest.png',
+      title: 'Content Coming Soon',
+      
+    },
+    {
+      imageSrc: '/kumo_sleeps.jpg',
+      title: 'Content Coming Soon',
       
     },
  

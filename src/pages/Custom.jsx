@@ -9,22 +9,35 @@ import Paper from '../modules/components/Paper';
 import ProductHero from '../modules/views/ProductHero';
 import Typography from '../modules/components/Typography';
 
-const illustrations = [
+const customWork = [
     {
-      imageSrc: '/Tristan.png',
-      title: 'Role Play Universe',
-      url: '/'
+      imageSrc: '/EP_Color.png',
+      title: 'Heart EP Cover',
     },
     {
-      imageSrc: '/Aly.png',
-      title: 'Birthday Gifts',
-      url: '/'
+      imageSrc: '/Single_1it.png',
+      title: 'Real Thing Single',
       
     },
     {
-      imageSrc: '/Nolan.png',
-      title: 'Commissions',
-      url: '/'
+      imageSrc: '/Single_1it 2.png',
+      title: 'A Million Forevers Single',
+      
+    },
+    {
+      imageSrc: '/Single_1it 3.png',
+      title: 'Broken Tears Single',
+      
+    },
+    {
+      imageSrc: '/Single_1it 4.png',
+      title: 'Run Away Single',
+      
+    },
+    {
+      imageSrc: '/JadeParis.jpg',
+      title: 'Jade in Paris',
+      
     },
   ];
  
@@ -56,7 +69,7 @@ function Projects() {
   return (
     <React.Fragment>
       <AppAppBar />
-      <DevProjects id="illustrations" projects={illustrations} sectionTitle='Illustrations' button={projectButton}/>
+      <DevProjects projects={customWork} sectionTitle='Custom Artwork' button={projectButton}/>
     
       
       

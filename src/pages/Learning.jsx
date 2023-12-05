@@ -13,40 +13,23 @@ import Typography from '../modules/components/Typography';
 
 const learning = [
     {
-      imageSrc: '',
+      imageSrc: 'jscriptF1.png',
+      title: 'Content Coming Soon',
+      
+    },
+    {
+      imageSrc: '/hiraganA.png',
+      title: 'Content Coming Soon',
+    },
+
+    {
+      imageSrc: '/dynamic1.png',
       title: 'Content Coming Soon',
       url: '/'
     },
-    // {
-    //   imageSrc: '/Aly.png',
-    //   title: 'Birthday Gifts',
-    //   url: '/'
-      
-    // },
-    // {
-    //   imageSrc: '/Nolan.png',
-    //   title: 'Commissions',
-    //   url: '/'
-    // },
   ];
  
 
-  const extraProjects = [
-    {
-        imageSrc: 'running.png',
-        title: 'Fitness Tracker Design',
-        description: 'Track your exercise progress from first step to finish ',
-        url: '/Fitness-Tracker.pdf'
-    },
-    {
-      imageSrc: 'WeatherApp.png',
-      title: 'Coming Soon'
-    },
-    {
-      imageSrc: 'Kumo_Writes.png',
-      title: 'Coming Soon'
-    }
-  ]
 const projectButton = 
   {
     label: 'Back',

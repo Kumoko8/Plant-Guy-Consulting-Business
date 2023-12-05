@@ -13,14 +13,21 @@ import 'react-social-icons/facebook'
 
 
 function Copyright() {
+  const copyrightStyle = {
+    color: "white"
+  }
+
   return (
-    <React.Fragment>
-      {'© '}
-      <Link color="inherit" href="https://mui.com/">
-        TaylorGolden
-      </Link>{' '}
+    
+
+    <React.Fragment >
+      <span style={copyrightStyle}>{'© '}
+        TaylorGolden 
       {new Date().getFullYear()}
+      </span>
     </React.Fragment>
+  
+
   );
 }
 
@@ -31,7 +38,7 @@ export default function AppFooter() {
   return (
     <Typography
       component="footer"
-      sx={{ display: 'flex', bgcolor: 'secondary.light' }}
+      sx={{ display: 'flex', bgcolor: '#1e1e1f' }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={2}>
@@ -54,31 +61,9 @@ export default function AppFooter() {
                 <Copyright />
               </Grid>
             </Grid>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Legal
-            </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={6} sm={4} md={2}>
         
           </Grid>
-          <Grid item>
-            <Typography variant="caption">
-              {'Checkout my  '}
-              <Link href="https://invizproductivity4.wordpress.com/" rel="sponsored" title="WordPress"
-                target="_blank">
-                WordPress
-              </Link>
-              {' site'}
-            </Typography>
-          </Grid>
+        
         </Grid>
       </Container>
     </Typography>
