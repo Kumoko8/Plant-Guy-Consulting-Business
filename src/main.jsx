@@ -13,7 +13,6 @@ import Custom from './pages/Custom'
 import Animations from './pages/Animations'
 import Learning from './pages/Learning'
 import Home from './pages/Home';
-import Resume from './pages/Resume'
 
 
 const router = createBrowserRouter([
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
         element: <Artwork/>,
       },
       {
-        path: '/Resume',
-        element: <Resume />,
-      },
-      {
         path: '/Animations',
         element: <Animations />,
       },
@@ -65,3 +60,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 )
+
+//optimize images for loading speed (custom artwork especially)
+//optimize for mobile so they don't have to scroll to the side
+//edit hover play videos to work on mobile
+//add all content
+//add about me page
