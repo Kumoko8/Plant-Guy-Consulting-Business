@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ArtworkGallery from '../modules/views/ArtworkGallery';
+import ServicesGallery from '../modules/views/ServicesGallery';
 import ContactRequestIntake from '../modules/views/ContactRequestIntake';
 
 import DevProjects from '../modules/views/DevProjects';
@@ -44,7 +44,7 @@ function Index() {
       </div>
       <AppAppBar />
       <VisionHero />
-      <ArtworkGallery />
+      <ServicesGallery />
       <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton}/>
       <LearnSomethingNew />
       <ContactRequestIntake />

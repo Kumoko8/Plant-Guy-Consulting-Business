@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ArtworkGallery from '../modules/views/ArtworkGallery';
+
 import ContactRequestIntake from '../modules/views/ContactRequestIntake';
 import AppFooter from '../modules/views/AppFooter';
 import DevProjects from '../modules/views/DevProjects';
@@ -14,13 +14,12 @@ import Typography from '../modules/components/Typography';
 
 const logos = [
     {
-      imageSrc: '/Tristan.png',
-      title: 'Role Play Universe',
-      url: '/'
+      imageSrc: '/SeaweedLogo.png',
+      title: 'Adams Seamoss',
     },
     {
-      imageSrc: '/Aly.png',
-      title: 'Birthday Gifts',
+      imageSrc: '/Jubi_.png',
+      title: 'Prestige Trading',
       url: '/'
       
     },

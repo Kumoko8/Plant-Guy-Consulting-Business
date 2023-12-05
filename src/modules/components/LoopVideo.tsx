@@ -82,7 +82,7 @@ const LoopVideo: React.FC<LoopVideoProps> = ({ videoSource, title }) => {
           <Typography
             component="h3"
             variant="h6"
-            color="white"
+            color="black"
             style={{ zIndex: 2, position: 'relative', marginBottom: '0px', textAlign: 'center'}}
           >
             {title}

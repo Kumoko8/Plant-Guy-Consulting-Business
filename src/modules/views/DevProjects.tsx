@@ -87,7 +87,7 @@ DevProjects.propTypes = {
       imageSrc: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
-      url: PropTypes.string.isRequired,
+      url: PropTypes.string,
     })
   ).isRequired,
   sectionTitle: PropTypes.string.isRequired,
