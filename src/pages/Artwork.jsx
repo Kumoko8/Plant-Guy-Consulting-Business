@@ -37,7 +37,7 @@ const projectButton =
     url: '/'
   }
 
-function Projects() {
+function Artwork() {
 
   return (
     <React.Fragment>
@@ -51,4 +51,4 @@ function Projects() {
 
     </React.Fragment>
 )}
-export default withRoot(Projects);
+export default withRoot(Artwork);

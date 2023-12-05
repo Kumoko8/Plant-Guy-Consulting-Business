@@ -22,7 +22,7 @@ const number = {
 };
 
 const image = {
-  height: 55,
+  height: 220,
   my: 4,
 };
 
@@ -63,8 +63,8 @@ function LearnSomethingNew() {
                 <Box sx={number}>JavaScript</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks1.svg"
-                  alt="JavaScript video"
+                  src="/jscriptF1.png"
+                  alt="JavaScript Functions"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
@@ -77,7 +77,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Japanese</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks2.svg"
+                  src="/hiraganA.png"
                   alt="Hiragana video"
                   sx={image}
                 />
@@ -91,7 +91,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Digital Art</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks3.svg"
+                  src="/dynamic1.png"
                   alt="digital art video"
                   sx={image}
                 />
