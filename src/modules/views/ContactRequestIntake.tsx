@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import { Link } from 'react-router-dom';
+
+
 
 function ContactRequestIntake() {
   return (
@@ -17,7 +20,10 @@ function ContactRequestIntake() {
           height: 'auto',
           py: 2,
           px: 5,
+         
         }}
+        component={Link}
+        to="/contact"
       >
         <Typography variant="h4" component="span">
           Design Requests? Click here.
