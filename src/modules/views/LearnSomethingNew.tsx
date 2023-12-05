@@ -107,7 +107,7 @@ function LearnSomethingNew() {
           size="large"
           variant="contained"
           component="a"
-          href="/LearningContent"
+          href="/Learning"
           sx={{ mt: 8 }}
         >
           Get started
