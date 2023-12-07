@@ -5,9 +5,10 @@ import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
+import myTheme from './modules/theme.ts'; // Rename the imported theme
 
 function App() {
-  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const isSmallScreen = useMediaQuery((theme) => myTheme.breakpoints.down('sm')); // Use the renamed theme
 
   return (
     <div>
