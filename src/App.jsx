@@ -1,35 +1,28 @@
 
+import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import AppFooter from './modules/views/AppFooter';
-
-
-import theme from './theme';
 import AppAppBar from './modules/views/AppAppBar';
 
-
 function App() {
-  // The Outlet component will conditionally swap between the different pages according to the URL
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
   return (
     <div>
-
       <Grid container>
         <Grid item xs={12}>
-          <AppAppBar/>
+          <AppAppBar />
         </Grid>
       </Grid>
-      <main className="mx-3">
+      <main className={isSmallScreen ? "mx-1" : "mx-3"}>
+        {/* Adjust the className based on screen size */}
         <Outlet />
       </main>
       <AppFooter />
     </div>
-  
-
-    //jsx fragments
   );
 }
-
-
 
 export default App;
