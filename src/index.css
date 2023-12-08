@@ -4,7 +4,7 @@
   font-weight: 400;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   justify-content: center;
 
@@ -60,19 +60,48 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media screen and (max-width: 600px) {
+  body {
+    padding: 0.5rem;
   }
-  a:hover {
-    color: #747bff;
+
+  h1 {
+    font-size: 2.5em;
   }
+
   button {
-    background-color: #f9f9f9;
+    padding: 0.4em 0.8em;
+  }
+
+  .image-deco {
+    max-width: 100%;
+    max-height: auto;
+  }
+
+  #kiiro-light-img {
+    width: 25rem;
+    height: auto;
+  }
+#vision-box {
+  width: 25rem;
+  height: auto;
+}
+  #logo-image {
+    max-width: 8rem;
+  }
+
+  #resume {
+    font-size: 1.5rem;
+  }
+
+  li {
+    padding: 5px;
+  }
+
+  .footer-card {
+    margin: 2rem;
   }
 }
-
 .image-deco {
       flex: 1 1 200px;
       margin: 10px;
@@ -82,13 +111,6 @@ button:focus-visible {
       max-height: 20rem;
 }
 
-#kiiro-light-img {
-  border-radius: 100%;
-  width: 20rem;
-  height: 20rem;
-  margin: 1rem;
-  object-fit: cover;
-}
 #logo-image {
   max-width: 10rem;
 }

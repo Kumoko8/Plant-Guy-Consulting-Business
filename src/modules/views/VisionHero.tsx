@@ -14,7 +14,9 @@ function VisionHero() {
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
+            id="vision-box"
             sx={{
+              
               display: 'flex',
               justifyContent: 'center',
               alignContent: 'center',
@@ -45,6 +47,7 @@ function VisionHero() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Box
+            id="kiiro-light-img"
             component="img"
             src="/kiiro-lite.png"
             alt="encountering the light"
