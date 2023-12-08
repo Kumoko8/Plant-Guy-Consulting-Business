@@ -79,7 +79,7 @@ const images = [
     href: '/artwork'
   },
   {
-    component: <LoopVideo videoSource='web-preview.mp4' title='Web Dev/Development'/>,
+    component: <LoopVideo videoSource='web-preview.mp4' title='Web Applications'/>,
     title: 'Web Design/Development',
     width: '40%',
     href: '/projects'

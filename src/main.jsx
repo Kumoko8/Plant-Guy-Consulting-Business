@@ -13,6 +13,7 @@ import Custom from './pages/Custom'
 import Animations from './pages/Animations'
 import Learning from './pages/Learning'
 import Home from './pages/Home';
+import About from './pages/AboutMe'
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/About',
+        element: <About />,
       },
       {
         path: '/Projects',

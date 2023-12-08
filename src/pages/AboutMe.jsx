@@ -1,33 +1,68 @@
+import * as React from 'react';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '../modules/components/Typography';
+import withRoot from '../modules/withRoot';
+import AppAppBar from '../modules/views/AppAppBar';
 
-
-export default function AboutMe() {
+function AboutMe() {
     return (
-        <Grid container >
-
+        <React.Fragment>
+<AppAppBar/>
         <div>
-            <Grid xs={12}  item >
-                <img id="logo-image"className="image-deco"src='../../kiroLogo.PNG'></img>
-            </Grid>
-            <Grid xs={12} >
-            <h2 className="read-the-docs">
-                Software Developer, Educator, Illustrator, Dad
-            </h2>
 
-            </Grid>
-            <Grid xs={12}>
+   
+        <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
+          {/* Video backdrop */}
+          <img 
+          src="/threeofus.jpg"
+          style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}/>
+           
+        
+    
+          {/* Content overlay */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1,
+              color: 'white', // Adjust text color
+              textAlign: 'center',
+              padding: '2rem',
+            }}
+          >
+            <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
+              Taylor Golden
+            </Typography>
+            
+            {/* Add any additional content or components as needed */}
+          </Box>
+          
+        </Container>
+        <Typography variant="h5" sx={{ margin: 5, mt: 15, mb: 0 }}>
+        Web Developer | Illustrator | Educator | Family Man
+        </Typography>
+        <Typography variant="h6" sx={{ marginBottom: 2, padding: 10, width: '100%', display: 'flex', alignContent:'center',  justifyContent:'center', textAlign: 'center' }}>
+            <p style={{justifyContent:'center', display: 'flex'}}>
 
-            <p>
-                Thank you for visiting my page. Featured are some of my best and most enjoyable applications
-                from my time in bootcamp and beyond. I first got into the tech field because of my interest in the intersection of
-                technology, design, and education. I am passionate about using software development to create web services that make
-                learning and communication more effective, enjoyable, and aesthetically pleasing.
+         I seek to create content that illimunates the heart and mind. I am driven by the passion to represent the invisible God in as many creative ways as possible. Things we can't see are just as worthy of curiosity as the things that we can. Seven years experience teaching middle school math and science gives me insight into how people think & learn and has developed a love for uncovering the intricacies of life.   Our family is based in Austin, TX and we enjoy playing sports, growing our own food, and crafting! 
             </p>
-            </Grid>
-        </div>
-        </Grid>
+      </Typography>
+      <Typography sx={{mb: 5}}>
+
+      <p>
+Illustration illuminates the heart. Education illuminates the mind. Technology brings them together.
+</p>
+      </Typography>
+
+      </div>
+
+        </React.Fragment>
 
     );
 
 }
-
+export default withRoot(AboutMe);
