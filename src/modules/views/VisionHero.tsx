@@ -1,76 +1,55 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import TextField from '../components/TextField';
-import Snackbar from '../components/Snackbar';
-import Button from '../components/Button';
 
 function VisionHero() {
 
   return (
-    <Container component="section" sx={{ mt: -6, display: 'flex' }}>
-      <Grid container>
-        <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
-          <Box
-            id="vision-box"
-            sx={{
-              
-              display: 'flex',
-              justifyContent: 'center',
-              alignContent: 'center',
-              bgcolor: 'warning.main',
-              py: 8,
-              px: 3,
-              my: 0,
-              height: 647,
-              
-            }}
-          >
-            <Box sx={{ maxWidth: 400 }} >
-              <Box sx={{maxWidth: 400, maxHeight: 300}}
-              component="img"
-              src="/linkedin.png"
-              />
-              
-              <Typography variant="h2" component="h2" gutterBottom>
-                Vision
-              </Typography>
-              <Typography variant="h5" sx={{marginBottom: 2}} >
-                I seek to create dynamic experiences that illuminate the mind and heart. I am seriously motivated by growth even at the smallest levels and the unlimited potential planted in every person. My clients would describe me as calm, creative, and understanding.
-              </Typography>
-            </Box>
-      
-          </Box>
-         
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box
-            id="kiiro-light-img"
-            component="img"
-            src="/kiiro-lite.png"
-            alt="encountering the light"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignContent: 'center',
-              top: 0,
-              right: 0,
-              left: 0,
-              bottom: 0,
-              objectFit: 'contain',
-              width: 500,
-              marginBottom: 3,
+    <div>
 
+   
+    <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
+      {/* Video backdrop */}
+      <video autoPlay loop muted style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}>
+        <source src="/God-creates.mp4" type="video/mp4" />
+        {/* Add additional source elements for different video formats if needed */}
+        Your browser does not support the video tag.
+      </video>
 
-            }}
-          />
-          </Grid>
-      </Grid>
+      {/* Content overlay */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1,
+          color: 'white', // Adjust text color
+          textAlign: 'center',
+          padding: '2rem',
+        }}
+      >
+        <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
+          CREATE & transform your mindset
+        </Typography>
+        
+        {/* Add any additional content or components as needed */}
+      </Box>
       
     </Container>
+    <Typography variant="h2" sx={{ marginBottom: 2 }}>
+      Taylor Golden
+    </Typography>
+    <Typography variant="h5" sx={{ marginBottom: 2 }}>
+    Web Developer | Dad | Illustrator | Educator
+    </Typography>
+    {/* <Typography variant="h4" sx={{ marginBottom: 2 }}>
+     Illustration illuminates the heart. Education illuminates the mind. I bring them together by creating web development
+  </Typography> */}
+  </div>
   );
 }
 
 export default VisionHero;
+

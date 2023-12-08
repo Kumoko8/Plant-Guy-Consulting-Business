@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import LoopVideo from '../components/LoopVideo';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
@@ -117,9 +118,12 @@ const images = [
 
 export default function ServicesGallery() {
   return (
+    <div>
+
+    
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
-      <Typography variant="h4" marked="center" align="center" component="h2">
-        Services
+      <Typography variant="h3" marked="center" align="center" component="h3">
+        What I Create
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
@@ -168,7 +172,7 @@ export default function ServicesGallery() {
                 >
                   <Typography
                     component="h3"
-                    variant="h6"
+                    variant="h5"
                     color="white"
                     className={`imageTitle`}
                     sx={{
@@ -184,6 +188,18 @@ export default function ServicesGallery() {
           </ImageIconButton>
         ))}
       </Box>
+    
     </Container>
+      <Button
+      color="secondary"
+      size="large"
+      variant="contained"
+      component="a"
+      href="/contact"
+      sx={{ mt: 1 }}
+    >
+      Let's Create Together
+    </Button>
+    </div>
   );
 }

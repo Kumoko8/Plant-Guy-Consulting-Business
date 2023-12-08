@@ -53,7 +53,7 @@ function LearnSomethingNew() {
             opacity: 0.7,
           }}
         />
-        <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
+        <Typography variant="h3" marked="center" component="h3" sx={{ mb: 14 }}>
           Learn Something New
         </Typography>
         <div>
@@ -67,7 +67,7 @@ function LearnSomethingNew() {
                   alt="JavaScript Functions"
                   sx={image}
                 />
-                <Typography variant="h5" align="center">
+                <Typography variant="h6" align="center">
                   Learn the basics of JavaScript, starting with functions
                 </Typography>
               </Box>
@@ -81,7 +81,7 @@ function LearnSomethingNew() {
                   alt="Hiragana video"
                   sx={image}
                 />
-                <Typography variant="h5" align="center">
+                <Typography variant="h6" align="center">
                   Learn the 46 characters of the Japanese script
                 </Typography>
               </Box>
@@ -95,7 +95,7 @@ function LearnSomethingNew() {
                   alt="digital art video"
                   sx={image}
                 />
-                <Typography variant="h5" align="center">
+                <Typography variant="h6" align="center">
                 Learn how to make more dynamic characters
                 </Typography>
               </Box>

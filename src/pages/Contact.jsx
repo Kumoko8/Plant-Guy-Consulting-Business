@@ -18,7 +18,7 @@ function Contact() {
             <div>
                 <img class="image-deco"src="../Kumo_Writes.png"></img>
             </div>
-            <div> <h2> Send a Message or Request </h2></div>
+            <div> <h2> Let's Create Together! </h2></div>
             <HubSpotForm
           portalId="44406398"
           formId="b8e767ed-bf30-47bc-b2e3-150d52611e2c"

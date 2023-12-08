@@ -33,7 +33,7 @@ function AppAppBar() {
             </Link> */}
             <Link
               color="inherit"
-              variant="h6"
+              variant="h5"
               underline="none"
               href="/projects"
               sx={{  mr: 4 }}
@@ -42,7 +42,7 @@ function AppAppBar() {
             </Link>
             <Link
               color="inherit"
-              variant="h6"
+              variant="h5"
               underline="none"
               href="/contact"
               sx={{color: 'secondary.main'}}

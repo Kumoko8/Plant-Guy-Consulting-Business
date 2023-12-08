@@ -37,10 +37,10 @@ const currentProjectsButton =
 function Index() {
   return (
     <React.Fragment>
-      <div>
+      {/* <div id="header-title">
       <h1> Taylor Golden </h1>
             <h2>Developer | Dad | Illustrator | Educator </h2>
-      </div>
+      </div> */}
       <AppAppBar />
       <VisionHero />
       <ServicesGallery />

@@ -60,7 +60,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 476px) {
   body {
     padding: 0.5rem;
   }
@@ -79,11 +79,11 @@ button:focus-visible {
   }
 
   #kiiro-light-img {
-    width: 25rem;
+    width: 100%;
     height: auto;
   }
 #vision-box {
-  width: 25rem;
+  width: 100%;
   height: auto;
 }
   #logo-image {
@@ -100,6 +100,75 @@ button:focus-visible {
 
   .footer-card {
     margin: 2rem;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  /* Styles for medium-sized screens (e.g., tablets) */
+  h1 {
+    font-size: 2.8em;
+  }
+
+  button {
+    padding: 0.5em 1em;
+  }
+
+  #kiiro-light-img {
+    width: 100%;
+    height: auto;
+  }
+  #vision-box {
+    width: 100%;
+    height: auto;
+  }
+  #logo-image {
+    max-width: 9rem;
+  }
+
+  #resume {
+    font-size: 1.8rem;
+  }
+
+  li {
+    padding: 6px;
+  }
+
+  .footer-card {
+    margin: 3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Styles for larger screens (e.g., desktops) */
+  h1 {
+    font-size: 3.2em;
+  }
+
+  button {
+    padding: 0.6em 1.2em;
+  }
+
+  #kiiro-light-img {
+    width: 100%;
+    height: auto;
+  }
+  #vision-box {
+    width: 100%;
+    height: 46.55rem;
+  }
+  #logo-image {
+    max-width: 10rem;
+  }
+
+  #resume {
+    font-size: 2rem;
+  }
+
+  li {
+    padding: 7px;
+  }
+
+  .footer-card {
+    margin: 5rem;
   }
 }
 .image-deco {

@@ -33,7 +33,7 @@ function DevProjects({ projects, sectionTitle, additionalProps, button }) {
       <div>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h4" marked="center" component="h2" sx={{ mb: 1, mt: 10 }}>
+            <Typography variant="h3" marked="center" component="h3" sx={{ mb: 1, mt: 10 }}>
               {sectionTitle}
             </Typography>
           </Grid>
@@ -54,10 +54,10 @@ function DevProjects({ projects, sectionTitle, additionalProps, button }) {
                         sx={{ height: 205, transition: 'transform 0.3s ease-in-out' }}
                       />
                     </a>
-                    <Typography variant="h6" sx={{ my: 5 }}>
+                    <Typography variant="h5" sx={{ my: 5 }}>
                       {project.title}
                     </Typography>
-                    <Typography variant="h5">{project.description}</Typography>
+                    <Typography variant="h6" >{project.description}</Typography>
                   </Box>
                 </Grid>
               ))}
