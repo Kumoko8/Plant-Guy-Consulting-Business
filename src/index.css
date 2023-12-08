@@ -86,6 +86,7 @@ button:focus-visible {
   width: 100%;
   height: auto;
 }
+
   #logo-image {
     max-width: 8rem;
   }
@@ -155,6 +156,7 @@ button:focus-visible {
     width: 100%;
     height: 46.55rem;
   }
+  
   #logo-image {
     max-width: 10rem;
   }
