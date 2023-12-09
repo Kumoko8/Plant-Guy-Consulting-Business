@@ -7,15 +7,39 @@ import withRoot from '../modules/withRoot';
 const illustrations = [
     {
       imageSrc: '/Tristan.png',
-      title: 'Role Play Universe',
+      title: 'Tristan FanFiction Commission',
     },
     {
       imageSrc: '/Aly.png',
-      title: 'Birthday Gifts',
+      title: 'Happy Birthday Aly',
+    },
+    {
+      imageSrc: '/kevs-bday.png',
+      title: 'Happy Birthday Kev',
+    },
+    {
+      imageSrc: '/maguro.jpg',
+      title: 'The Invisible Story: Maguro',
+    },
+    {
+      imageSrc: '/god.jpg',
+      title: 'The Invisible Story: The Creator',
+    },
+    {
+      imageSrc: '/Kiiro.png',
+      title: 'The Invisible Story: Kiiro',
     },
     {
       imageSrc: '/Nolan.png',
-      title: 'Commissions',
+      title: 'Joker Commission',
+    },
+    {
+      imageSrc: '/godsGotu.jpg',
+      title: "God's Got You",
+    },
+    {
+      imageSrc: '/LiftOff.jpg',
+      title: "Lift Off",
     },
   ];
  
