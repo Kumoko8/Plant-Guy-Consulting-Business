@@ -73,7 +73,7 @@ const ImageIconButton = styled(({ component, to, ...props }:{ component?: React.
 
 const images = [
   {
-    url: '/Tristan.png',
+    url: '/god.jpg',
     title: 'Illustrations',
     width: '40%',
     href: '/artwork'
@@ -98,7 +98,7 @@ const images = [
     href: '/animations'
   },
   {
-    url: '/HeartEP.png',
+    url: '/JadeParis.jpg',
     title: 'Custom Artwork',
     width: '35%',
     href: '/custom'

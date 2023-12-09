@@ -5,6 +5,48 @@ import withRoot from '../modules/withRoot';
 
 
 const customWork = [
+    
+    {
+      imageSrc: '/JadeParis.jpg',
+      title: 'Jade in Paris',
+      
+    },
+   
+    {
+      imageSrc: '/Major.jpg',
+      title: 'Major',
+      
+    },
+    {
+      imageSrc: '/superSaiyan.jpg',
+      title: 'Super Saiyan',
+      
+    },
+    {
+      imageSrc: '/kevs-bday.png',
+      title: 'Happy Birthday Kev',
+    },
+    {
+      imageSrc: '/Aly.png',
+      title: 'Happy Birthday Aly',
+    },
+    {
+      imageSrc: '/mrB.jpg',
+      title: 'Happy Birthday Mr. B',
+    },
+
+    {
+      imageSrc: '/Tristan.png',
+      title: 'Tristan FanFiction Commission',
+    },
+   {
+      imageSrc: '/Nolan.png',
+      title: 'Joker Commission',
+    },
+    {
+      imageSrc: '/hollowKnight.jpg',
+      title: 'Hollow Knight',
+    },
     {
       imageSrc: '/EP_Color.png',
       title: 'Heart EP Cover',
@@ -29,11 +71,12 @@ const customWork = [
       title: 'Run Away Single',
       
     },
-    {
-      imageSrc: '/JadeParis.jpg',
-      title: 'Jade in Paris',
+     {
+      imageSrc: '/selfPortrait.jpg',
+      title: 'Self Portrait',
       
     },
+
   ];
  
 

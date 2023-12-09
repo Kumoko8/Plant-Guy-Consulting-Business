@@ -14,10 +14,6 @@ function Contact() {
             <div>
                 <h1> Contact</h1>
             </div>
-            
-            <div>
-                <img class="image-deco"src="../Kumo_Writes.png"></img>
-            </div>
             <div> <h2> Let's Create Together! </h2></div>
             <HubSpotForm
           portalId="44406398"

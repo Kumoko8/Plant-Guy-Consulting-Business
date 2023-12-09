@@ -16,7 +16,7 @@ function AboutMe() {
         <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
           {/* Video backdrop */}
           <img 
-          src="/threeofus.jpg"
+          src="/GoldenFamily.jpg"
           style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}/>
            
         
@@ -48,7 +48,7 @@ function AboutMe() {
         <Typography variant="h6" sx={{ marginBottom: 2, padding: 10, width: '100%', display: 'flex', alignContent:'center',  justifyContent:'center', textAlign: 'center' }}>
             <p style={{justifyContent:'center', display: 'flex'}}>
 
-         I seek to create content that illimunates the heart and mind. I am driven by the passion to represent the invisible God in as many creative ways as possible. Things we can't see are just as worthy of curiosity as the things that we can. Seven years experience teaching middle school math and science gives me insight into how people think & learn and has developed a love for uncovering the intricacies of life.   Our family is based in Austin, TX and we enjoy playing sports, growing our own food, and crafting! 
+         I seek to create content that illuminates the heart and mind. I am driven by the passion to represent the invisible God in as many creative ways as possible. Things we can't see are just as worthy of curiosity as the things that we can. Seven years experience teaching middle school math and science gives me insight into how people think & learn and has developed a love for uncovering the intricacies of life.   Our family is based in Austin, TX and we enjoy playing sports, growing our own food, and crafting! 
             </p>
       </Typography>
       <Typography sx={{mb: 5}}>
