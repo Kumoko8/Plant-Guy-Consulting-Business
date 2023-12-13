@@ -7,18 +7,18 @@ import withRoot from '../modules/withRoot';
 const animations = [
     
     {
-      imageSrc: '/wolf_.png',
+      imageSrc: '/wolf.webp',
       title: 'Content Coming Soon',
    
       
     },
     {
-      imageSrc: '/Invis_Frame_Pest.png',
+      imageSrc: '/angel-pest.webp',
       title: 'Content Coming Soon',
       
     },
     {
-      imageSrc: '/kumo_sleeps.jpg',
+      imageSrc: '/kumo-sleeps.webp',
       title: 'Content Coming Soon',
       
     },

@@ -6,19 +6,18 @@ import withRoot from '../modules/withRoot';
 
 const learning = [
     {
-      imageSrc: 'jscriptF1.png',
+      imageSrc: 'jscriptf1.webp',
       title: 'Content Coming Soon',
       
     },
     {
-      imageSrc: '/hiraganA.png',
+      imageSrc: '/hiraganaA.webp',
       title: 'Content Coming Soon',
     },
 
     {
-      imageSrc: '/dynamic1.png',
+      imageSrc: '/dynamic1.webp',
       title: 'Content Coming Soon',
-      url: '/'
     },
   ];
  

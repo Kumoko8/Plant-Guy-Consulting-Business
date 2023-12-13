@@ -6,31 +6,31 @@ import withRoot from '../modules/withRoot';
 
 const logos = [
     {
-      imageSrc: '/SeaweedLogo.png',
-      title: 'Adams Seamoss',
+      imageSrc: '/seamoss.webp',
+      title: "Adam's Seamoss",
     },
     {
-      imageSrc: '/Jubi_.png',
+      imageSrc: '/prestige-logo.webp',
       title: 'Prestige Trading',
       
     },
     {
-      imageSrc: '/NVZlogo.png',
+      imageSrc: '/Invizlogo.webp',
       title: 'INVIZ Productivity Logo',
   
     },
     {
-      imageSrc: '/kiroLogo.png',
+      imageSrc: '/kiiro-logo.webp',
       title: 'Personal Coding Logo',
   
     },
     {
-      imageSrc: '/kamakiri.png',
+      imageSrc: '/kamakiri-logo.webp',
       title: 'Personal Art Logo',
   
     },
     {
-      imageSrc: '/Teach_Logo.png',
+      imageSrc: '/teach-logo.webp',
       title: 'Learning Content Logo',
   
     },

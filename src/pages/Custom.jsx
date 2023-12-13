@@ -7,95 +7,77 @@ import withRoot from '../modules/withRoot';
 const customWork = [
     
     {
-      imageSrc: '/JadeParis.jpg',
+      imageSrc: '/jadeparis.webp',
       title: 'Jade in Paris',
       
     },
    
     {
-      imageSrc: '/Major.jpg',
+      imageSrc: '/major.webp',
       title: 'Major',
       
     },
     {
-      imageSrc: '/superSaiyan.jpg',
+      imageSrc: '/super-saiyan.webp',
       title: 'Super Saiyan',
-      
     },
     {
-      imageSrc: '/kevs-bday.png',
+      imageSrc: '/kevs-bday.webp',
       title: 'Happy Birthday Kev',
     },
     {
-      imageSrc: '/Aly.png',
+      imageSrc: '/aly-bday.webp',
       title: 'Happy Birthday Aly',
     },
     {
-      imageSrc: '/mrB.jpg',
+      imageSrc: '/mrB-bday.webp',
       title: 'Happy Birthday Mr. B',
     },
 
     {
-      imageSrc: '/Tristan.png',
+      imageSrc: '/tristan-reads.webp',
       title: 'Tristan FanFiction Commission',
     },
    {
-      imageSrc: '/Nolan.png',
+      imageSrc: '/nolan-joker.webp',
       title: 'Joker Commission',
     },
     {
-      imageSrc: '/hollowKnight.jpg',
+      imageSrc: '/hollow-knight.webp',
       title: 'Hollow Knight',
     },
     {
-      imageSrc: '/EP_Color.png',
+      imageSrc: '/heart-album.webp',
       title: 'Heart EP Cover',
     },
     {
-      imageSrc: '/Single_1it.png',
+      imageSrc: '/real-thing-single.webp',
       title: 'Real Thing Single',
       
     },
     {
-      imageSrc: '/Single_1it 2.png',
+      imageSrc: '/forevers-single.webp',
       title: 'A Million Forevers Single',
       
     },
     {
-      imageSrc: '/Single_1it 3.png',
+      imageSrc: '/broken-tears-single.webp',
       title: 'Broken Tears Single',
       
     },
     {
-      imageSrc: '/Single_1it 4.png',
+      imageSrc: '/runaway-single.webp',
       title: 'Run Away Single',
       
     },
      {
-      imageSrc: '/selfPortrait.jpg',
+      imageSrc: '/self-portrait.webp',
       title: 'Self Portrait',
       
     },
 
   ];
  
-
-  const extraProjects = [
-    {
-        imageSrc: 'running.png',
-        title: 'Fitness Tracker Design',
-        description: 'Track your exercise progress from first step to finish ',
-        url: '/Fitness-Tracker.pdf'
-    },
-    {
-      imageSrc: 'WeatherApp.png',
-      title: 'Coming Soon'
-    },
-    {
-      imageSrc: 'Kumo_Writes.png',
-      title: 'Coming Soon'
-    }
-  ]
 const projectButton = 
   {
     label: 'Back',
