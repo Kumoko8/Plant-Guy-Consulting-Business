@@ -33,7 +33,7 @@ function VisionHero() {
           }}
         >
           <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
-            CREATE & transform your mindset
+            Transform your mindset
           </Typography>
 
           {/* Add any additional content or components as needed */}

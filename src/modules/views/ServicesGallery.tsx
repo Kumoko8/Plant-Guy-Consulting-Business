@@ -73,7 +73,7 @@ const ImageIconButton = styled(({ component, to, ...props }:{ component?: React.
 
 const images = [
   {
-    url: '/god.jpg',
+    url: '/god_paint.webp',
     title: 'Illustrations',
     width: '40%',
     href: '/artwork'
@@ -85,7 +85,7 @@ const images = [
     href: '/projects'
   },
   {
-    url: '/SeaweedLogo.png',
+    url: '/seamoss.webp',
     title: 'Logos',
     width: '20%',
     href: '/logos'
@@ -98,7 +98,7 @@ const images = [
     href: '/animations'
   },
   {
-    url: '/JadeParis.jpg',
+    url: '/jadeparis.webp',
     title: 'Custom Artwork',
     width: '35%',
     href: '/custom'

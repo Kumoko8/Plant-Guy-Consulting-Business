@@ -16,7 +16,7 @@ function AboutMe() {
         <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
           {/* Video backdrop */}
           <img 
-          src="/GoldenFamily.jpg"
+          src="/golden-fam.webp"
           style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}/>
            
         

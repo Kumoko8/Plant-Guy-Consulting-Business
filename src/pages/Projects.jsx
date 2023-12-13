@@ -7,17 +7,17 @@ import withRoot from '../modules/withRoot';
 
 const mainProjects = [
     {
-      imageSrc: 'DnD.png',
+      imageSrc: 'dnd.webp',
       title: 'D&D Character Generator',
       description: 'Dive into a new world with your own role play character. Get ready to roll the dice.',
     },
     {
-      imageSrc: 'NVZlogo.png',
+      imageSrc: 'Invizlogo.webp',
       title: 'INVIZ Productivity',
       description: 'Transform the everyday things you have to do into a wonderful journey you want to be a part of.',
     },
     {
-      imageSrc: 'Collectibles.png',
+      imageSrc: 'collectibles.webp',
       title: 'Collectibles',
       description: 'Keep all the antiques and novelties you treasure in one place and share them with others.',
     },
@@ -25,17 +25,17 @@ const mainProjects = [
 
   const extraProjects = [
     {
-        imageSrc: 'running.png',
+        imageSrc: 'running.webp',
         title: 'Fitness Tracker Design',
         description: 'Track your exercise progress from first step to finish ',
         url: '/Fitness-Tracker.pdf'
     },
     {
-      imageSrc: 'WeatherApp.png',
+      imageSrc: 'weather-app.webp',
       title: 'Coming Soon'
     },
     {
-      imageSrc: 'Kumo_Writes.png',
+      imageSrc: 'kumo-writes.webp',
       title: 'Coming Soon'
     }
   ]

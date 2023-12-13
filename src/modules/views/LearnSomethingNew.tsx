@@ -43,9 +43,6 @@ function LearnSomethingNew() {
         }}
       >
         <Box
-          component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
-          alt="curvy lines"
           sx={{
             pointerEvents: 'none',
             position: 'absolute',
@@ -63,7 +60,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>JavaScript</Box>
                 <Box
                   component="img"
-                  src="/jscriptF1.png"
+                  src="/jscriptf1.webp"
                   alt="JavaScript Functions"
                   sx={image}
                 />
@@ -77,7 +74,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Japanese</Box>
                 <Box
                   component="img"
-                  src="/hiraganA.png"
+                  src="/hiraganaA.webp"
                   alt="Hiragana video"
                   sx={image}
                 />
@@ -91,7 +88,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Digital Art</Box>
                 <Box
                   component="img"
-                  src="/dynamic1.png"
+                  src="/dynamic1.webp"
                   alt="digital art video"
                   sx={image}
                 />

@@ -7,7 +7,7 @@ import withRoot from '../modules/withRoot';
 const illustrations = [
    
     {
-      imageSrc: '/maguro.jpg',
+      imageSrc: '/maguro-first.webp',
       title: 'The Invisible Story: Maguro',
     },
    
@@ -24,23 +24,23 @@ const illustrations = [
       title: 'The Invisible Story: Trio',
     },
     {
-      imageSrc: '/kumoWrites.jpg',
+      imageSrc: '/kumo-writes.webp',
       title: 'The Invisible Story: Kumo Writes',
     },
     {
-      imageSrc: '/angelApathy.jpg',
+      imageSrc: '/angel-apathy.webp',
       title: 'The Invisible Story: Angel v. Apathy',
     },
     {
-      imageSrc: '/god.jpg',
+      imageSrc: '/god-paint.webp',
       title: 'The Invisible Story: The Creator',
     },
     {
-      imageSrc: '/godsGotu.jpg',
+      imageSrc: '/gods-got-u.webp',
       title: "God's Got You",
     },
     {
-      imageSrc: '/LiftOff.jpg',
+      imageSrc: '/lift-off.webp',
       title: "Lift Off",
     },
   ];

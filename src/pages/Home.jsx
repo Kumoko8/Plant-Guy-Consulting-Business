@@ -10,19 +10,19 @@ import withRoot from '../modules/withRoot';
 
 const mainProjects = [
   {
-    imageSrc: 'DnD.png',
+    imageSrc: 'dnd.webp',
     title: 'D&D Character Generator',
     description: 'Dive into a new world with your own role play character. Get ready to roll the dice.',
     url: 'https://kumoko8.github.io/Front-End-App-DnD-Character-Project/'
   },
   {
-    imageSrc: 'NVZlogo.png',
+    imageSrc: 'Invizlogo.webp',
     title: 'INVIZ Productivity',
     description: 'Transform the everyday things you have to do into a wonderful journey you want to be a part of.',
     url: 'https://invizproductivity4.wordpress.com/'
   },
   {
-    imageSrc: 'Collectibles.png',
+    imageSrc: 'collectibles.webp',
     title: 'Collectibles',
     description: 'Keep all the antiques and novelties you treasure in one place and share them with others.',
     url: 'https://project-collections-cfb3d3b9c8f8.herokuapp.com/'
