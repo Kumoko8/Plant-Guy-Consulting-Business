@@ -12,15 +12,15 @@ const illustrations = [
     },
    
     {
-      imageSrc: '/Kiiro.png',
+      imageSrc: '/kiiro-character.webp',
       title: 'The Invisible Story: Kiiro',
     },
     {
-      imageSrc: '/hachi.jpg',
+      imageSrc: '/hachi.webp',
       title: 'The Invisible Story: Hachi',
     },
     {
-      imageSrc: '/trio.jpg',
+      imageSrc: '/trio.webp',
       title: 'The Invisible Story: Trio',
     },
     {
@@ -32,7 +32,7 @@ const illustrations = [
       title: 'The Invisible Story: Angel v. Apathy',
     },
     {
-      imageSrc: '/god-paint.webp',
+      imageSrc: '/god_paint.webp',
       title: 'The Invisible Story: The Creator',
     },
     {
