@@ -14,7 +14,7 @@ function VisionHero() {
       <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
         {/* Video backdrop */}
         <video id='vision-video-back'autoPlay loop muted style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}>
-          <source src="/God-creates.mp4" type="video/mp4" />
+          <source src="videos/God-creates.mp4" type="video/mp4" />
           {/* Add additional source elements for different video formats if needed */}
           Your browser does not support the video tag.
         </video>

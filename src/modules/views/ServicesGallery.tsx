@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import LoopVideo from '../components/LoopVideo';
@@ -73,38 +72,38 @@ const ImageIconButton = styled(({ component, to, ...props }:{ component?: React.
 
 const images = [
   {
-    url: '/god_paint.webp',
+    url: '/images/god_paint.webp',
     title: 'Illustrations',
     width: '40%',
     href: '/artwork'
   },
   {
-    component: <LoopVideo videoSource='web-preview.mp4' title='Web Applications'/>,
+    component: <LoopVideo videoSource='/videos/web-preview.mp4' title='Web Applications'/>,
     title: 'Web Design/Development',
     width: '40%',
     href: '/projects'
   },
   {
-    url: '/seamoss.webp',
+    url: '/images/seamoss.webp',
     title: 'Logos',
     width: '20%',
     href: '/logos'
   },
   
   {
-    component: <LoopVideo videoSource='wolf-walk.mp4' title='Animation'/>,
+    component: <LoopVideo videoSource='/videos/wolf-walk.mp4' title='Animation'/>,
     title: 'Animation',
     width: '30%',
     href: '/animations'
   },
   {
-    url: '/jadeparis.webp',
+    url: '/images/jadeparis.webp',
     title: 'Custom Artwork',
     width: '35%',
     href: '/custom'
   },
   {
-    component: <LoopVideo videoSource='teachContent.mp4' title='Tutoring/Learning Content'/>,
+    component: <LoopVideo videoSource='/videos/teachContent.mp4' title='Tutoring/Learning Content'/>,
     title: 'Tutoring/Learning Content',
     width: '35%',
     href: '/learning'

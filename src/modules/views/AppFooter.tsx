@@ -66,7 +66,7 @@ export default function AppFooter() {
               </Grid>
               
             </Grid>
-            <a id="resume" href="../../ResumeGeneral2.pdf" target="_blank" >
+            <a id="resume" href="../../pdfs/ResumeGeneral2.pdf" target="_blank" >
    <h6 style={resumeStyle}>View My Resume</h6>
  </a>
           </Grid>

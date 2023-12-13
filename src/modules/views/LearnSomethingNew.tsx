@@ -60,7 +60,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>JavaScript</Box>
                 <Box
                   component="img"
-                  src="/jscriptf1.webp"
+                  src="/images/jscriptf1.webp"
                   alt="JavaScript Functions"
                   sx={image}
                 />
@@ -74,7 +74,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Japanese</Box>
                 <Box
                   component="img"
-                  src="/hiraganaA.webp"
+                  src="/images/hiraganaA.webp"
                   alt="Hiragana video"
                   sx={image}
                 />
@@ -88,7 +88,7 @@ function LearnSomethingNew() {
                 <Box sx={number}>Digital Art</Box>
                 <Box
                   component="img"
-                  src="/dynamic1.webp"
+                  src="/images/dynamic1.webp"
                   alt="digital art video"
                   sx={image}
                 />

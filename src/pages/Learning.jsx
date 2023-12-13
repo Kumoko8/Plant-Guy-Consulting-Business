@@ -5,41 +5,36 @@ import withRoot from '../modules/withRoot';
 
 
 const learning = [
-    {
-      imageSrc: 'jscriptf1.webp',
-      title: 'Content Coming Soon',
-      
-    },
-    {
-      imageSrc: '/hiraganaA.webp',
-      title: 'Content Coming Soon',
-    },
-
-    {
-      imageSrc: '/dynamic1.webp',
-      title: 'Content Coming Soon',
-    },
-  ];
- 
-
-const projectButton = 
   {
-    label: 'Back',
-    url: '/'
-  }
+    imageSrc: 'images/jscriptf1.webp',
+    title: 'Content Coming Soon',
+
+  },
+  {
+    imageSrc: 'images/hiraganaA.webp',
+    title: 'Content Coming Soon',
+  },
+
+  {
+    imageSrc: 'images/dynamic1.webp',
+    title: 'Content Coming Soon',
+  },
+];
+
+
+const projectButton =
+{
+  label: 'Back',
+  url: '/'
+}
 
 function Projects() {
 
   return (
     <React.Fragment>
       <AppAppBar />
-      <DevProjects projects={learning} sectionTitle='Educational Content' button={projectButton}/>
-    
-      
-      
-      
-
-
+      <DevProjects projects={learning} sectionTitle='Educational Content' button={projectButton} />
     </React.Fragment>
-)}
+  )
+}
 export default withRoot(Projects);
