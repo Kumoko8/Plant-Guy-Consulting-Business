@@ -2,6 +2,7 @@ import * as React from 'react';
 import DevProjects from '../modules/views/DevProjects';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
+import withScrollToTop from '../modules/withScrollToTop';
 
 
 const animations = [
@@ -32,7 +33,7 @@ const projectButton =
 }
 
 function Projects() {
-
+ 
   return (
     <React.Fragment>
       <AppAppBar />
@@ -40,4 +41,4 @@ function Projects() {
     </React.Fragment>
   )
 }
-export default withRoot(Projects);
+export default withRoot(withScrollToTop(Projects));

@@ -2,7 +2,7 @@ import * as React from 'react';
 import DevProjects from '../modules/views/DevProjects';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
-
+import withScrollToTop from '../modules/withScrollToTop';
 
 const logos = [
   {
@@ -44,6 +44,9 @@ const projectButton =
 }
 
 function Projects() {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
   return (
     <React.Fragment>
@@ -52,4 +55,4 @@ function Projects() {
     </React.Fragment>
   )
 }
-export default withRoot(Projects);
+export default withRoot(withScrollToTop(Projects));

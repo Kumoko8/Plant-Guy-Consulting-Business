@@ -2,11 +2,14 @@ import * as React from 'react';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
 import HubSpotForm from 'react-hubspot-form';
-
+import withScrollToTop from '../modules/withScrollToTop';
 
 
 
 function Contact() {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
     return (
         <React.Fragment>
         <AppAppBar />
@@ -32,7 +35,6 @@ Contact form not working? Try <a href="https://share.hsforms.com/1uOdn7b8wR7yy4x
             src="https://meetings.hubspot.com/taylor-golden?embed=true"
             width="800"
             height="600"
-            frameBorder="0"
             style={{ border: '0' }}
             allowFullScreen
           />
@@ -45,4 +47,4 @@ Meeting form not working? Try <a href="https://meetings.hubspot.com/taylor-golde
     
       </React.Fragment>
 )};
-export default withRoot(Contact);
+export default withRoot(withScrollToTop(Contact));

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '../modules/components/Typography';
 import withRoot from '../modules/withRoot';
 import AppAppBar from '../modules/views/AppAppBar';
+import withScrollToTop from '../modules/withScrollToTop';
 
 function AboutMe() {
     return (
@@ -65,4 +65,4 @@ Illustration illuminates the heart. Education illuminates the mind. Technology b
     );
 
 }
-export default withRoot(AboutMe);
+export default withRoot(withScrollToTop(AboutMe));

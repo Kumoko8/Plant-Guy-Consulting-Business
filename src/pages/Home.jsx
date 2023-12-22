@@ -6,7 +6,7 @@ import LearnSomethingNew from '../modules/views/LearnSomethingNew';
 import VisionHero from '../modules/views/VisionHero';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
-
+import withScrollToTop from '../modules/withScrollToTop';
 
 const mainProjects = [
   {
