@@ -17,7 +17,7 @@ function AppAppBar() {
         <Toolbar sx={{ marginLeft: -3}}>
         <Link href="/">
           <Box sx={{}}>
-            <img style={{ maxHeight: '100%', width: 'auto', objectFit: 'contain' }} src="/images/kiiro-logo.webp" alt="Logo" />
+            <img style={{ maxHeight: '4.7rem', width: 'auto', objectFit: 'contain' }} src="/images/kiiro-logo.webp" alt="Logo" />
           </Box>
           </Link>
           <Box sx={{ flexGrow: 5, justifyContent: 'center'}} />
