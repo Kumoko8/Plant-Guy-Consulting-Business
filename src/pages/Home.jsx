@@ -43,7 +43,6 @@ function Index() {
       <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
       <LearnSomethingNew />
       <ContactRequestIntake />
-
     </React.Fragment>
   );
 }

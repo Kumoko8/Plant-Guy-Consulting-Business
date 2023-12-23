@@ -8,7 +8,6 @@ const learning = [
   {
     imageSrc: 'images/jscriptf1.webp',
     title: 'Content Coming Soon',
-
   },
   {
     imageSrc: 'images/hiraganaA.webp',
@@ -20,7 +19,6 @@ const learning = [
     title: 'Content Coming Soon',
   },
 ];
-
 
 const projectButton =
 {

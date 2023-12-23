@@ -4,26 +4,20 @@ import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
 import withScrollToTop from '../modules/withScrollToTop';
 
-
 const animations = [
 
   {
     imageSrc: 'images/wolf.webp',
     title: 'Content Coming Soon',
-
-
   },
   {
     imageSrc: 'images/angel-pest.webp',
     title: 'Content Coming Soon',
-
   },
   {
     imageSrc: 'images/kumo-sleeps.webp',
     title: 'Content Coming Soon',
-
   },
-
 ];
 
 const projectButton =
@@ -33,7 +27,7 @@ const projectButton =
 }
 
 function Projects() {
- 
+
   return (
     <React.Fragment>
       <AppAppBar />
