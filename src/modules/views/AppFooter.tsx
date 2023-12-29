@@ -20,7 +20,7 @@ function Copyright() {
 
     <React.Fragment >
       <span style={copyrightStyle}> {'© '}
-        TaylorGolden 
+        PlantGuy
       {new Date().getFullYear()}
 
       </span>

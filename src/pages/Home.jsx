@@ -1,31 +1,26 @@
 import * as React from 'react';
-import ServicesGallery from '../modules/views/ServicesGallery';
+
 import ContactRequestIntake from '../modules/views/ContactRequestIntake';
 import DevProjects from '../modules/views/DevProjects';
-import LearnSomethingNew from '../modules/views/LearnSomethingNew';
 import VisionHero from '../modules/views/VisionHero';
-import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
-import withScrollToTop from '../modules/withScrollToTop';
+
 
 const mainProjects = [
   {
-    imageSrc: '/images/dnd.webp',
-    title: 'D&D Character Generator',
-    description: 'Dive into a new world with your own role play character. Get ready to roll the dice.',
-    url: 'https://kumoko8.github.io/Front-End-App-DnD-Character-Project/'
+    imageSrc: '#',
+    title: 'Plant Care',
+    description: "We handle all routine maintainance on exisiting plants to keep them green and healthy. If you're tired of purchasing new plants to replace the dead ones.",
   },
   {
-    imageSrc: '/images/Invizlogo.webp',
-    title: 'INVIZ Productivity',
-    description: 'Transform the everyday things you have to do into a wonderful journey you want to be a part of.',
-    url: 'https://invizproductivity4.wordpress.com/'
+    imageSrc: '#',
+    title: 'Advice',
+    description: 'We provide tips on future purchases and placement of plants based on your lighting and space available.',
   },
   {
-    imageSrc: '/images/collectibles.webp',
-    title: 'Collectibles',
-    description: 'Keep all the antiques and novelties you treasure in one place and share them with others.',
-    url: 'https://project-collections-cfb3d3b9c8f8.herokuapp.com/'
+    imageSrc: '#',
+    title: 'Plant Supply',
+    description: 'We can help brighten your space and freshen your air with new plants to fit your exact needs.',
   },
 ];
 const currentProjectsButton =
@@ -37,11 +32,8 @@ const currentProjectsButton =
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <VisionHero />
-      <ServicesGallery />
-      <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
-      <LearnSomethingNew />
+      <DevProjects projects={mainProjects} sectionTitle="What We Offer" button={currentProjectsButton} />
       <ContactRequestIntake />
     </React.Fragment>
   );

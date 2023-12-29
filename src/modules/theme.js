@@ -1,7 +1,15 @@
 import { createTheme } from '@mui/material/styles';
-import { green, grey, red } from '@mui/material/colors';
+import { green, red} from '@mui/material/colors';
 
 const rawTheme = createTheme({
+  components: {
+    MuiToolbar: {
+      root: {
+        backgroundColor: 'red', // Your desired background color
+        color: 'white',             // Your desired text color
+      },
+    },
+  },
   palette: {
     primary: {
       light: '#69696a',
@@ -9,8 +17,8 @@ const rawTheme = createTheme({
       dark: '#1e1e1f',
     },
     secondary: {
-      light: 'rgb(236 253 245)',
-      main: 'rgb(253 224 71)',
+      light: '#000000',
+      main: '#ffffff',
       dark: '#e62958',
     },
     warning: {
@@ -51,7 +59,7 @@ const theme = {
     background: {
       ...rawTheme.palette.background,
       default: rawTheme.palette.common.white,
-      placeholder: grey[200],
+      placeholder: red,
     },
   },
   typography: {

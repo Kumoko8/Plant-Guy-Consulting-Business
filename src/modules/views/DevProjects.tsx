@@ -54,7 +54,7 @@ function DevProjects({ projects, sectionTitle, additionalProps, button }) {
                         sx={{ height: 205, transition: 'transform 0.3s ease-in-out' }}
                       />
                     </a>
-                    <Typography variant="h5" sx={{ my: 5 }}>
+                    <Typography variant="h5" sx={{ my: 5, color: 'white' }}>
                       {project.title}
                     </Typography>
                     <Typography variant="h6" >{project.description}</Typography>
