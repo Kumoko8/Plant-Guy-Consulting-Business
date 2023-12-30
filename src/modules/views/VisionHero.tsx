@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import '../../../src/index.css'
 import { Link } from 'react-router-dom'
 
 function VisionHero() {
@@ -11,7 +12,7 @@ function VisionHero() {
     <div>
 
 
-      <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh', position: 'relative' }}>
+      <Container component="section" sx={{ mt: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height:'auto', width:'100%', position: 'relative' }}>
   
         <Box
           sx={{
@@ -25,7 +26,7 @@ function VisionHero() {
             padding: '1rem',
           }}
         >
-          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 0, color: 'black' }}>
+          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 0, color: 'black', fontFamily:'Titan One'}}>
             PLANT GUY
           </Typography>
 

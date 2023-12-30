@@ -26,7 +26,7 @@ function ContactRequestIntake() {
         to="/contact"
       >
         <Typography variant="h4" component="span">
-          Design Requests? Click here.
+          Wanna Liven Your Space? Click here!
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>

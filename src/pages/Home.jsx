@@ -25,7 +25,7 @@ const mainProjects = [
 ];
 const currentProjectsButton =
 {
-  label: 'See More',
+  label: 'Learn More',
   url: '/projects'
 }
 

@@ -5,8 +5,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import PropTypes from 'prop-types';
 import Button from '../components/Button';
+import * as PropTypes from 'prop-types';
+
 
 const item: SxProps<Theme> = {
   display: 'flex',
@@ -39,7 +40,7 @@ function DevProjects({ projects, sectionTitle, additionalProps, button }) {
           </Grid>
         </Grid>
       </div>
-      <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}>
+      <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'success.main' }}>
         <div>
           <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
             <Grid container spacing={5}>
@@ -54,10 +55,10 @@ function DevProjects({ projects, sectionTitle, additionalProps, button }) {
                         sx={{ height: 205, transition: 'transform 0.3s ease-in-out' }}
                       />
                     </a>
-                    <Typography variant="h5" sx={{ my: 5, color: 'white' }}>
+                    <Typography variant="h5" sx={{ my: 1, color: 'black' }}>
                       {project.title}
                     </Typography>
-                    <Typography variant="h6" >{project.description}</Typography>
+                    <Typography variant="h6" sx={{ my: 5, color: 'white' }}>{project.description}</Typography>
                   </Box>
                 </Grid>
               ))}
