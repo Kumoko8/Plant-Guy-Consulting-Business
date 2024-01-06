@@ -29,9 +29,18 @@ const currentProjectsButton =
   url: '/projects'
 }
 
+const UnderConstructionBanner = () => (
+  <div style={{ background: 'red', color: 'white', padding: '10px', textAlign: 'center', fontSize: '18px' }}>
+    Under Construction: Taylor Golden is experiencing some technical difficulties at the moment. Some features may not be available during this period. In the meantime enjoy this plant page. Feel free to still contact me <a href="https://share.hsforms.com/1uOdn7b8wR7yy4xUNUmEeLAqfs72" target="_blank"> here. </a> Thank you for your patience!
+  </div>
+);
+
+const isUnderConstruction = true;
+
 function Index() {
   return (
     <React.Fragment>
+      {isUnderConstruction && <UnderConstructionBanner />}
       <VisionHero />
       <DevProjects projects={mainProjects} sectionTitle="What We Offer" button={currentProjectsButton} />
       <ContactRequestIntake />
