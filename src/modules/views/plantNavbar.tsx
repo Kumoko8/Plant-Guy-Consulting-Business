@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 
-function AppAppBar() {
+function plantNavbar() {
   return (
     <div>
       <AppBar  position="fixed">
@@ -41,4 +41,4 @@ function AppAppBar() {
   );
 }
 
-export default AppAppBar;
+export default plantNavbar;

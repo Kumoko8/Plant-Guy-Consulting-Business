@@ -1,26 +1,26 @@
 import * as React from 'react';
 
-import ContactRequestIntake from '../modules/views/ContactRequestIntake';
-import DevProjects from '../modules/views/DevProjects';
-import VisionHero from '../modules/views/VisionHero';
+import ContactRequestIntake from '../modules/views/livenYourSpaceRequest';
+import DevProjects from '../modules/views/whatWeOffer';
+import VisionHero from '../modules/views/plantGuyHero';
 import withRoot from '../modules/withRoot';
 
 
 const mainProjects = [
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantCare.webp',
     title: 'Plant Care',
-    description: "We handle all routine maintainance on exisiting plants to keep them green and healthy. If you're tired of purchasing new plants to replace the dead ones.",
+    description: "We specialize in comprehensive routine maintenance for existing plants, ensuring they thrive and remain vibrant. Say goodbye to constantly replacing wilted plants; let us breathe new life into your green spaces!",
   },
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantAdvice.webp',
     title: 'Advice',
-    description: 'We provide tips on future purchases and placement of plants based on your lighting and space available.',
+    description: 'We offer personalized guidance for future plant selections and optimal placement, taking into account your specific lighting conditions and available space. Elevate your greenery game with tailored advice for a flourishing office environment!',
   },
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantSupply.webp',
     title: 'Plant Supply',
-    description: 'We can help brighten your space and freshen your air with new plants to fit your exact needs.',
+    description: 'We excel at illuminating your surroundings and enhancing air quality by introducing carefully selected plants tailored to meet your precise requirements. Transform your space with the perfect green companions that bring both freshness and vibrancy.',
   },
 ];
 const currentProjectsButton =
