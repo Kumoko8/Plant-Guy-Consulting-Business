@@ -35,18 +35,20 @@ function AboutMe() {
         <Typography variant="h5" sx={{ margin: 5, mt: 15, mb: 0 }}>
           Web Developer | Illustrator | Educator | Family Man
         </Typography>
-        <Typography variant="h6" sx={{ marginBottom: 2, padding: 10, width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }}>
+
+      </div>
+        <Typography variant="h6" sx={{ marginBottom: 2, padding: 10, maxWidth: 1000, display: 'flex', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }}>
           <p style={{ justifyContent: 'center', display: 'flex' }}>
 
-            I seek to create content that illuminates the heart and mind. I am driven by the passion to represent the invisible God in as many creative ways as possible. Things we can't see are just as worthy of curiosity as the things that we can. Seven years experience teaching middle school math and science gives me insight into how people think & learn and has developed a love for uncovering the intricacies of life.   Our family is based in Austin, TX and we enjoy playing sports, growing our own food, and crafting!
+            Seven years experience teaching middle school math and science gives me insight into how people think & learn and has developed a love for helping people excel. A lifetime of being an artist has given me an eye for design and love for character development and illustration. My experience as a full-stack web developer has allowed me the opportunity to bring it all together and breathe life into learning.
+            We are based in Austin, TX and we enjoy playing sports, growing our own food, and crafting!
           </p>
         </Typography>
         <Typography sx={{ mb: 5 }}>
           <p>
-            Illustration illuminates the heart. Education illuminates the mind. Technology brings them together.
+            Art illuminates the heart. Education illuminates the mind. Technology brings them together.
           </p>
         </Typography>
-      </div>
     </React.Fragment>
   );
 }

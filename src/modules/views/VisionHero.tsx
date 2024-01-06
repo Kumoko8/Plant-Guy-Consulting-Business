@@ -15,10 +15,11 @@ function VisionHero() {
         {/* Video backdrop */}
         <video id='vision-video-back'autoPlay loop muted style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}>
           <source src="videos/God-creates.mp4" type="video/mp4" />
-          {/* Add additional source elements for different video formats if needed */}
           Your browser does not support the video tag.
         </video>
-
+        <img src='/images/visionBack.webp' style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}/>
+       
+      
         {/* Content overlay */}
         <Box
           sx={{
@@ -32,9 +33,21 @@ function VisionHero() {
             padding: '2rem',
           }}
         >
-          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
-            Transform your mindset
-          </Typography>
+          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white', position: 'relative' }}>
+  <Box
+    component="span"
+    sx={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Change the color and opacity as needed
+      zIndex: -1,
+    }}
+  />
+  Transform your mindset
+</Typography>
 
           {/* Add any additional content or components as needed */}
         </Box>
@@ -51,9 +64,30 @@ function VisionHero() {
 
         </Typography>
       </Link>
-      <Typography variant="h5" sx={{ marginBottom: 2 }}>
-        Web Developer | Illustrator | Educator | Family Man
-      </Typography>
+      <Typography
+  variant="h4"
+  sx={{
+    display: 'flex',
+    pb: 5,
+    maxWidth: 310,
+    margin: 'auto', // Center horizontally
+    textAlign: 'center', // Center text
+  }}
+>
+Full-Stack Web Developer
+</Typography>
+      <Typography
+  variant="h6"
+  sx={{
+    display: 'flex',
+    marginBottom: 2,
+    maxWidth: 700,
+    margin: 'auto', // Center horizontally
+    textAlign: 'center', // Center text
+  }}
+>
+   I use my art and education experience to create wonderfully intuitive applications and content that helps people transform the way they think about themselves and what they can do
+</Typography>
       {/* <Typography variant="h4" sx={{ marginBottom: 2 }}>
      Illustration illuminates the heart. Education illuminates the mind. I bring them together by creating web development
   </Typography> */}

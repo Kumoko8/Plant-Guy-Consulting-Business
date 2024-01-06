@@ -39,8 +39,8 @@ function Index() {
     <React.Fragment>
       <AppAppBar />
       <VisionHero />
-      <ServicesGallery />
       <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
+      <ServicesGallery />
       <LearnSomethingNew />
       <ContactRequestIntake />
     </React.Fragment>
