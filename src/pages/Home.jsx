@@ -1,8 +1,7 @@
 import * as React from 'react';
-import ServicesGallery from '../modules/views/ServicesGallery';
+
 import ContactRequestIntake from '../modules/views/ContactRequestIntake';
 import DevProjects from '../modules/views/DevProjects';
-import LearnSomethingNew from '../modules/views/LearnSomethingNew';
 import VisionHero from '../modules/views/VisionHero';
 import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
@@ -40,8 +39,6 @@ function Index() {
       <AppAppBar />
       <VisionHero />
       <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
-      <ServicesGallery />
-      <LearnSomethingNew />
       <ContactRequestIntake />
     </React.Fragment>
   );

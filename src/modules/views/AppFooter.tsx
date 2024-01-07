@@ -20,7 +20,7 @@ function Copyright() {
 
     <React.Fragment >
       <span style={copyrightStyle}> {'© '}
-        TaylorGolden 
+        PlantGuy
       {new Date().getFullYear()}
 
       </span>
@@ -64,9 +64,7 @@ export default function AppFooter() {
               </Grid>
               
             </Grid>
-            <a id="resume" href="../../pdfs/ResumeGeneral2.pdf" target="_blank" >
-   <h6 style={resumeStyle}>View My Resume</h6>
- </a>
+    
           </Grid>
         
         </Grid>

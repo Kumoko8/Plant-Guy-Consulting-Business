@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
@@ -26,7 +25,7 @@ function ContactRequestIntake() {
         to="/contact"
       >
         <Typography variant="h4" component="span">
-          Design Requests? Click here.
+          Wanna Liven Your Space? Click here!
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>

@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MuiToolbar from '@mui/material/Toolbar';
+import theme from '../theme';
 
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
   height: 64,

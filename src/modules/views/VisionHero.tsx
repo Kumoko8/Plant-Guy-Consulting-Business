@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import '../../../src/index.css'
 import { Link } from 'react-router-dom'
 
 function VisionHero() {
@@ -11,86 +12,62 @@ function VisionHero() {
     <div>
 
 
-      <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
-        {/* Video backdrop */}
-        <video id='vision-video-back'autoPlay loop muted style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}>
-          <source src="videos/God-creates.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <img src='/images/visionBack.webp' style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}/>
-       
-      
-        {/* Content overlay */}
-        <Box
+        <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
+          {/* Video backdrop */}
+          <video id='vision-video-back' autoPlay loop muted style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}>
+            <source src="videos/God-creates.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <img src='/images/visionBack.webp' style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }} />
+
+
+          {/* Content overlay */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1,
+              color: 'white', // Adjust text color
+              textAlign: 'center',
+              padding: '1rem',
+            }}
+          >
+            <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
+              Transform your mindset
+            </Typography>
+
+
+          </Box>
+
+        </Container>
+
+        <Typography
+          variant="h4"
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1,
-            color: 'white', // Adjust text color
-            textAlign: 'center',
-            padding: '2rem',
+            pb: 5,
+            maxWidth: 310,
+            margin: 'auto', // Center horizontally
+            textAlign: 'center', // Center text
           }}
         >
-          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white', position: 'relative' }}>
-  <Box
-    component="span"
-    sx={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Change the color and opacity as needed
-      zIndex: -1,
-    }}
-  />
-  Transform your mindset
-</Typography>
-
-          {/* Add any additional content or components as needed */}
-        </Box>
-
-      </Container>
-     
-      <Link to='/about' 
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ textDecoration: isHovered ? 'underline' : 'none', textDecorationColor: 'yellow'}} >
-        <Typography variant="h2" sx={{ marginBottom: 2 }}>
-
-          Taylor Golden
-
+          Full-Stack Web Developer
         </Typography>
-      </Link>
-      <Typography
-  variant="h4"
-  sx={{
-    display: 'flex',
-    pb: 5,
-    maxWidth: 310,
-    margin: 'auto', // Center horizontally
-    textAlign: 'center', // Center text
-  }}
->
-Full-Stack Web Developer
-</Typography>
-      <Typography
-  variant="h6"
-  sx={{
-    display: 'flex',
-    marginBottom: 2,
-    maxWidth: 700,
-    margin: 'auto', // Center horizontally
-    textAlign: 'center', // Center text
-  }}
->
-   I use my art and education experience to create wonderfully intuitive applications and content that helps people transform the way they think about themselves and what they can do
-</Typography>
-      {/* <Typography variant="h4" sx={{ marginBottom: 2 }}>
-     Illustration illuminates the heart. Education illuminates the mind. I bring them together by creating web development
-  </Typography> */}
+        <Typography
+          variant="h6"
+          sx={{
+            display: 'flex',
+            marginBottom: 2,
+            maxWidth: 700,
+            margin: 'auto', // Center horizontally
+            textAlign: 'center', // Center text
+          }}
+        >
+          I use my art and education experience to create wonderfully intuitive applications and content that helps people transform the way they think about themselves and what they can do
+        </Typography>
+
     </div>
   );
 }

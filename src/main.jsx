@@ -5,13 +5,7 @@ import './index.css'
 
 import App from './App.jsx'
 import Error from './pages/Error';
-import Projects from './pages/Projects.jsx';
 import Contact from './pages/Contact';
-import Artwork from './pages/Artwork.jsx';
-import Logos from './pages/Logos';
-import Custom from './pages/Custom'
-import Animations from './pages/Animations'
-import Learning from './pages/Learning'
 import Home from './pages/Home';
 import About from './pages/AboutMe'
 
@@ -31,33 +25,10 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: '/Projects',
-        element: <Projects />,
-      },
-      {
         path: '/Contact',
         element: <Contact />,
       },
-      {
-        path: '/Artwork',
-        element: <Artwork/>,
-      },
-      {
-        path: '/Animations',
-        element: <Animations />,
-      },
-      {
-        path: '/Custom',
-        element: <Custom />,
-      },
-      {
-        path: '/Learning',
-        element: <Learning />,
-      },
-      {
-        path: '/Logos',
-        element: <Logos />,
-      },
+      
     ],
   },
 ]);
