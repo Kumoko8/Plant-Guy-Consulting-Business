@@ -33,7 +33,7 @@ function Copyright() {
 
 
 
-export default function AppFooter() {
+export default function plantFooter() {
   const resumeStyle = {
     color: "white"
   }

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function ContactRequestIntake() {
+function livenYourSpaceRequest() {
   return (
     <Container
       component="section"
@@ -35,4 +35,4 @@ function ContactRequestIntake() {
   );
 }
 
-export default ContactRequestIntake;
+export default livenYourSpaceRequest;

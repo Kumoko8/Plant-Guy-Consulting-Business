@@ -3,28 +3,24 @@ import * as React from 'react';
 import ContactRequestIntake from '../modules/views/ContactRequestIntake';
 import DevProjects from '../modules/views/DevProjects';
 import VisionHero from '../modules/views/VisionHero';
-import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
 import withScrollToTop from '../modules/withScrollToTop';
 
 const mainProjects = [
   {
-    imageSrc: '/images/dnd.webp',
-    title: 'D&D Character Generator',
-    description: 'Dive into a new world with your own role play character. Get ready to roll the dice.',
-    url: 'https://kumoko8.github.io/Front-End-App-DnD-Character-Project/'
+    imageSrc: '#',
+    title: 'Plant Care',
+    description: "We handle all routine maintainance on exisiting plants to keep them green and healthy. If you're tired of purchasing new plants to replace the dead ones.",
   },
   {
-    imageSrc: '/images/Invizlogo.webp',
-    title: 'INVIZ Productivity',
-    description: 'Transform the everyday things you have to do into a wonderful journey you want to be a part of.',
-    url: 'https://invizproductivity4.wordpress.com/'
+    imageSrc: '#',
+    title: 'Advice',
+    description: 'We provide tips on future purchases and placement of plants based on your lighting and space available.',
   },
   {
-    imageSrc: '/images/collectibles.webp',
-    title: 'Collectibles',
-    description: 'Keep all the antiques and novelties you treasure in one place and share them with others.',
-    url: 'https://project-collections-cfb3d3b9c8f8.herokuapp.com/'
+    imageSrc: '#',
+    title: 'Plant Supply',
+    description: 'We can help brighten your space and freshen your air with new plants to fit your exact needs.',
   },
 ];
 const currentProjectsButton =
@@ -33,10 +29,17 @@ const currentProjectsButton =
   url: '/projects'
 }
 
+const UnderConstructionBanner = () => (
+  <div style={{ background: 'red', color: 'white', padding: '10px', textAlign: 'center', fontSize: '18px' }}>
+    Under Construction: Taylor Golden is experiencing some technical difficulties at the moment. Some features may not be available during this period. In the meantime enjoy this plant page. Feel free to still contact me <a href="https://share.hsforms.com/1uOdn7b8wR7yy4xUNUmEeLAqfs72" target="_blank"> here. </a> Thank you for your patience!
+  </div>
+);
+
+const isUnderConstruction = true;
+
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <VisionHero />
       <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
       <ContactRequestIntake />

@@ -1,8 +1,6 @@
 
 import { Outlet } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar from './modules/views/AppAppBar';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../src/modules/theme'; // Import your custom theme
 
@@ -14,13 +12,11 @@ function App() {
     <div>
       <Grid container>
         <Grid item xs={12}>
-          <AppAppBar />
         </Grid>
       </Grid>
       <main className="mx-3">
         <Outlet />
       </main>
-      <AppFooter />
     </div>
     </ThemeProvider>
   );

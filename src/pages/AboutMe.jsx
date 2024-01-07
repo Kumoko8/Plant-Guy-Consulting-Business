@@ -3,13 +3,11 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '../modules/components/Typography';
 import withRoot from '../modules/withRoot';
-import AppAppBar from '../modules/views/AppAppBar';
 import withScrollToTop from '../modules/withScrollToTop';
 
 function AboutMe() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <div>
         <Container component="section" sx={{ mt: -6, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
           <img

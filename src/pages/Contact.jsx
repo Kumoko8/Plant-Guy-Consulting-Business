@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AppAppBar from '../modules/views/AppAppBar';
 import withRoot from '../modules/withRoot';
 import HubSpotForm from 'react-hubspot-form';
 import withScrollToTop from '../modules/withScrollToTop';
@@ -12,7 +11,6 @@ function Contact() {
   }, []);
   return (
     <React.Fragment>
-      <AppAppBar />
       <div>
         <div>
           <h1> Contact</h1>
