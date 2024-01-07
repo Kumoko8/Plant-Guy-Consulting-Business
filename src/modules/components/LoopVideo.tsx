@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Typography from '../components/Typography';
+import Typography from './Typography';
 
 interface LoopVideoProps {
   videoSource: string;
@@ -39,7 +39,7 @@ const LoopVideo: React.FC<LoopVideoProps> = ({ videoSource, title }) => {
 
     return () => {
       if (videoElement) {
-        videoElement.removeEventListener('loadedmetadata', () => {});
+        videoElement.removeEventListener('loadedmetadata', () => { });
         videoElement.removeEventListener('mouseenter', handleMouseEnter);
         videoElement.removeEventListener('mouseleave', handleMouseLeave);
       }
@@ -83,12 +83,12 @@ const LoopVideo: React.FC<LoopVideoProps> = ({ videoSource, title }) => {
             component="h3"
             variant="h5"
             color="black"
-            style={{ zIndex: 2, position: 'relative', marginBottom: '0px', textAlign: 'center'}}
+            style={{ zIndex: 2, position: 'relative', marginBottom: '0px', textAlign: 'center' }}
           >
             {title}
-            <div style={{borderBottom: '4px solid white', paddingBottom: '14px', backgroundColor: 'transparent', width: '7%', margin: '0 auto', display: 'block'}}/>
-            
-            
+            <div style={{ borderBottom: '4px solid white', paddingBottom: '14px', backgroundColor: 'transparent', width: '7%', margin: '0 auto', display: 'block' }} />
+
+
           </Typography>
         </div>
       )}

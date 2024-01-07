@@ -1,31 +1,31 @@
 import * as React from 'react';
 
-import ContactRequestIntake from '../modules/views/ContactRequestIntake';
-import DevProjects from '../modules/views/DevProjects';
-import VisionHero from '../modules/views/VisionHero';
+import LivenYourSpaceRequest from '../modules/views/livenYourSpaceRequest';
+import PlantHero from '../modules/views/plantHero';
 import withRoot from '../modules/withRoot';
 import withScrollToTop from '../modules/withScrollToTop';
+import WhatWeOffer from '../modules/views/whatWeOffer';
 
 const mainProjects = [
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantCare.webp',
     title: 'Plant Care',
     description: "We handle all routine maintainance on exisiting plants to keep them green and healthy. If you're tired of purchasing new plants to replace the dead ones.",
   },
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantAdvice.webp',
     title: 'Advice',
     description: 'We provide tips on future purchases and placement of plants based on your lighting and space available.',
   },
   {
-    imageSrc: '#',
+    imageSrc: '/images/plantSupply.webp',
     title: 'Plant Supply',
     description: 'We can help brighten your space and freshen your air with new plants to fit your exact needs.',
   },
 ];
 const currentProjectsButton =
 {
-  label: 'See More',
+  label: 'Learn More',
   url: '/projects'
 }
 
@@ -40,11 +40,11 @@ const isUnderConstruction = true;
 function Index() {
   return (
     <React.Fragment>
-      <VisionHero />
-      <DevProjects projects={mainProjects} sectionTitle="Dev Projects" button={currentProjectsButton} />
-      <ContactRequestIntake />
+      <PlantHero />
+      <WhatWeOffer projects={mainProjects} button={currentProjectsButton} sectionTitle ={'What We Do'}/>
+      <LivenYourSpaceRequest />
     </React.Fragment>
   );
 }
 
-export default withRoot(Index);
+export default withRoot(withScrollToTop(Index));

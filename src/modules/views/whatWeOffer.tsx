@@ -19,11 +19,11 @@ const item: SxProps<Theme> = {
 const imageContainer: SxProps<Theme> = {
   position: 'relative',
   '&:hover img': {
-    transform: 'scale(1.2)', // Increase the size on hover
+    opacity: 0.5, // Increase the size on hover
   },
 };
 
-function whatWeOffer({ projects, sectionTitle, additionalProps, button }) {
+function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
   const mergedProjects = projects.map((project, index) => ({
     ...project,
     ...(additionalProps?.[index] || {}), // Check if additionalProps is defined
@@ -40,19 +40,19 @@ function whatWeOffer({ projects, sectionTitle, additionalProps, button }) {
           </Grid>
         </Grid>
       </div>
-      <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'success.main' }}>
+      <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'primary.light' }}>
         <div>
           <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
             <Grid container spacing={5}>
               {mergedProjects.map((project, index) => (
-                <Grid key={index} item xs={12} md={4}>
+                <Grid key={index} item xs={12}>
                   <Box sx={{ ...item, ...imageContainer } as SxProps<Theme>}>
                     <a href={project.url} target="_blank" rel="noopener noreferrer">
                       <Box
                         component="img"
                         src={project.imageSrc}
                         alt={`project-${index}`}
-                        sx={{ height: 205, transition: 'transform 0.3s ease-in-out' }}
+                        sx={{ width: '100%', height: 'auto' }}
                       />
                     </a>
                     <Typography variant="h5" sx={{ my: 1, color: 'black' }}>
@@ -82,7 +82,7 @@ function whatWeOffer({ projects, sectionTitle, additionalProps, button }) {
   );
 }
 
-whatWeOffer.propTypes = {
+WhatWeOffer.propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
       imageSrc: PropTypes.string.isRequired,
@@ -99,4 +99,4 @@ whatWeOffer.propTypes = {
   }),
 };
 
-export default whatWeOffer;
+export default WhatWeOffer;

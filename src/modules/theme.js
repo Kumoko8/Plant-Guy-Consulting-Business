@@ -12,7 +12,7 @@ const rawTheme = createTheme({
   },
   palette: {
     primary: {
-      light: '#ffffff',
+      light: 'rgb(126 198 81)',
       main: '#ffffff',
       dark: '#ffffff',
     },

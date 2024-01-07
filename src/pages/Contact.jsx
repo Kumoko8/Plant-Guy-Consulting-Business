@@ -24,21 +24,8 @@ function Contact() {
           loading={<div>Loading...</div>}
         />
         Contact form not working? Try <a href="https://share.hsforms.com/1uOdn7b8wR7yy4xUNUmEeLAqfs72" target="_blank"> this </a> link
-        <div>
-          <h2> or Set Up a Time to Chat! </h2>
         </div>
-
-        <div className="meetings-iframe-container">
-          <iframe
-            src="https://meetings.hubspot.com/taylor-golden?embed=true"
-            width="800"
-            height="600"
-            style={{ border: '0' }}
-            allowFullScreen
-          />
-        </div>
-        Meeting form not working? Try <a href="https://meetings.hubspot.com/taylor-golden" target="_blank"> this </a> link
-      </div>
+       
     </React.Fragment>
   )
 };
