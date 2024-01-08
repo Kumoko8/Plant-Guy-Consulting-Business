@@ -1,7 +1,12 @@
 import * as React from 'react';
-import withRoot from '../modules/withRoot';
+import Typography from '../modules/components/Typography';
+import Box from '@mui/material/Box';
+import WithRoot from '../modules/withRoot';
 import HubSpotForm from 'react-hubspot-form';
-import withScrollToTop from '../modules/withScrollToTop';
+import WithScrollToTop from '../modules/WithScrollToTop';
+import Button from '../modules/components/Button';
+
+
 
 
 
@@ -13,20 +18,33 @@ function Contact() {
     <React.Fragment>
       <div>
         <div>
-          <h1> Contact</h1>
+          <Typography variant="h3" component="h3" gutterBottom sx={{ marginBottom: 2, color: 'black' }}>
+            Set up your free consultation!
+          </Typography>
         </div>
-        <div> <h2> Let's Create Together! </h2></div>
-        <HubSpotForm
-          portalId="44406398"
-          formId="b8e767ed-bf30-47bc-b2e3-150d52611e2c"
-          onSubmit={() => console.log('Form submitted')}
-          onReady={(form) => console.log('Form ready:', form)}
-          loading={<div>Loading...</div>}
-        />
-        Contact form not working? Try <a href="https://share.hsforms.com/1uOdn7b8wR7yy4xUNUmEeLAqfs72" target="_blank"> this </a> link
-        </div>
-       
+
+
+        <Box sx={{ display: 'flexbox', flexDirection: 'column', flexGrow: 1 }}>
+          <HubSpotForm
+            portalId="44406398"
+            formId="b8e767ed-bf30-47bc-b2e3-150d52611e2c"
+            onSubmit={() => console.log('Form submitted')}
+            onReady={(form) => console.log('Form ready:', form)}
+            loading={<div>Loading...</div>}
+          />
+        </Box>
+        <Button
+          color="secondary"
+          size="large"
+          variant="contained"
+          component="a"
+          href='/'
+          sx={{ mt: 5, border: 'solid' }}
+        >
+          Back
+        </Button>
+      </div>
     </React.Fragment>
   )
 };
-export default withRoot(withScrollToTop(Contact));
+export default WithRoot(WithScrollToTop(Contact));

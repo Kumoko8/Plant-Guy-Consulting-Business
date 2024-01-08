@@ -18,9 +18,9 @@ const item: SxProps<Theme> = {
 
 const imageContainer: SxProps<Theme> = {
   position: 'relative',
-  '&:hover img': {
-    opacity: 0.5, // Increase the size on hover
-  },
+  // '&:hover img': {
+  //   opacity: 0.5, // Increase the size on hover
+  // },
 };
 
 function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
@@ -34,7 +34,7 @@ function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
       <div>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h3" marked="center" component="h3" sx={{ mb: 1, mt: 10 }}>
+            <Typography variant="h2" marked="center" component="h3" sx={{ mb: 1, mt: 3 }}>
               {sectionTitle}
             </Typography>
           </Grid>
@@ -42,24 +42,28 @@ function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
       </div>
       <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'primary.light' }}>
         <div>
-          <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
+          <Container sx={{ mt: 10, mb: 30, display: 'flex', position: 'relative' }}>
             <Grid container spacing={5}>
               {mergedProjects.map((project, index) => (
                 <Grid key={index} item xs={12}>
                   <Box sx={{ ...item, ...imageContainer } as SxProps<Theme>}>
+                  <Typography variant="h3" sx={{ color: 'black', mb: 3 }}>
+                      {project.title}
+                    </Typography>
                     <a href={project.url} target="_blank" rel="noopener noreferrer">
                       <Box
                         component="img"
                         src={project.imageSrc}
-                        alt={`project-${index}`}
-                        sx={{ width: '100%', height: 'auto' }}
+                        alt={`plantImage-${index}`}
+                        sx={{ width: '100%', mb: 1, height:'300px',justifyContent: 'center'}}
                       />
                     </a>
-                    <Typography variant="h5" sx={{ my: 1, color: 'black' }}>
-                      {project.title}
-                    </Typography>
-                    <Typography variant="h6" sx={{ my: 5, color: 'white' }}>{project.description}</Typography>
                   </Box>
+                    <Box sx={{ mt: -100, maxWidth: '35rem', justifyContent: 'center', margin: 'auto' }}>
+                  
+                    <Typography variant="h6" sx={{ my: 2, color: 'white' }}>{project.description}</Typography>
+
+                    </Box>
                 </Grid>
               ))}
             </Grid>

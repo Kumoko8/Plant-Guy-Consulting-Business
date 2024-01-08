@@ -14,26 +14,21 @@ const rawTheme = createTheme({
     primary: {
       light: 'rgb(126 198 81)',
       main: '#ffffff',
-      dark: '#ffffff',
     },
     secondary: {
       light: '#000000',
       main: '#ffffff',
-      dark: '#e62958',
     },
     warning: {
       main: 'rgb(253 224 71)',
-      dark: '#ffb25e',
     },
     error: {
       light: red[50],
       main: red[500],
-      dark: red[700],
     },
     success: {
       light: green[50],
       main: green[500],
-      dark: green[700],
     },
   },
   typography: {
@@ -95,6 +90,7 @@ const theme = {
     h6: {
       ...rawTheme.typography.h6,
       fontSize: 18,
+      fontFamily: 'Roboto'
     },
     subtitle1: {
       ...rawTheme.typography.subtitle1,

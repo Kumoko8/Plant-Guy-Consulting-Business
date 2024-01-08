@@ -28,9 +28,6 @@ function livenYourSpaceRequest() {
           Wanna Liven Your Space? Click here!
         </Typography>
       </Button>
-      <Typography variant="subtitle1" sx={{ my: 3 }}>
-        Your imagination is your only limit.
-      </Typography>
     </Container>
   );
 }

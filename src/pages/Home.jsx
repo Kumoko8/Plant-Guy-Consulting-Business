@@ -2,25 +2,25 @@ import * as React from 'react';
 
 import LivenYourSpaceRequest from '../modules/views/livenYourSpaceRequest';
 import PlantHero from '../modules/views/plantHero';
-import withRoot from '../modules/withRoot';
-import withScrollToTop from '../modules/withScrollToTop';
+import WithRoot from '../modules/withRoot';
+import WithScrollToTop from '../modules/WithScrollToTop';
 import WhatWeOffer from '../modules/views/whatWeOffer';
 
 const mainProjects = [
   {
     imageSrc: '/images/plantCare.webp',
     title: 'Plant Care',
-    description: "We handle all routine maintainance on exisiting plants to keep them green and healthy. If you're tired of purchasing new plants to replace the dead ones.",
+    description: "We specialize in comprehensive routine maintenance for existing plants, ensuring they thrive and remain vibrant. Say goodbye to constantly replacing wilted plants; let us breathe new life into your green spaces!",
   },
   {
     imageSrc: '/images/plantAdvice.webp',
-    title: 'Advice',
-    description: 'We provide tips on future purchases and placement of plants based on your lighting and space available.',
+    title: 'Consultation',
+    description: 'We offer personalized guidance for future plant selections and optimal placement, taking into account your specific lighting conditions and available space. Elevate your greenery game with tailored advice for a flourishing botanical environment!',
   },
   {
     imageSrc: '/images/plantSupply.webp',
     title: 'Plant Supply',
-    description: 'We can help brighten your space and freshen your air with new plants to fit your exact needs.',
+    description: 'We excel at illuminating your surroundings and enhancing air quality by introducing carefully selected plants tailored to meet your precise requirements. Transform your space with the perfect green companions that bring both freshness and vibrancy.',
   },
 ];
 const currentProjectsButton =
@@ -47,4 +47,4 @@ function Index() {
   );
 }
 
-export default withRoot(withScrollToTop(Index));
+export default WithRoot(WithScrollToTop(Index));
