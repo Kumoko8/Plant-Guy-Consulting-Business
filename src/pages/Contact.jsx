@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Typography from '../modules/components/Typography';
 import Box from '@mui/material/Box';
-import WithRoot from '../modules/withRoot';
+import withRoot from '../modules/withRoot';
 import HubSpotForm from 'react-hubspot-form';
-import WithScrollToTop from '../modules/WithScrollToTop';
+import withScrollToTop from '../modules/withScrollToTop';
 import Button from '../modules/components/Button';
 
 
@@ -47,4 +47,4 @@ function Contact() {
     </React.Fragment>
   )
 };
-export default WithRoot(WithScrollToTop(Contact));
+export default withRoot(withScrollToTop(Contact));

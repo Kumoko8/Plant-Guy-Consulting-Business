@@ -4,7 +4,8 @@
       "lib": ["dom", "es2015"],
       "jsx": "react",
       "module": "commonjs",
-      // Other options...
+      "esModuleInterop": true,
+      
     },
     "types": ["react"]
   }

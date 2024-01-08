@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import LivenYourSpaceRequest from '../modules/views/livenYourSpaceRequest';
 import PlantHero from '../modules/views/plantHero';
-import WithRoot from '../modules/withRoot';
-import WithScrollToTop from '../modules/WithScrollToTop';
+import withRoot from '../modules/withRoot';
+import withScrollToTop from '../modules/withScrollToTop';
 import WhatWeOffer from '../modules/views/whatWeOffer';
 
 const mainProjects = [
@@ -47,4 +47,4 @@ function Index() {
   );
 }
 
-export default WithRoot(WithScrollToTop(Index));
+export default withRoot(withScrollToTop(Index));

@@ -3,10 +3,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 
-export default function WithRoot<P extends JSX.IntrinsicAttributes>(
+export default function withRoot<P extends JSX.IntrinsicAttributes>(
   Component: React.ComponentType<P>,
 ) {
-  function WithRoot(props: P) {
+  function withRoot(props: P) {
     return (
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -19,5 +19,5 @@ export default function WithRoot<P extends JSX.IntrinsicAttributes>(
     );
   }
 
-  return WithRoot;
+  return withRoot;
 }
