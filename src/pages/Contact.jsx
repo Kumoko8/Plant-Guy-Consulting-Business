@@ -19,7 +19,7 @@ function Contact() {
       <div>
         <div>
           <Typography variant="h3" component="h3" gutterBottom sx={{ marginBottom: 2, color: 'black' }}>
-            Set up your free consultation!
+            Book a consultation
           </Typography>
         </div>
 

@@ -14,7 +14,7 @@ function livenYourSpaceRequest() {
     >
       <Button
         sx={{
-          border: '4px solid currentColor',
+          border: 'solid black',
           borderRadius: 0,
           height: 'auto',
           py: 2,

@@ -12,7 +12,7 @@ const rawTheme = createTheme({
   },
   palette: {
     primary: {
-      light: 'rgb(126 198 81)',
+      light: 'rgb(0 32 35)',
       main: '#ffffff',
     },
     secondary: {
@@ -98,8 +98,9 @@ const theme = {
     },
     body1: {
       ...rawTheme.typography.body2,
-      fontWeight: rawTheme.typography.fontWeightRegular,
+      fontWeight: rawTheme.typography.fontWeightMedium,
       fontSize: 16,
+      fontFamily: 'Lexend'
     },
     body2: {
       ...rawTheme.typography.body1,

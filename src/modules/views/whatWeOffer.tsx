@@ -47,21 +47,21 @@ function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
               {mergedProjects.map((project, index) => (
                 <Grid key={index} item xs={12}>
                   <Box sx={{ ...item, ...imageContainer } as SxProps<Theme>}>
-                  <Typography variant="h3" sx={{ color: 'black', mb: 3 }}>
+                  <Typography variant="h3" sx={{ color: 'white', mb: 3 }}>
                       {project.title}
                     </Typography>
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                  
                       <Box
                         component="img"
                         src={project.imageSrc}
                         alt={`plantImage-${index}`}
-                        sx={{ width: '100%', mb: 1, height:'300px',justifyContent: 'center'}}
+                        sx={{ width: '100%', mb: 1, height:'350px',justifyContent: 'center'}}
                       />
-                    </a>
+              
                   </Box>
                     <Box sx={{ mt: -100, maxWidth: '35rem', justifyContent: 'center', margin: 'auto' }}>
                   
-                    <Typography variant="h6" sx={{ my: 2, color: 'white' }}>{project.description}</Typography>
+                    <Typography variant="body1" sx={{ my: 2, color: 'white' }}>{project.description}</Typography>
 
                     </Box>
                 </Grid>
@@ -75,7 +75,7 @@ function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
           color="secondary"
           size="large"
           variant="contained"
-          component="a"
+         
           href={button.url}
           sx={{ mt: -40 }}
         >
@@ -92,7 +92,6 @@ WhatWeOffer.propTypes = {
       imageSrc: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
-      url: PropTypes.string,
     })
   ).isRequired,
   sectionTitle: PropTypes.string.isRequired,
