@@ -68,15 +68,15 @@ export default function BackToTop(props: Props) {
             Plant Guy
           </Typography>
           </Link>
-          <Box sx={{ display: 'flex', marginLeft: 'auto', gap: '20px' }} >
+          <Box sx={{ display: 'flex', marginLeft: 'auto', gap: '1em' }} >
 
           <Link to="/about" style={{ textDecoration: 'none', color: 'White', margin: ' 10px' }}>
           <Typography>
-            About Us
+            About
           </Typography>
         </Link>
-        <Link to="/contact" style={{ textDecoration: 'none', color: 'black', backgroundColor: 'rgb(255, 135, 165)', padding: '8px 15px', borderRadius: '5px' }}>
-          <Typography>
+        <Link to="/contact" style={{ textDecoration: 'none', color: 'black', backgroundColor: 'rgb(255, 135, 165)', padding: '0', borderRadius: '5px', textAlign: 'center', justifyContent:'center', alignContent:'center' }}>
+          <Typography sx={{textAlign: 'center', alignContent: 'center', justifyContent: 'center', mt: 0.5, padding: 1}}>
             Consultation
           </Typography>
         </Link>

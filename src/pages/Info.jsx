@@ -41,7 +41,7 @@ const InfoPage = () => {
       </Typography>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <img src="/images/plant-care.jpg" alt="Plant Care" style={{ maxWidth: '100%', height: 'auto' }} />
+        <img src="/images/" alt="Plant Care image" style={{ maxWidth: '100%', height: 'auto' }} />
       </Box>
     <Button variant="contained" href='/'>
 Back

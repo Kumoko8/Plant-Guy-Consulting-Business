@@ -24,30 +24,62 @@ function PlantHero() {
           textAlign: 'center',
           padding: '1rem',
           mt: -40,
+          pb: 10,
           backgroundColor: 'none',
           position: 'relative'
         }}
       >
-        <div style={{alignContent: 'center', justifyContent: 'center'}}>
-          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
+        <div id="hero" style={{ alignContent: 'center', justifyContent: 'center' }}>
+          <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 0, color: 'white' }}>
             Plant Guy
           </Typography>
           <Typography variant="h1" component="h1" gutterBottom sx={{ marginBottom: 2, color: 'white' }}>
             Consulting
           </Typography>
+          <style>
+          {`
+          @media (max-width: 800px) {
+            #hero {
+              text-align: center;
+            }
+
+            #hero h1 {
+              font-size: 2em;
+            }
+          }
+        `}
+      </style>
+
+
         </div>
+        <div id='sub'>
         <Typography
           variant="h4"
+          component="h4"
           sx={{
             display: 'flex',
             pb: 5,
-
             margin: 'auto', // Center horizontally
-            textAlign: 'center', // Center text
+            textAlign: 'center',
+            maxWidth: '95%' // Center text
           }}
         >
           Indoor Plants | Succulents | Accessories
         </Typography>
+        <style>
+          {`
+          @media (max-width: 800px) {
+            #sub {
+              text-align: center;
+            }
+
+            #sub h4 {
+              font-size: 1em;
+            }
+          }
+        `}
+      </style>
+        </div>
       </Box>
 
 

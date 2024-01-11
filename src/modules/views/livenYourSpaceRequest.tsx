@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import Button from '../components/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import { Link } from 'react-router-dom';
 
 
 
@@ -13,18 +12,19 @@ function livenYourSpaceRequest() {
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 9 }}
     >
       <Button
+      variant='contained'
+      color='primary'
+        href=
+        '/contact'
         sx={{
           border: 'solid black',
           borderRadius: 0,
           height: 'auto',
           py: 2,
-          px: 5,
-         
+          px: 5
         }}
-        component={Link}
-        to="/contact"
       >
-        <Typography variant="h4" component="span">
+        <Typography variant="h4" component="h4">
           Wanna Liven Your Space? Click here!
         </Typography>
       </Button>
