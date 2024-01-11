@@ -11,12 +11,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <div>
-      <AppBar />
+      <AppBar id="nav-bar" />
       <Grid container>
         <Grid item xs={12}>
         </Grid>
       </Grid>
-      <main className="mx-3">
+      <main >
         <Outlet />
       </main>
     </div>

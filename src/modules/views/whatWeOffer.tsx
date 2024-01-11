@@ -55,7 +55,7 @@ function WhatWeOffer({ projects, sectionTitle, additionalProps, button }) {
                         component="img"
                         src={project.imageSrc}
                         alt={`plantImage-${index}`}
-                        sx={{ width: '100%', mb: 1, height:'350px',justifyContent: 'center'}}
+                        sx={{ width: '100%', mb: 1, maxHeight:'20rem',justifyContent: 'center'}}
                       />
               
                   </Box>

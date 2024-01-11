@@ -13,7 +13,7 @@ const rawTheme = createTheme({
   palette: {
     primary: {
       light: 'rgb(0 32 35)',
-      main: '#ffffff',
+      main: 'rgb(255, 135, 165)',
     },
     secondary: {
       light: '#000000',
@@ -89,7 +89,7 @@ const theme = {
     },
     h6: {
       ...rawTheme.typography.h6,
-      fontSize: 18,
+      fontSize: 20,
       fontFamily: 'Roboto'
     },
     subtitle1: {

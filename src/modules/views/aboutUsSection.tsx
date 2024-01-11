@@ -8,13 +8,13 @@ const AboutUs: React.FC = () => {
         About Us
       </Typography>
       
-      <Typography variant="body1" align="center" paragraph sx={{maxWidth:'80%', pb: 4, margin:'auto'}}>
+      <Typography variant="body1" align="center" paragraph sx={{maxWidth:'80%', pb: 4, margin:'0 auto'}}>
         Welcome to Plant Guy Consulting, your trusted partner in cultivating greenery within office spaces. We specialize in providing expert care, personalized advice, and the finest plant selections for your workplace.
       </Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-        <img src="/images/plantGuyLogo.webp" alt="Plant Guy Logo" style={{ maxWidth: '100%', height: 'auto' }} />
+        <img src="/images/plantGuyLogo.webp" alt="Plant Guy Logo" style={{ maxWidth: '100%', maxHeight: '20rem' }} />
       </Box>
-      <Box sx={{maxWidth: '80%', margin: 'auto'}}>
+      <Box sx={{maxWidth: '70%', margin: 'auto'}}>
 
       
       <Typography variant="body1" align="center" paragraph>
@@ -27,9 +27,9 @@ const AboutUs: React.FC = () => {
       Our team is passionate about transforming your office spaces into lively hubs, where plants thrive, employees flourish, and customers keep coming back. From selecting the perfect plants that complement your workspace to providing ongoing care, we ensure your green companions contribute to a healthier and more inspiring work environment.
       </Typography>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' , border: 'solid black', maxWidth: 250, margin: 'auto', mb: 5}}>
-        <Button href='/about' variant="contained" color="primary" size="large">
-          Meet Our Team
+      <Box sx={{ display: 'flex', justifyContent: 'center' , maxWidth: '13.7em', margin: 'auto', mb: 5,}}>
+        <Button sx={{color: 'white'}} href='/about' variant="contained" color="primary" size="large">
+          More About Us
         </Button>
       </Box>
     </Container>
