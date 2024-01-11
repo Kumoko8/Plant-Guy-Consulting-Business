@@ -3,7 +3,7 @@ import { Container, Typography, Box } from '@mui/material';
 import Button from '../components/Button';
 const AboutUs: React.FC = () => {
   return (
-    <Container sx={{ mt: 6 , color: 'black'}}>
+    <Container sx={{ mt: 14 , color: 'black'}}>
       <Typography variant="h2" component="h2" align="center" gutterBottom>
         About Us
       </Typography>
