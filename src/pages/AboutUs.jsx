@@ -28,12 +28,12 @@ function AboutMe() {
             </Typography>
           </Box>
         </Container>
-        <Typography variant="h6" sx={{ margin: 'auto', mt: 12, mb: 3, maxWidth: '50%' }}>
+        <Typography variant="body1" sx={{ margin: 'auto', mt: 12, mb: 3, maxWidth: '50%' }}>
         After moving back to our hometown, we realized it can be a lot for both large and small business to keep track of their own live plants. And artificial plants just don't give the same vibe. 
         </Typography>
 
       </div>
-        <Typography variant="h6" sx={{ color: 'black', marginBottom: 2, maxWidth: '50%', display: 'flex', alignContent: 'center', justifyContent: 'center', textAlign: 'center', margin: 'auto'}}>
+        <Typography variant="body1" sx={{ color: 'black', marginBottom: 2, maxWidth: '50%', display: 'flex', alignContent: 'center', justifyContent: 'center', textAlign: 'center', margin: 'auto'}}>
           
  So we decided to start helping our favorite local spots with their plants, checking in on them, giving suggestions about water, lighting, and placement. We wanted to lighten the load for businesses by making sure they aren't having to replace plants every month. 
            
