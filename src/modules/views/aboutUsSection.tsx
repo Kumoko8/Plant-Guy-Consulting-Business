@@ -18,7 +18,7 @@ const AboutUs: React.FC = () => {
 
       
       <Typography variant="body1" align="center" paragraph>
-        At Plant Paradise, we cultivate joy, create botanical beauty, and champion sustainable living. Our journey began with a simple idea: to share the boundless benefits of plants with the world.
+        At Plant Guy, we cultivate joy, create botanical beauty, and champion sustainable living. Our journey began with a simple idea: to share the boundless benefits of plants with the world.
       </Typography>
       <Typography variant="body1" align="center" paragraph>
       We go beyond aesthetics. We are dedicated to enhancing your office environment by offering comprehensive plant care services, and providing insight on plant care and placement in order to curate a sustainable selection of the best plants for your unique space.
